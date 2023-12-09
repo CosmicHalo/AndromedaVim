@@ -1,0 +1,4 @@
+{
+  "Lua.runtime.path": ["lua/?/init.lua", "?.lua", "?/init.lua"],
+  "Lua.workspace.library": ["/home/n16hth4wk/.local/share/kickstart/lazy"]
+}
