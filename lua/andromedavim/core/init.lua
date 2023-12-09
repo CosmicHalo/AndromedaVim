@@ -1,6 +1,7 @@
 local M = {}
 
 M.did_init = false
+M.default_colorscheme = "astrodark"
 
 function M.init()
   if not M.did_init then

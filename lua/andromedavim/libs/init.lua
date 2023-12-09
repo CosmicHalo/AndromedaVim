@@ -3,7 +3,7 @@
 local M = setmetatable({}, {
   __index = function(t, k)
     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
-    t[k] = require("libs." .. k)
+    t[k] = require("andromedavim.libs." .. k)
     return t[k]
   end,
 })
@@ -23,7 +23,5 @@ function M.fn_wrap(fn, ...)
 end
 
 function M.is_win() return vim.loop.os_uname().sysname:find "Windows" ~= nil end
-
-function M.load_mappings(plugin) return require("andromedavim.plugins.configs." .. plugin).mappings or {} end
 
 return M

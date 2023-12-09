@@ -1,33 +1,30 @@
-local M = {}
-
-M.mappings = function(_, opts)
-  local andromeda = require "andromedacore"
+return function(_, opts)
+  local astro = require "astrocore"
 
   local maps = opts.mappings
-  local is_available = andromeda.is_available
+  local is_available = astro.is_available
 
   --! Git
   maps.n["<Leader>g"] = opts._map_section.g
-  maps.n["<Leader>gb"] = {
-    function() require("telescope.builtin").git_branches { use_file_path = true } end,
-    desc = "Git branches",
+  maps.n["<Leader>gt"] = {
+    function() require("telescope.builtin").git_status { use_file_path = true } end,
+    desc = "Git status",
   }
   maps.n["<Leader>gc"] = {
     function() require("telescope.builtin").git_commits { use_file_path = true } end,
     desc = "Git commits (repository)",
   }
+  maps.n["<Leader>gb"] = {
+    function() require("telescope.builtin").git_branches { use_file_path = true } end,
+    desc = "Git branches",
+  }
   maps.n["<Leader>gC"] = {
     function() require("telescope.builtin").git_bcommits { use_file_path = true } end,
     desc = "Git commits (current file)",
   }
-  maps.n["<Leader>gt"] = {
-    function() require("telescope.builtin").git_status { use_file_path = true } end,
-    desc = "Git status",
-  }
 
   --! Find / Search
   maps.n["<Leader>f"] = opts._map_section.f
-
   maps.n["<Leader>ff"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
   maps.n["<Leader>fF"] = {
     function() require("telescope.builtin").find_files { hidden = true, no_ignore = true } end,
@@ -100,5 +97,3 @@ M.mappings = function(_, opts)
     }
   end
 end
-
-return M

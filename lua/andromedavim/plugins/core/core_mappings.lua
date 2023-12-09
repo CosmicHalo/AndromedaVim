@@ -1,12 +1,12 @@
 return {
-  "AndromedaVim/andromedacore",
-  ---@param opts AndromedaCoreOpts
+  "AstroNvim/astrocore",
+  ---@param opts AstroCoreOpts
   opts = function(_, opts)
-    local andromeda = require "andromedacore"
-    local get_icon = require("andromedaui").get_icon
+    local astro = require "astrocore"
+    local get_icon = require("astroui").get_icon
 
-    local andromeda_buffers = require "andromedacore.buffer"
-    local andromeda_toggles = require "andromedacore.toggles"
+    local andromeda_buffers = require "astrocore.buffer"
+    local andromeda_toggles = require "astrocore.toggles"
 
     -- initialize internally use mapping section titles
     ---@diagnostic disable-next-line: inject-field
@@ -24,7 +24,7 @@ return {
     }
 
     -- initialize mappings table
-    local maps = andromeda.empty_map_table()
+    local maps = astro.empty_map_table()
     local sections = opts._map_section
 
     -- Normal --
@@ -42,7 +42,7 @@ return {
 
     -- TODO: remove deprecated method check after dropping support for neovim v0.9
     if not vim.ui.open then
-      maps.n["gx"] = { andromeda.system_open, desc = "Open the file under cursor with system app" }
+      maps.n["gx"] = { astro.system_open, desc = "Open the file under cursor with system app" }
     end
 
     --! Section for managing plugins
@@ -52,7 +52,7 @@ return {
     maps.n["<Leader>pS"] = { function() require("lazy").sync() end, desc = "Plugins Sync" }
     maps.n["<Leader>pu"] = { function() require("lazy").check() end, desc = "Plugins Check Updates" }
     maps.n["<Leader>pU"] = { function() require("lazy").update() end, desc = "Plugins Update" }
-    maps.n["<Leader>pa"] = { function() andromeda.update_packages() end, desc = "Update Lazy and Mason" }
+    maps.n["<Leader>pa"] = { function() astro.update_packages() end, desc = "Update Lazy and Mason" }
 
     --! Section for managing buffers
     maps.n["<Leader>b"] = sections.b

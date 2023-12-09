@@ -1,12 +1,12 @@
 local Lib = require "andromedavim.libs"
-local andromeda = require "andromedacore"
+local astro = require "astrocore"
 
 local telescope_deps = {
   "nvim-telescope/telescope-fzf-native.nvim",
   build = "make",
   enabled = vim.fn.executable "make" == 1,
   config = function()
-    andromeda.on_load("telescope.nvim", function() require("telescope").load_extension "fzf" end)
+    astro.on_load("telescope.nvim", function() require("telescope").load_extension "fzf" end)
   end,
 }
 
@@ -18,19 +18,18 @@ return {
     telescope_deps,
 
     {
-      "AndromedaVim/andromedacore",
-      dev = true,
-      opts = Lib.load_mappings "telescope",
+      "AstroNvim/astrocore",
+      opts = Andromeda.load_mappings "telescope",
     },
   },
 
   opts = function()
     local actions = require "telescope.actions"
-    local get_icon = require("andromedaui").get_icon
+    local get_icon = require("astroui").get_icon
 
     return {
       defaults = {
-        git_worktrees = require("andromedacore").config.git_worktrees,
+        git_worktrees = require("astrocore").config.git_worktrees,
 
         prompt_prefix = get_icon("Selected", 1),
         selection_caret = get_icon("Selected", 1),
