@@ -48,6 +48,13 @@ return {
       else
         setup_servers()
       end
+
+      --! Setup Deno over TSServer
+      if Lib.lsp.get_config "denols" and Lib.lsp.get_config "tsserver" then
+        local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
+        Lib.lsp.disable("tsserver", is_deno)
+        Lib.lsp.disable("denols", function(root_dir) return not is_deno(root_dir) end)
+      end
     end,
   },
 }

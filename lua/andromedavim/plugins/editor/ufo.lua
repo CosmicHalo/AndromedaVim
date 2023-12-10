@@ -1,3 +1,5 @@
+---@diagnostic disable: redundant-return-value
+
 return {
   "kevinhwang91/nvim-ufo",
   event = { "User AstroFile", "InsertEnter" },

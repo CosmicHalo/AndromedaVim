@@ -24,6 +24,9 @@ function M.init()
     if vim.bo.filetype == "lazy" then vim.cmd.bw() end
     require "andromedavim.core.options"
   end
+
+  require("andromedavim.libs").root.setup()
+  require("andromedavim.libs").format.setup()
 end
 
 return M
