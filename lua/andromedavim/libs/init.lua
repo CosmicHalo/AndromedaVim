@@ -23,7 +23,7 @@ local M = setmetatable({}, {
 function M.fn_wrap(fn, ...)
   local args = { ... } or {}
   fn = fn or require
-  return function() fn(unpack(args)) end
+  return function() fn(table.unpack(args)) end
 end
 
 function M.is_win() return vim.loop.os_uname().sysname:find "Windows" ~= nil end

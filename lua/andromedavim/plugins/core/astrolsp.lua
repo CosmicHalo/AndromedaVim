@@ -27,7 +27,7 @@ return {
     features = {
       codelens = true,
       autoformat = true,
-      inlay_hints = true,
+      inlay_hints = false,
       lsp_handlers = true,
       diagnostics_mode = 3,
       semantic_tokens = true,

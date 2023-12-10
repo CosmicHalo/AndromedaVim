@@ -1,4 +1,4 @@
-local Lib = require "andromedavim.libs"
+local cfg = Andromeda.load_config "conform-nvim"
 
 return {
   {
@@ -6,36 +6,10 @@ return {
     lazy = true,
     cmd = "ConformInfo",
     event = { "BufReadPre", "BufNewFile" },
-    keys = {
-      {
-        "<leader>cF",
-        function() require("conform").format { formatters = { "injected" } } end,
-        mode = { "n", "v" },
-        desc = "Format Injected Langs",
-      },
-    },
+    dependencies = { { "AstroNvim/astrocore", opts = cfg.mappings } },
 
-    init = function()
-      -- Install the conform formatter on VeryLazy
-      require("andromedavim.libs").on_very_lazy(function()
-        require("andromedavim.libs").format.register {
-          name = "conform.nvim",
-          priority = 100,
-          primary = true,
-          format = function(buf)
-            local plugin = require("lazy.core.config").plugins["conform.nvim"]
-            local Plugin = require "lazy.core.plugin"
-            local opts = Plugin.values(plugin, "opts", false)
-            require("conform").format(Lib.merge(opts.format, { bufnr = buf }))
-          end,
-          sources = function(buf)
-            local ret = require("conform").list_formatters(buf)
-            ---@param v conform.FormatterInfo
-            return vim.tbl_map(function(v) return v.name end, ret)
-          end,
-        }
-      end)
-    end,
+    init = cfg.init,
+    config = function(_, opts) require("conform").setup(opts) end,
 
     opts = function()
       ---@class ConformOpts
@@ -73,6 +47,5 @@ return {
 
       return opts
     end,
-    config = function(_, opts) require("conform").setup(opts) end,
   },
 }

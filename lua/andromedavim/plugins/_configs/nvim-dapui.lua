@@ -8,7 +8,10 @@ M.mappings = function(_, opts)
   maps.n["<Leader>dE"] = {
     function()
       vim.ui.input({ prompt = "Expression: " }, function(expr)
-        if expr then require("dapui").eval(expr, { enter = true }) end
+        if expr then
+          local args = { enter = true }
+          require("dapui").eval(expr, args)
+        end
       end)
     end,
     desc = "Evaluate Input",
