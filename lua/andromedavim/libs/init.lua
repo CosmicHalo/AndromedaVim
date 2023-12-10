@@ -31,6 +31,12 @@ function M.is_win() return vim.loop.os_uname().sysname:find "Windows" ~= nil end
 ---@param plugin string
 function M.has(plugin) return require("lazy.core.config").spec.plugins[plugin] ~= nil end
 
+--- Trigger an AstroNvim user event
+---@param event string The event name to be appended to Astro
+function M.event(event)
+  vim.schedule(function() vim.api.nvim_exec_autocmds("User", { pattern = "Andromeda" .. event, modeline = false }) end)
+end
+
 ---@param fn fun()
 function M.on_very_lazy(fn)
   vim.api.nvim_create_autocmd("User", { pattern = "VeryLazy", callback = function() fn() end })

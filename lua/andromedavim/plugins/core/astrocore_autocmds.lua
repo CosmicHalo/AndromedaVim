@@ -1,3 +1,5 @@
+local andromeda = require "andromedavim.libs"
+
 ---@diagnostic disable: inject-field
 return {
   "AstroNvim/astrocore",
@@ -134,13 +136,14 @@ return {
           callback = function(args)
             local astro = require "astrocore"
             local current_file = vim.fn.resolve(vim.fn.expand "%")
+
             if not (current_file == "" or vim.bo[args.buf].buftype == "nofile") then
-              astro.event "File"
+              andromeda.event "File"
               if
                 astro.file_worktree()
                 -- or astro.cmd({ "git", "-C", vim.fn.fnamemodify(current_file, ":p:h"), "rev-parse" }, false)
               then
-                astro.event "GitFile"
+                andromeda.event "GitFile"
                 vim.api.nvim_del_augroup_by_name "file_user_events"
               end
             end

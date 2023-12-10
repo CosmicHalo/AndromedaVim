@@ -3,6 +3,7 @@ vim.g.maplocalleader = "\\"
 
 -- Enable andromeda auto format
 vim.g.autoformat = true
+vim.g.icons_enabled = true
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 
 -- Each entry can be:

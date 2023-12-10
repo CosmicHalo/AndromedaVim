@@ -5,7 +5,7 @@ return {
 
   {
     "lewis6991/gitsigns.nvim",
-    event = "User AstroGitFile",
+    event = "User AndromedaGitFile",
     enabled = vim.fn.executable "git" == 1,
     dependencies = {
       {

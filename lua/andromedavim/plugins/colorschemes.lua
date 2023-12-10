@@ -1,7 +1,7 @@
 return {
   {
     "NvChad/nvim-colorizer.lua",
-    event = "User AstroFile",
+    event = "User AndromedaFile",
     cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
     dependencies = {
       {
@@ -26,15 +26,10 @@ return {
     "craftzdog/solarized-osaka.nvim",
     lazy = false,
     priority = 1000,
-    opts = {
-      sidebars = { "qf", "vista_kind", "terminal", "packer" },
-      -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-      on_colors = function(colors)
-        colors.hint = colors.orange
-        colors.error = "#ff0000"
-      end,
-    },
+    opts = { transparent = true },
   },
+
+  -- >>>>>>>>>>>>>>>>>>>>>>>>>>>> UI  <<<<<<<<<<<<<<<<<<<<<<<<<<<< --
 
   {
     "AstroNvim/astroui",

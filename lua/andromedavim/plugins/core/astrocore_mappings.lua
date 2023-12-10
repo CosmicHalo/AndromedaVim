@@ -28,17 +28,22 @@ return {
     local sections = opts._map_section
 
     -- Normal --
+
     -- Standard Operations
-    maps.n["j"] = { "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Move cursor down" }
-    maps.n["k"] = { "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Move cursor up" }
-    maps.n["<Leader>w"] = { "<Cmd>w<CR>", desc = "Save" }
-    maps.n["<Leader>q"] = { "<Cmd>confirm q<CR>", desc = "Quit" }
-    maps.n["<Leader>Q"] = { "<Cmd>confirm qall<CR>", desc = "Quit all" }
-    maps.n["<Leader>n"] = { "<Cmd>enew<CR>", desc = "New File" }
-    maps.n["<C-s>"] = { "<Cmd>w!<CR>", desc = "Force write" }
+
     maps.n["<C-q>"] = { "<Cmd>q!<CR>", desc = "Force quit" }
+    maps.n["<C-s>"] = { "<Cmd>w!<CR>", desc = "Force write" }
+
     maps.n["|"] = { "<Cmd>vsplit<CR>", desc = "Vertical Split" }
     maps.n["\\"] = { "<Cmd>split<CR>", desc = "Horizontal Split" }
+
+    maps.n["k"] = { "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Move cursor up" }
+    maps.n["j"] = { "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Move cursor down" }
+
+    maps.n["<Leader>w"] = { "<Cmd>w<CR>", desc = "Save" }
+    maps.n["<Leader>N"] = { "<Cmd>enew<CR>", desc = "New File" }
+    maps.n["<Leader>q"] = { "<Cmd>confirm q<CR>", desc = "Quit" }
+    maps.n["<Leader>Q"] = { "<Cmd>confirm qall<CR>", desc = "Quit all" }
 
     -- TODO: remove deprecated method check after dropping support for neovim v0.9
     if not vim.ui.open then

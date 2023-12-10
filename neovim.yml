@@ -1,0 +1,15 @@
+---
+base: lua54
+
+globals:
+  vim:
+    any: true
+
+  Andromeda:
+    any: true
+
+  assert:
+    args:
+      - type: bool
+      - type: string
+        required: false

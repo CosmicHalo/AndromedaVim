@@ -19,7 +19,7 @@ require("lazy").setup {
   checker = { enabled = true },
   change_detection = { enabled = true },
   defaults = { lazy = true, version = false },
-  install = { missing = true, colorscheme = { "onedark", "astrodark", "catppuccin-mocha" } },
+  install = { missing = true, colorscheme = { "onedark", "astrodark", "catppuccin-mocha", "solarized-osaka" } },
 
   ---@diagnostic disable-next-line: assign-type-mismatch
   dev = {

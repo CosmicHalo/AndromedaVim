@@ -2,7 +2,7 @@ local dapui_cfg = Andromeda.load_config "nvim-dapui"
 
 return {
   "mfussenegger/nvim-dap",
-  event = "User AstroFile",
+  event = "User AndromedaFile",
   enabled = vim.fn.has "win32" == 0,
   dependencies = {
     { "AstroNvim/astrocore", opts = Andromeda.load_config "nvim-dap" },

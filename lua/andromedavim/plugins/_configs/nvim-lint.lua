@@ -45,8 +45,7 @@ return function(_, opts)
       local linter = lint.linters[name]
       if not linter then Lib.warn("Linter not found: " .. name, { title = "nvim-lint" }) end
 
-      Andromeda.debug(linter)
-
+      ---@diagnostic disable-next-line: undefined-field
       return linter and not (type(linter) == "table" and linter.condition and not linter.condition(ctx))
     end, names)
 

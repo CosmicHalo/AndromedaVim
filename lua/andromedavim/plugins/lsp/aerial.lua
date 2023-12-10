@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/aerial.nvim",
-    event = "User AstroFile",
+    event = "User AndromedaFile",
     dependencies = {
       {
         "AstroNvim/astrocore",

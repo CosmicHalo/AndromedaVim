@@ -1,15 +1,15 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = "User AstroFile",
+    event = "User AndromedaFile",
     cmd = function(_, cmds) -- HACK: lazy load lspconfig on `:Neoconf` if neoconf is available
       if require("astrocore").is_available "neoconf.nvim" then table.insert(cmds, "Neoconf") end
       vim.list_extend(cmds, { "LspInfo", "LspLog", "LspStart" }) -- add normal `nvim-lspconfig` commands
     end,
 
     dependencies = {
-      { "folke/neoconf.nvim", opts = {} },
-      { "folke/neodev.nvim", lazy = true, opts = {} },
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
+      { "folke/neodev.nvim", opts = {} },
 
       {
         "AstroNvim/astrolsp",
@@ -40,7 +40,7 @@ return {
       local setup_servers = function()
         vim.tbl_map(require("astrolsp").lsp_setup, require("astrolsp").config.servers)
         vim.api.nvim_exec_autocmds("FileType", {})
-        require("astrocore").event "LspSetup"
+        require("andromedavim.libs").event "LspSetup"
       end
 
       if astrocore.is_available "mason-lspconfig.nvim" then
