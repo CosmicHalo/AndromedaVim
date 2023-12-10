@@ -1,4 +1,10 @@
 return {
+  {
+    "rshkarin/mason-nvim-lint",
+    opts = function(_, opts) require("andromedavim.libs").extend_opt(opts, { "eslint_d" }) end,
+
+    -- if type(opts.ensure_installed) == "table" then vim.list_extend(opts.ensure_installed, { "ocaml" }) end}
+  },
 
   -- add typescript to treesitter
   {

@@ -5,9 +5,6 @@ M.did_init = false
 M.default_dashboard = "doom"
 M.default_colorscheme = "solarized-osaka"
 
-M.linters = {}
-M.formatters = {}
-
 function M.init()
   if not M.did_init then
     M.did_init = true

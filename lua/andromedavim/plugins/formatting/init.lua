@@ -48,4 +48,11 @@ return {
       return opts
     end,
   },
+
+  {
+    "rshkarin/mason-nvim-lint",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
+    opts = { automatic_installation = true },
+  },
 }

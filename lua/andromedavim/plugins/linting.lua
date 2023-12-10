@@ -7,8 +7,8 @@ return {
       events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 
       linters_by_ft = {
-        nix = { "nix" },
-        lua = { "stylua" },
+        -- nix = { "nix" },
+        -- lua = { "stylua" },
         markdown = { "markdownlint" },
         -- Use the "*" filetype to run linters on all filetypes.
         -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.

@@ -15,17 +15,6 @@ return {
     },
 
     autocmds = {
-      diplay_mason = {
-        {
-          pattern = "MasonToolsUpdateCompleted",
-          callback = function(e)
-            vim.schedule(function()
-              print(vim.inspect(e.data)) -- print the table that lists the programs that were installed
-            end)
-          end,
-        },
-      },
-
       auto_quit = {
         {
           event = "BufEnter",

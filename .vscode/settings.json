@@ -1,7 +1,7 @@
 {
   "Lua.runtime.path": ["lua/?/init.lua", "?.lua", "?/init.lua"],
-  "Lua.workspace.library": [
-    "/Users/jlecoq@dnanexus.com/.local/share/AndromedaVim/lazy"
-  ]
-  // "Lua.workspace.library": ["/home/n16hth4wk/.local/share/kickstart/lazy"]
+  // "Lua.workspace.library": [
+  //   "/Users/jlecoq@dnanexus.com/.local/share/AndromedaVim/lazy"
+  // ]
+  "Lua.workspace.library": ["/home/n16hth4wk/.local/share/kickstart/lazy"]
 }

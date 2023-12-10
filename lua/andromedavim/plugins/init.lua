@@ -6,7 +6,15 @@ local plugins = {
   "nvim-lua/plenary.nvim",
 }
 
-for _, plugin in ipairs { "core", "lsp", "lang", "ui", "coding", "editor" } do
+for _, plugin in ipairs {
+  "core",
+  "lsp",
+  "formatting",
+  "lang",
+  "ui",
+  "coding",
+  "editor",
+} do
   table.insert(plugins, { import = "andromedavim.plugins." .. plugin })
 end
 

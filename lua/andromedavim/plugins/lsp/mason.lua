@@ -2,32 +2,6 @@ local icons = require "andromedavim.icons"
 
 return {
   {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    event = "VeryLazy",
-    dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
-    keys = {
-      { "<leader>pM", vim.cmd.MasonToolsUpdate, desc = " Mason Update" },
-    },
-    opts = {
-      auto_update = true,
-      ensure_installed = { "lua-language-server" },
-    },
-    config = function()
-      local myTools = toolsToAutoinstall(linters, formatters, debuggers, dontInstall)
-      vim.list_extend(myTools, vim.g.myLsps)
-
-      require("mason-tool-installer").setup {
-        ensure_installed = myTools,
-        run_on_start = false, -- triggered manually, since not working with lazy-loading
-      }
-
-      -- clean unused & install missing
-      vim.defer_fn(vim.cmd.MasonToolsInstall, 500)
-      vim.defer_fn(vim.cmd.MasonToolsClean, 1000) -- delayed, so noice.nvim is loaded before
-    end,
-  },
-
-  {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
     dependencies = { { "AstroNvim/astrocore", opts = Andromeda.load_config "mason" } },
