@@ -16,10 +16,9 @@ return {
   version = false, -- telescope did only one release, so use HEAD for now
   dependencies = {
     telescope_deps,
-
     {
       "AstroNvim/astrocore",
-      opts = Andromeda.load_mappings "telescope",
+      opts = Andromeda.load_config "telescope",
     },
   },
 

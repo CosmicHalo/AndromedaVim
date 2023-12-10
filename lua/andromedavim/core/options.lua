@@ -91,7 +91,7 @@ else
   vim.opt.foldmethod = "indent"
 end
 
--- vim.o.formatexpr = "v:lua.require'util'.format.formatexpr()"
+vim.o.formatexpr = "v:lua.require'andromedavim.libs'.format.formatexpr()"
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

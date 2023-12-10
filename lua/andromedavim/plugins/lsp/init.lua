@@ -1,46 +1,53 @@
-local is_available = require("astrocore").is_available
-
 return {
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
   {
-    -- LSP Configuration & Plugins
     "neovim/nvim-lspconfig",
     event = "User AstroFile",
-
     cmd = function(_, cmds) -- HACK: lazy load lspconfig on `:Neoconf` if neoconf is available
-      if is_available "neoconf.nvim" then table.insert(cmds, "Neoconf") end
+      if require("astrocore").is_available "neoconf.nvim" then table.insert(cmds, "Neoconf") end
       vim.list_extend(cmds, { "LspInfo", "LspLog", "LspStart" }) -- add normal `nvim-lspconfig` commands
     end,
 
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-      { "folke/neodev.nvim", opts = {} },
+      { "folke/neoconf.nvim", opts = {} },
+      { "folke/neodev.nvim", lazy = true, opts = {} },
 
-      -- Automatically install LSPs to stdpath for neovim
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      {
+        "AstroNvim/astrolsp",
+        opts = function(_, opts)
+          local maps = opts.mappings
+          maps.n["<Leader>li"] =
+            { "<Cmd>LspInfo<CR>", desc = "LSP information", cond = function() return vim.fn.exists ":LspInfo" > 0 end }
+        end,
+      },
 
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { "j-hui/fidget.nvim", opts = {} },
-
-      -- Additional lua configuration, makes nvim stuff amazing!
-      "folke/neodev.nvim",
+      {
+        "williamboman/mason-lspconfig.nvim",
+        cmd = { "LspInstall", "LspUninstall" },
+        opts = function(_, opts)
+          if not opts.handlers then opts.handlers = {} end
+          opts.handlers[1] = function(server) require("astrolsp").lsp_setup(server) end
+        end,
+      },
     },
 
-    ---@class PluginLspOpts
-    opts = {},
-
-    ---@param opts PluginLspOpts
-    config = function(_, opts)
-      if is_available "neoconf.nvim" then
-        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
-        require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
-      end
+    config = function(_, _)
+      local astrocore = require "astrocore"
+      local Lib = require "andromedavim.libs"
 
       -- setup autoformat
-      -- core.format.register(Util.lsp.formatter())
+      Lib.format.register(Lib.lsp.formatter())
+
+      local setup_servers = function()
+        vim.tbl_map(require("astrolsp").lsp_setup, require("astrolsp").config.servers)
+        vim.api.nvim_exec_autocmds("FileType", {})
+        require("astrocore").event "LspSetup"
+      end
+
+      if astrocore.is_available "mason-lspconfig.nvim" then
+        astrocore.on_load("mason-lspconfig.nvim", setup_servers)
+      else
+        setup_servers()
+      end
     end,
   },
 }

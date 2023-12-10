@@ -20,13 +20,14 @@ return {
 
     formatting = {
       disabled = {},
-      format_on_save = { enabled = true },
+      timeout_ms = 1000, -- default format timeout
+      format_on_save = { enabled = true, allow_filetypes = {}, ignore_filetypes = {} },
     },
 
     features = {
       codelens = true,
       autoformat = true,
-      inlay_hints = false,
+      inlay_hints = true,
       lsp_handlers = true,
       diagnostics_mode = 3,
       semantic_tokens = true,

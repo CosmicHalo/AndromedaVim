@@ -22,8 +22,10 @@ Andromeda.echo = function(str, key_return)
   if key_return then vim.fn.getchar() end
 end
 
-Andromeda.load_config = function(plugin) return require("andromedavim.plugins._configs." .. plugin) or {} end
-Andromeda.load_mappings = function(plugin) return require("andromedavim.plugins._mappings." .. plugin) or {} end
+Andromeda.load_config = function(plugin, ...)
+  local args = { ... } or {}
+  return require("andromedavim.plugins._configs." .. plugin) or {}
+end
 
 Andromeda.load_cfg = function(plugin)
   local lib = require "andromedavim.libs"

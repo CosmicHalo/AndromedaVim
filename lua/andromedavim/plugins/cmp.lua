@@ -37,6 +37,7 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
       cmp_mappings,
       "hrsh7th/cmp-path",
@@ -44,7 +45,6 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "saadparwaiz1/cmp_luasnip",
     },
-    event = "InsertEnter",
     opts = function()
       local snip_status_ok, luasnip = pcall(require, "luasnip")
       if not snip_status_ok then return end

@@ -1,5 +1,9 @@
 ---@class AndromedaLib: LazyUtilCore
+---@field lsp AndromedaLSPLib
 ---@field path AndromedaPathLib
+---@field root AndromedaRootLib
+---@field format AndromedaFormatLib
+---@field telescope AndromedaTelescopeLib
 local M = setmetatable({}, {
   __index = function(t, k)
     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
@@ -23,5 +27,8 @@ function M.fn_wrap(fn, ...)
 end
 
 function M.is_win() return vim.loop.os_uname().sysname:find "Windows" ~= nil end
+
+---@param plugin string
+function M.has(plugin) return require("lazy.core.config").spec.plugins[plugin] ~= nil end
 
 return M

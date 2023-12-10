@@ -3,8 +3,8 @@ return {
   lazy = true,
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "onedark",
     icons = require "andromedavim.icons",
     text_icons = require "andromedavim.icons.text",
+    colorscheme = require("andromedavim.core").default_colorscheme,
   },
 }
