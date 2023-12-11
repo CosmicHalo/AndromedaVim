@@ -1,11 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "ninja", "python", "rst", "toml" })
-      end
-    end,
+    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "ninja", "python", "rst", "toml" }) end,
   },
 
   {
@@ -19,11 +15,11 @@ return {
   },
 
   {
-    "AstroNvim/astrolsp",
+    "neovim/nvim-lspconfig",
     opts = {
-      servers = { "pyright", "ruff_lsp" },
+      servers = {
+        pyright = {},
 
-      config = {
         ruff_lsp = {
           keys = {
             {

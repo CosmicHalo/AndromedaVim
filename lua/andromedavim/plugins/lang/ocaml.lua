@@ -1,9 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then vim.list_extend(opts.ensure_installed, { "ocaml" }) end
-    end,
+    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "ocaml" }) end,
   },
 
   {
@@ -15,22 +13,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        neocmake = {},
+        ocamllsp = { codelens = { enable = true } },
       },
     },
-  },
-
-  {
-    "AstroNvim/astrolsp",
-    -- opts = function(_, opts)
-    --   opts.servers = require("andromedavim.libs").extend_list_opt(opts, { "ocamllsp" }, "servers")
-    --   opts.config = require("andromedavim.libs").extend_opts(opts.config, {
-    --     ocamllsp = { codelens = { enable = true } },
-    --   })
-
-    --   Andromeda.debug(opts.servers)
-    -- end,
-    opts = function(_, opts) opts.servers = vim.list_extend(opts.servers, { "ocamllsp" }) end,
   },
 
   {

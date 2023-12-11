@@ -8,8 +8,8 @@ return {
 
       linters_by_ft = {
         -- nix = { "nix" },
-        markdown = { "markdownlint" },
         lua = { "selene" },
+        markdown = { "markdownlint" },
         -- lua = { "selene", "luacheck" },
         -- Use the "*" filetype to run linters on all filetypes.
         -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
@@ -26,22 +26,5 @@ return {
     },
 
     config = Andromeda.load_config "nvim-lint",
-  },
-
-  {
-    "rshkarin/mason-nvim-lint",
-    lazy = true,
-    event = { "BufReadPre", "BufNewFile" },
-    opts = function(_, opts)
-      local ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(ensure_installed, { "selene" })
-
-      -- Andromeda.debug("ensure_installed", ensure_installed)
-
-      return {
-        automatic_installation = true,
-        ensure_installed = ensure_installed,
-      }
-    end,
   },
 }

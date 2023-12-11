@@ -1,6 +1,6 @@
 return {
   {
-    "rshkarin/mason-nvim-lint",
+    "rshkarin/mason",
     optional = true,
     opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "eslint_d" }) end,
   },
@@ -8,11 +8,7 @@ return {
   -- add typescript to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "javascript", "typescript", "tsx" })
-      end
-    end,
+    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "javascript", "typescript", "tsx" }) end,
   },
 
   {
@@ -39,42 +35,41 @@ return {
     },
   },
 
-  -- {
-  --   "AstroNvim/astrolsp",
-  --   opts = {
-  --     servers = { "tsserver" },
-  --     config = {
-  --       tsserver = {
-  --         single_file_support = false,
-  --         settings = {
-  --           typescript = {
-  --             inlayHints = {
-  --               includeInlayVariableTypeHints = false,
-  --               includeInlayEnumMemberValueHints = true,
-  --               includeInlayParameterNameHints = "literal",
-  --               includeInlayFunctionParameterTypeHints = true,
-  --               includeInlayFunctionLikeReturnTypeHints = true,
-  --               includeInlayPropertyDeclarationTypeHints = true,
-  --               includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-  --             },
-  --           },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        tsserver = {
+          single_file_support = false,
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayVariableTypeHints = false,
+                includeInlayEnumMemberValueHints = true,
+                includeInlayParameterNameHints = "literal",
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              },
+            },
 
-  --           javascript = {
-  --             inlayHints = {
-  --               includeInlayVariableTypeHints = true,
-  --               includeInlayParameterNameHints = "all",
-  --               includeInlayEnumMemberValueHints = true,
-  --               includeInlayFunctionParameterTypeHints = true,
-  --               includeInlayFunctionLikeReturnTypeHints = true,
-  --               includeInlayPropertyDeclarationTypeHints = true,
-  --               includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-  --             },
-  --           },
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
+            javascript = {
+              inlayHints = {
+                includeInlayVariableTypeHints = true,
+                includeInlayParameterNameHints = "all",
+                includeInlayEnumMemberValueHints = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 
   -- {
   --   "mfussenegger/nvim-dap",

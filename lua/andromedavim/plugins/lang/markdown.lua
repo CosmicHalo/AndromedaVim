@@ -1,11 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "markdown", "markdown_inline" })
-      end
-    end,
+    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "markdown", "markdown_inline" }) end,
   },
 
   {
@@ -17,17 +13,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        solargraph = {},
+        marksman = {},
       },
     },
-  },
-
-  {
-    "AstroNvim/astrolsp",
-    opts = { servers = { "marksman" } },
-    -- opts = function(_, opts)
-    --   opts.servers = require("andromedavim.libs").extend_list_opt(opts, { "marksman" }, "servers")
-    -- end,
   },
 
   -- Markdown preview
