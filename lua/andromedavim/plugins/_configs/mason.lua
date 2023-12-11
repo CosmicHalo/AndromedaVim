@@ -1,4 +1,4 @@
-return function(_, opts)
+Andromeda.mappings.mason = function(_, opts)
   local maps = opts.mappings
   maps.n["<Leader>pm"] = { function() require("mason.ui").open() end, desc = "Mason Installer" }
   -- maps.n["<Leader>pM"] = { function() require("astrocore.mason").update_all() end, desc = "Mason Update" }

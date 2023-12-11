@@ -1,4 +1,4 @@
-return function(_, opts)
+Andromeda.mappings.toggleterm = function(_, opts)
   local maps = opts.mappings
   local astro = require "astrocore"
 

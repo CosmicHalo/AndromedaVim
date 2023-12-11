@@ -1,7 +1,7 @@
 return {
   "akinsho/toggleterm.nvim",
   cmd = { "ToggleTerm", "TermExec" },
-  dependencies = { { "AstroNvim/astrocore", opts = Andromeda.load_config "toggleterm" } },
+  dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.neotree } },
   opts = {
     size = 10,
     shading_factor = 2,

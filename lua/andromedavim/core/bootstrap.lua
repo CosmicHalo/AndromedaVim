@@ -4,8 +4,6 @@ _G.Andromeda = {}
 Andromeda.configs = {}
 Andromeda.mappings = {}
 
--- Andromeda.mappings = require "andromedavim.core.mappings"
-
 Andromeda.debug = function(...)
   local args = { ... }
   local str = ""
@@ -26,8 +24,6 @@ Andromeda.echo = function(str, key_return)
   vim.api.nvim_echo({ { str, "Bold" } }, true, {})
   if key_return then vim.fn.getchar() end
 end
-
-Andromeda.load_config = function(plugin) return require("andromedavim.plugins._configs." .. plugin) or {} end
 
 -- Andromeda.load_cfg = function(plugin)
 --   local lib = require "andromedavim.libs"

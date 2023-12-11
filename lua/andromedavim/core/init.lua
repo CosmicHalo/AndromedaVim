@@ -30,6 +30,7 @@ function M.init()
     require "andromedavim.core.options"
   end
 
+  require "andromedavim.core.mappings"
   require("andromedavim.libs").root.setup()
   require("andromedavim.libs").format.setup()
 end

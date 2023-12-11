@@ -1,11 +1,9 @@
-local dapui_cfg = Andromeda.load_config "nvim-dapui"
-
 return {
   "mfussenegger/nvim-dap",
   event = "User AndromedaFile",
   enabled = vim.fn.has "win32" == 0,
   dependencies = {
-    { "AstroNvim/astrocore", opts = Andromeda.load_config "nvim-dap" },
+    { "AstroNvim/astrocore", opts = Andromeda.mappings.dap },
     {
       "jay-babu/mason-nvim-dap.nvim",
       dependencies = { "nvim-dap" },
@@ -14,9 +12,9 @@ return {
     },
     {
       "rcarriga/nvim-dap-ui",
-      config = dapui_cfg.config,
+      config = Andromeda.configs.dapui,
       opts = { floating = { border = "rounded" } },
-      dependencies = { { "AstroNvim/astrocore", opts = dapui_cfg.mappings } },
+      dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.dapui } },
     },
     {
       "rcarriga/cmp-dap",

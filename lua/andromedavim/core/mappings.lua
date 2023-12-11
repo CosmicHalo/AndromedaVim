@@ -1,9 +1,5 @@
-local get_icon = require("astroui").get_icon
-
-local M = {}
-
 --!>>>>>>>>> conform-nvim <<<<<<<<<
-M.conform_nvim = function(_, opts)
+Andromeda.mappings.conform_nvim = function(_, opts)
   -- local maps = opts.mappings
   -- maps.n["<leader>cF"] = {
   --   function() require("conform").format { formatters = { "injected" } } end,
@@ -13,7 +9,7 @@ end
 
 --stylua: ignore
 --!>>>>>>>>> Heirline <<<<<<<<<
-M.heirline = function(_, opts)
+Andromeda.mappings.heirline = function(_, opts)
   local maps = opts.mappings
   maps.n["<Leader>bb"] = {
     function() require("astroui.status.heirline").buffer_picker(function(bufnr) vim.api.nvim_win_set_buf(0, bufnr) end) end,
@@ -44,9 +40,10 @@ M.heirline = function(_, opts)
 end
 
 --!>>>>>>>>> Noice <<<<<<<<<
-M.noice = function(_, opts)
+Andromeda.mappings.noice = function(_, opts)
   local maps = opts.mappings
   local noice = require "noice"
+  local get_icon = require("astroui").get_icon
 
   maps.n["<leader>n"] = { desc = get_icon("Sparkle", 1, true) .. "Noice" }
   maps.n["<leader>na"] = { function() noice.cmd "all" end, desc = "Noice All" }
@@ -60,5 +57,3 @@ M.noice = function(_, opts)
     desc = "Redirect Cmdline",
   }
 end
-
-return M

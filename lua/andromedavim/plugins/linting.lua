@@ -25,6 +25,6 @@ return {
       },
     },
 
-    config = Andromeda.load_config "nvim-lint",
+    config = Andromeda.configs.nvim_lint,
   },
 }

@@ -4,9 +4,9 @@ return {
     lazy = true,
     cmd = "ConformInfo",
     event = { "BufReadPre", "BufNewFile" },
-    -- dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.conform_nvim } },
+    dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.conform_nvim } },
 
-    init = Andromeda.load_config("conform-nvim").init,
+    -- init = Andromeda.configs["conform_nvim"].init,
     config = function(_, opts) require("conform").setup(opts) end,
     opts = function()
       ---@class ConformOpts

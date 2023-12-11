@@ -1,4 +1,4 @@
-return function(_, opts)
+Andromeda.mappings.neotree = function(_, opts)
   local maps = opts.mappings
   maps.n["<Leader>e"] = { "<Cmd>Neotree toggle<CR>", desc = "Toggle Explorer" }
   maps.n["<Leader>o"] = {

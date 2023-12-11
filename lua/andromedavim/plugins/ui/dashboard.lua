@@ -1,4 +1,4 @@
-local cfg = Andromeda.load_config "dashboard"
+local cfg = Andromeda.configs.dashboard
 
 local hypr_cfg = cfg.hypr
 local doom_cfg = cfg.doom

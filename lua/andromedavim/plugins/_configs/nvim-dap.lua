@@ -1,4 +1,4 @@
-return function(_, opts)
+Andromeda.mappings.dap = function(_, opts)
   local maps = opts.mappings
   maps.n["<Leader>d"] = opts._map_section.d
 

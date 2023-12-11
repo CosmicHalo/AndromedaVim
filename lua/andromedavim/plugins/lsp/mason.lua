@@ -3,7 +3,7 @@ return {
   {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
-    dependencies = { { "AstroNvim/astrocore", opts = Andromeda.load_config "mason" } },
+    dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.mason } },
     cmd = { "Mason", "MasonLog", "MasonInstall", "MasonUninstall", "MasonUninstallAll" },
     opts = {
       ensure_installed = {

@@ -4,7 +4,7 @@ return {
   dependencies = {
     { "MunifTanjim/nui.nvim", lazy = true },
     { "nvim-tree/nvim-web-devicons", lazy = true },
-    -- { "AstroNvim/astrocore", opts = Andromeda.mappings.noice },
+    { "AstroNvim/astrocore", opts = Andromeda.mappings.noice },
   },
   -- stylua: ignore
   keys = {

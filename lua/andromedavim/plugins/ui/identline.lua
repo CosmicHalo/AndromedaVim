@@ -1,4 +1,4 @@
-local cfg = Andromeda.load_config "indentscope"
+local cfg = Andromeda.configs.indentscope
 
 local char = "▏"
 local ignore_buftypes = cfg.ignore_buftypes

@@ -1,4 +1,4 @@
-return function(_, opts)
+Andromeda.configs.nvim_lint = function(_, opts)
   local lint = require "lint"
   local Lib = require "andromedavim.libs"
 

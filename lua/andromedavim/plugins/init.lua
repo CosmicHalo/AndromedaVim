@@ -6,6 +6,8 @@ local plugins = {
   "nvim-lua/plenary.nvim",
 }
 
+require("andromedavim.libs.path").load_dir()
+
 for _, plugin in ipairs {
   "core",
   "lsp",
