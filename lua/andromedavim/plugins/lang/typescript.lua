@@ -1,9 +1,8 @@
 return {
   {
     "rshkarin/mason-nvim-lint",
-    opts = function(_, opts) require("andromedavim.libs").extend_opt(opts, { "eslint_d" }) end,
-
-    -- if type(opts.ensure_installed) == "table" then vim.list_extend(opts.ensure_installed, { "ocaml" }) end}
+    optional = true,
+    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "eslint_d" }) end,
   },
 
   -- add typescript to treesitter
@@ -16,44 +15,66 @@ return {
     end,
   },
 
-  -- correctly setup lspconfig
   {
-    "AstroNvim/astrolsp",
-    opts = {
-      servers = { "tsserver" },
-
-      config = {
-        tsserver = {
-          single_file_support = false,
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayVariableTypeHints = false,
-                includeInlayEnumMemberValueHints = true,
-                includeInlayParameterNameHints = "literal",
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-              },
-            },
-
-            javascript = {
-              inlayHints = {
-                includeInlayVariableTypeHints = true,
-                includeInlayParameterNameHints = "all",
-                includeInlayEnumMemberValueHints = true,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-              },
-            },
-          },
-        },
-      },
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {},
+    formatters_by_ft = {
+      ["vue"] = { "prettier" },
+      ["css"] = { "prettier" },
+      ["scss"] = { "prettier" },
+      ["less"] = { "prettier" },
+      ["html"] = { "prettier" },
+      ["json"] = { "prettier" },
+      ["yaml"] = { "prettier" },
+      ["jsonc"] = { "prettier" },
+      ["graphql"] = { "prettier" },
+      ["markdown"] = { "prettier" },
+      ["javascript"] = { "prettier" },
+      ["typescript"] = { "prettier" },
+      ["handlebars"] = { "prettier" },
+      ["markdown.mdx"] = { "prettier" },
+      ["javascriptreact"] = { "prettier" },
+      ["typescriptreact"] = { "prettier" },
     },
   },
+
+  -- {
+  --   "AstroNvim/astrolsp",
+  --   opts = {
+  --     servers = { "tsserver" },
+  --     config = {
+  --       tsserver = {
+  --         single_file_support = false,
+  --         settings = {
+  --           typescript = {
+  --             inlayHints = {
+  --               includeInlayVariableTypeHints = false,
+  --               includeInlayEnumMemberValueHints = true,
+  --               includeInlayParameterNameHints = "literal",
+  --               includeInlayFunctionParameterTypeHints = true,
+  --               includeInlayFunctionLikeReturnTypeHints = true,
+  --               includeInlayPropertyDeclarationTypeHints = true,
+  --               includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+  --             },
+  --           },
+
+  --           javascript = {
+  --             inlayHints = {
+  --               includeInlayVariableTypeHints = true,
+  --               includeInlayParameterNameHints = "all",
+  --               includeInlayEnumMemberValueHints = true,
+  --               includeInlayFunctionParameterTypeHints = true,
+  --               includeInlayFunctionLikeReturnTypeHints = true,
+  --               includeInlayPropertyDeclarationTypeHints = true,
+  --               includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+  --             },
+  --           },
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 
   -- {
   --   "mfussenegger/nvim-dap",

@@ -19,7 +19,6 @@ M.init = function()
 
       sources = function(buf)
         local ret = require("conform").list_formatters(buf)
-
         ---@param v conform.FormatterInfo
         return vim.tbl_map(function(v) return v.name end, ret)
       end,

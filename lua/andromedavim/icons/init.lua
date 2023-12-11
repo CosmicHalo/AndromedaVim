@@ -32,6 +32,7 @@ return {
   Session = "󱂬",
   Sort = "󰒺",
   SourceCode = "",
+  Sparkle = "",
   Spellcheck = "󰓆",
   Tab = "󰓩",
   TabClose = "󰅙",

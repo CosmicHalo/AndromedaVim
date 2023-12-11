@@ -19,3 +19,7 @@ vim.log = {
     ERROR = 4,
   },
 }
+
+---@param default table
+---@param extension table
+function vim.list_extend(default, extension) end
