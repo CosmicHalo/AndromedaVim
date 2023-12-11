@@ -58,8 +58,10 @@ return {
     "williamboman/mason-lspconfig.nvim",
     cmd = { "LspInstall", "LspUninstall" },
     opts = function(_, opts)
-      if not opts.handlers then opts.handlers = {} end
-      opts.handlers[1] = function(server) require("astrolsp").lsp_setup(server) end
+      vim.defer_fn(function()
+        if not opts.handlers then opts.handlers = {} end
+        opts.handlers[1] = function(server) require("astrolsp").lsp_setup(server) end
+      end, 0)
     end,
   },
 }
