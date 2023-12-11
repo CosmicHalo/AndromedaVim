@@ -26,12 +26,4 @@ M.init = function()
   end)
 end
 
-M.mappings = function(_, opts)
-  -- local maps = opts.mappings
-  -- maps.n["<leader>cF"] = {
-  --   function() require("conform").format { formatters = { "injected" } } end,
-  --   desc = "Format Injected Langs",
-  -- }
-end
-
 return M

@@ -66,8 +66,8 @@ return {
 
     ---@param opts PluginLspOpts
     config = function(_, opts)
-      local astrocore = require "astrocore"
       local astrolsp = require "astrolsp"
+      local astrocore = require "astrocore"
       local Lib = require "andromedavim.libs"
 
       if astrocore.is_available "neoconf.nvim" then

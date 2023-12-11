@@ -7,49 +7,28 @@
 ---@field condition astroui.status.condition
 ---@field component astroui.status.component
 
+local function nav(opts)
+  local extend_tbl = require "astrocore"
+  local hl = require "astroui.status.hl"
+  local status_utils = require "astroui.status.utils"
+  local status_comp = require "astroui.status.component"
+
+  opts = extend_tbl({
+    ruler = {},
+    percentage = { padding = { left = 1 } },
+    scrollbar = { padding = { left = 1 }, hl = { fg = "scrollbar" } },
+    surround = { separator = "right", color = "nav_bg" },
+    hl = hl.get_attributes "nav",
+    update = { "CursorMoved", "CursorMovedI", "BufEnter" },
+  }, opts)
+
+  return status_comp.builder(status_utils.setup_providers(opts, { "ruler", "percentage", "scrollbar" }))
+end
+
 return {
   "rebelot/heirline.nvim",
   event = "BufEnter",
-  dependencies = {
-    {
-      "AstroNvim/astrocore",
-      opts = function(_, opts)
-        local maps = opts.mappings
-        maps.n["<Leader>bb"] = {
-          function()
-            require("astroui.status.heirline").buffer_picker(function(bufnr) vim.api.nvim_win_set_buf(0, bufnr) end)
-          end,
-          desc = "Select buffer from tabline",
-        }
-        maps.n["<Leader>bd"] = {
-          function()
-            require("astroui.status.heirline").buffer_picker(
-              function(bufnr) require("astrocore.buffer").close(bufnr) end
-            )
-          end,
-          desc = "Close buffer from tabline",
-        }
-        maps.n["<Leader>b\\"] = {
-          function()
-            require("astroui.status.heirline").buffer_picker(function(bufnr)
-              vim.cmd.split()
-              vim.api.nvim_win_set_buf(0, bufnr)
-            end)
-          end,
-          desc = "Horizontal split buffer from tabline",
-        }
-        maps.n["<Leader>b|"] = {
-          function()
-            require("astroui.status.heirline").buffer_picker(function(bufnr)
-              vim.cmd.vsplit()
-              vim.api.nvim_win_set_buf(0, bufnr)
-            end)
-          end,
-          desc = "Vertical split buffer from tabline",
-        }
-      end,
-    },
-  },
+  dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.heirline } },
   opts = function()
     local status = require "astroui.status" --[[@as AstroStatus]]
 

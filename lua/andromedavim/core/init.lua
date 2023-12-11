@@ -1,7 +1,11 @@
-local M = {}
+local M = setmetatable({}, {
+  __index = function(t, k)
+    t[k] = require("andromedavim.core." .. k)
+    return t[k]
+  end,
+})
 
 M.did_init = false
-
 M.default_dashboard = "doom"
 M.default_colorscheme = "solarized-osaka"
 

@@ -1,16 +1,13 @@
-local cfg = Andromeda.load_config "conform-nvim"
-
 return {
   {
     "stevearc/conform.nvim",
     lazy = true,
     cmd = "ConformInfo",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = { { "AstroNvim/astrocore", opts = cfg.mappings } },
+    -- dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.conform_nvim } },
 
-    init = cfg.init,
+    init = Andromeda.load_config("conform-nvim").init,
     config = function(_, opts) require("conform").setup(opts) end,
-
     opts = function()
       ---@class ConformOpts
       local opts = {
