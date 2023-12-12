@@ -50,7 +50,8 @@ return {
         ensure_installed()
       end
 
-      vim.tbl_map(function(mod) pcall(require, mod) end, { "mason-lspconfig", "mason-null-ls", "mason-nvim-dap" })
+      vim.tbl_map(function(mod) pcall(require, mod) end, { "mason-lspconfig", "mason-nvim-dap" })
+      -- vim.tbl_map(function(mod) pcall(require, mod) end, { "mason-lspconfig", "mason-null-ls", "mason-nvim-dap" })
     end,
   },
 

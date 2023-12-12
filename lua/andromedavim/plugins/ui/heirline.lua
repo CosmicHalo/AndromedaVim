@@ -7,24 +7,6 @@
 ---@field condition astroui.status.condition
 ---@field component astroui.status.component
 
-local function nav(opts)
-  local extend_tbl = require "astrocore"
-  local hl = require "astroui.status.hl"
-  local status_utils = require "astroui.status.utils"
-  local status_comp = require "astroui.status.component"
-
-  opts = extend_tbl({
-    ruler = {},
-    percentage = { padding = { left = 1 } },
-    scrollbar = { padding = { left = 1 }, hl = { fg = "scrollbar" } },
-    surround = { separator = "right", color = "nav_bg" },
-    hl = hl.get_attributes "nav",
-    update = { "CursorMoved", "CursorMovedI", "BufEnter" },
-  }, opts)
-
-  return status_comp.builder(status_utils.setup_providers(opts, { "ruler", "percentage", "scrollbar" }))
-end
-
 return {
   "rebelot/heirline.nvim",
   event = "BufEnter",
@@ -38,10 +20,7 @@ return {
 
         disable_winbar_cb = function(args)
           return not require("astrocore.buffer").is_valid(args.buf)
-            or status.condition.buffer_matches({
-              buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
-              filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
-            }, args.buf)
+            or status.condition.buffer_matches({ buftype = { "terminal", "nofile" } }, args.buf)
         end,
       },
 
