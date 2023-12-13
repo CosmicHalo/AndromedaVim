@@ -1,6 +1,6 @@
 local cfg = Andromeda.configs.indentscope
 
-local char = "▏"
+local char = "╎"
 local ignore_buftypes = cfg.ignore_buftypes
 local ignore_filetypes = cfg.ignore_filetypes
 
@@ -10,6 +10,7 @@ return {
 
   dependencies = {
     { "AstroNvim/astrocore", opts = cfg.config },
+
     {
       "lukas-reineke/indent-blankline.nvim",
       main = "ibl",
@@ -20,6 +21,7 @@ return {
       },
     },
   },
+
   opts = function()
     return {
       draw = { delay = 0, animation = function() return 0 end },

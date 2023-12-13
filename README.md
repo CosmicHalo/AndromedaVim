@@ -1,5 +1,7 @@
 # AndromedaVim (using AstroNvim core libs)
 
+This is my personal Neovim configuration. It uses the core libraries of [AstroNvim](https://astronvim.com/); [astroui](https://github.com/AstroNvim/astroui), [astrolsp](https://github.com/AstroNvim/astrolsp), and [astrocore](https://github.com/AstroNvim/astrocore)
+
 ## 🛠️ Installation
 
 ### Make a backup of your current nvim and shared folder
