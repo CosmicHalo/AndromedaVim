@@ -3,8 +3,6 @@ local icons = {
   kind = Andromeda.icons.kind.get,
   misc = Andromeda.icons.misc.get,
   file = Andromeda.icons.documents.get,
-  ui_wrap = Andromeda.icons.ui.get_wrapped,
-  misc_wrap = Andromeda.icons.misc.get_wrapped,
 }
 
 Andromeda.configs.dashboard = function()
@@ -17,7 +15,7 @@ Andromeda.configs.dashboard = function()
     config = {
       week_header = {
         enable = true,
-        append = { "", wrap_text("AndromedaVim: Explore the Universe!", Andromeda.icons.misc.Rocket) },
+        append = { "", wrap_text("AndromedaVim: Explore the Universe!", icons.misc("Rocket", 1, true)) },
       },
 
       -- stylua: ignore
@@ -35,11 +33,11 @@ Andromeda.configs.dashboard = function()
         local stats = require("lazy").stats()
         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
         return {
-          wrap_text("Happiness is a state of mind.", icons.misc_wrap("Tree")),
+          wrap_text("Happiness is a state of mind.", icons.misc("Tree")),
           "",
           wrap_text(
             "Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
-            icons.misc_wrap("Event")
+            icons.kind("Event", 1, true)
           ),
         }
       end,

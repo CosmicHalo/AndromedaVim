@@ -1,27 +1,38 @@
----@diagnostic disable: missing-fields
 return {
   "AstroNvim/astrolsp",
-  lazy = false,
+  lazy = true,
   dependencies = {
     {
       "AstroNvim/astrocore",
       opts = function(_, opts)
         local maps = opts.mappings
-        maps.n["<Leader>uL"] = { function() require("astrolsp.toggles").codelens() end, desc = "Toggle CodeLens" }
         maps.n["<Leader>ud"] = { function() require("astrolsp.toggles").diagnostics() end, desc = "Toggle diagnostics" }
+        maps.n["<Leader>uL"] = { function() require("astrolsp.toggles").codelens() end, desc = "Toggle CodeLens" }
       end,
     },
   },
-
   opts = function(_, opts)
-    local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    local capabilities = vim.tbl_deep_extend(
-      "force",
-      {},
-      vim.lsp.protocol.make_client_capabilities(), -- Lsp capabilities
-      has_cmp and cmp_nvim_lsp.default_capabilities() or {}, -- Cmp capabilities
-      -- Custom capabilities
-      {
+    ---@type AstroLSPOpts
+    local new_opts = {
+      flags = {},
+      on_attach = nil,
+
+      features = {
+        codelens = true,
+        autoformat = true,
+        inlay_hints = true,
+        lsp_handlers = false,
+        diagnostics_mode = 3,
+        semantic_tokens = true,
+      },
+
+      formatting = {
+        format_on_save = {
+          enabled = true,
+        },
+      },
+
+      capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), {
         textDocument = {
           completion = {
             completionItem = {
@@ -39,38 +50,18 @@ return {
 
           foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
         },
-      }
-    )
+      }),
 
-    ---@type AstroLSPOpts
-    return {
-      flags = {},
-      on_attach = nil,
-      capabilities = capabilities,
-
-      formatting = {
-        disabled = {},
-        timeout_ms = 1000, -- default format timeout
-        format_on_save = { enabled = true, allow_filetypes = {}, ignore_filetypes = {} },
-      },
-
-      features = {
-        codelens = true,
-        autoformat = true,
-        inlay_hints = false,
-        lsp_handlers = true,
-        diagnostics_mode = 3,
-        semantic_tokens = true,
-      },
+      -- >>>>>>>>>>>>>>> LSP Server Settings <<<<<<<<<<<<<<<<
 
       servers = {},
 
       ---@diagnostic disable-next-line: missing-fields
-      config = {},
+      config = { lua_ls = { settings = { Lua = { workspace = { checkThirdParty = false } } } } },
 
-      handlers = {
-        function(server, server_opts) require("lspconfig")[server].setup(server_opts) end,
-      },
+      handlers = { function(server, server_opts) require("lspconfig")[server].setup(server_opts) end },
+
+      -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
       diagnostics = {
         underline = true,
@@ -79,28 +70,53 @@ return {
         update_in_insert = true,
 
         float = {
-          header = "",
           prefix = "",
+          header = "",
           focused = false,
           style = "minimal",
-          source = "always",
           border = "rounded",
+          source = "always",
         },
 
         signs = {
-          active = {
-            { name = "DiagnosticSignError", text = "", texthl = "DiagnosticSignError" },
-            { name = "DiagnosticSignHint", text = "󰌵", texthl = "DiagnosticSignHint" },
-            { name = "DiagnosticSignInfo", text = "󰋼", texthl = "DiagnosticSignInfo" },
-            { name = "DiagnosticSignWarn", text = "", texthl = "DiagnosticSignWarn" },
-            { name = "DapBreakpoint", text = "", texthl = "DiagnosticInfo" },
-            { name = "DapBreakpointCondition", text = "", texthl = "DiagnosticInfo" },
-            { name = "DapBreakpointRejected", text = "", texthl = "DiagnosticError" },
-            { name = "DapLogPoint", text = ".>", texthl = "DiagnosticInfo" },
-            { name = "DapStopped", text = "󰁕", texthl = "DiagnosticWarn" },
+          text = {
+            [vim.diagnostic.severity.HINT] = Andromeda.icons.diagnostics.Hint,
+            [vim.diagnostic.severity.ERROR] = Andromeda.icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = Andromeda.icons.diagnostics.Warning,
+            [vim.diagnostic.severity.INFO] = Andromeda.icons.diagnostics.Information,
           },
         },
       },
+
+      signs = {
+        {
+          name = "DapLogPoint",
+          texthl = "DiagnosticInfo",
+          text = Andromeda.icons.dap.LogPoint,
+        },
+        {
+          name = "DapStopped",
+          texthl = "DiagnosticWarn",
+          text = Andromeda.icons.dap.Stopped,
+        },
+        {
+          name = "DapBreakpoint",
+          texthl = "DiagnosticInfo",
+          text = Andromeda.icons.dap.Breakpoint,
+        },
+        {
+          texthl = "DiagnosticInfo",
+          name = "DapBreakpointCondition",
+          text = Andromeda.icons.dap.BreakpointCondition,
+        },
+        {
+          texthl = "DiagnosticError",
+          name = "DapBreakpointRejected",
+          text = Andromeda.icons.dap.BreakpointRejected,
+        },
+      },
     }
+
+    return Andromeda.lib.extend_tbl(opts, new_opts)
   end,
 }

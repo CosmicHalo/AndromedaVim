@@ -5,6 +5,5 @@ return {
   opts = {
     icons = Andromeda.icons,
     text_icons = Andromeda.text_icons,
-    colorscheme = Andromeda.default_colorscheme,
   },
 }

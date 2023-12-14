@@ -14,7 +14,7 @@ for _, plugin in ipairs({
   "formatters",
   "lang",
   "ui",
-  --   "coding",
+  "coding",
   --   "editor",
 }) do
   table.insert(plugins, { import = "andromedavim.plugins." .. plugin })

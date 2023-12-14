@@ -1,4 +1,4 @@
-return {
+Andromeda.text_icons = {
   ActiveLSP = "LSP:",
   ArrowLeft = "<",
   ArrowRight = ">",

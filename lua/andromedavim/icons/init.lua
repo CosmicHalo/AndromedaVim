@@ -3,7 +3,7 @@
 -- or go here and upload the font file: https://mathew-kurian.github.io/CharacterMap/
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
----@enum (key) AndromedaCmpIcons
+---@enum (key) CmpIcons
 local cmp = {
   -- Add source-specific icons here
   Codeium = "",
@@ -27,7 +27,7 @@ local cmp = {
   undefined = "",
 }
 
----@enum (key) AndromedaDapIcons
+---@enum (key) DapIcons
 local dap = {
   Breakpoint = "󰝥",
   BreakpointCondition = "󰟃",
@@ -44,7 +44,7 @@ local dap = {
   Terminate = "󰝤",
 }
 
----@enum (key) AndromedaDiagnosticsIcons
+---@enum (key) DiagnosticsIcons
 local diagnostics = {
   Error = "",
   Hint = "󰌵",
@@ -60,7 +60,7 @@ local diagnostics = {
   Warning_alt = "󰀪",
 }
 
----@enum (key) AndromedaDocumentsIcons
+---@enum (key) DocumentIcons
 local documents = {
   Default = "",
   File = "",
@@ -70,7 +70,7 @@ local documents = {
   Symlink = "",
 }
 
----@enum (key) AndromedaGitIcons
+---@enum (key) GitIcons
 local git = {
   Add = "",
   Branch = "",
@@ -89,7 +89,7 @@ local git = {
   Conflict = "",
 }
 
----@enum (key) AndromedaKindIcons
+---@enum (key) KindIcons
 local kind = {
   Class = "󰠱",
   Color = "󰏘",
@@ -129,7 +129,7 @@ local kind = {
   Macro = "",
 }
 
----@enum (key) AndromedaMiscIcons
+---@enum (key) MiscIcons
 local misc = {
   Add = "+",
   Added = "",
@@ -156,7 +156,7 @@ local misc = {
   Watch = "",
 }
 
----@enum (key) AndromedaTypeIcons
+---@enum (key) TypeIcons
 local type = {
   Array = "󰅪",
   Boolean = "",
@@ -166,8 +166,7 @@ local type = {
   String = "󰉿",
 }
 
----@class AndromedaUIIcons
----@enum (key) AndromedaUIIcons
+---@enum (key) UIIcons
 local ui = {
   Accepted = "",
   ArrowClosed = "",
@@ -230,6 +229,42 @@ local ui = {
   Telescope = "",
 }
 
+---@class AndromedaUIIcons
+---@field get GetIconFunction<UIIcons>
+---@field get_wrapped GetWrapIconFunction<UIIcons>
+
+---@class AndromedaCmpIcons
+---@field get GetIconFunction<CmpIcons>
+---@field get_wrapped GetWrapIconFunction<CmpIcons>
+
+---@class AndromedaDapIcons
+---@field get GetIconFunction<DapIcons>
+---@field get_wrapped GetWrapIconFunction<DapIcons>
+
+---@class AndromedaGitIcons
+---@field get GetIconFunction<GitIcons>
+---@field get_wrapped GetWrapIconFunction<GitIcons>
+
+---@class AndromedaKindIcons
+---@field get GetIconFunction<KindIcons>
+---@field get_wrapped GetWrapIconFunction<KindIcons>
+
+---@class AndromedaMiscIcons
+---@field get GetIconFunction<MiscIcons>
+---@field get_wrapped GetWrapIconFunction<MiscIcons>
+
+---@class AndromedaTypeIcons
+---@field get GetIconFunction<TypeIcons>
+---@field get_wrapped GetWrapIconFunction<TypeIcons>
+
+---@class AndromedaDocumentIcons
+---@field get GetIconFunction<DocumentIcons>
+---@field get_wrapped GetWrapIconFunction<DocumentIcons>
+
+---@class AndromedaDiagnosticsIcons
+---@field get GetIconFunction<DiagnosticsIcons>
+---@field get_wrapped GetWrapIconFunction<DiagnosticsIcons>
+
 ---@class AndromedaIcons
 Andromeda.icons = {
   ui = ui,
@@ -243,84 +278,15 @@ Andromeda.icons = {
   diagnostics = diagnostics,
 }
 
----@generic T : table<string, string>
----@alias GetIconFunction<T> fun(kind: T, padding?: integer, wrap?: boolean): string
+require("andromedavim.icons.text")
+require("andromedavim.icons.utils")
 
----@generic T : table<string, string>
----@param pack string
----@return GetIconFunction<T>
-local function generate_get(pack)
-  return function(iconType, padding, wrap) return Andromeda.icons.get(pack .. "." .. iconType, padding, wrap) end
-end
-
----@generic T : table<string, string>
----@param pack string
----@param wrap? boolean
----@return GetIconFunction<T>
-local function generate_wrapped(pack, wrap)
-  return function(iconType, padding) return Andromeda.icons.get(pack .. "." .. iconType, padding, wrap) end
-end
-
---- Get an icon from the internal icons if it is available and return it
----@param categoryOrKind Icons The category of icon to retrieve or the icon itself
----@param padding? integer Padding to add to the end of the icon, defaults to 1
----@param wrap? boolean Whether or not to wrap both sides of the icon with spaces
----@return string icon
-function Andromeda.icons.get(categoryOrKind, padding, wrap)
-  ---@cast categoryOrKind string
-
-  local icons_enabled = vim.g.icons_enabled ~= false
-  local icon_pack = assert(Andromeda[icons_enabled and "icons" or "text_icons"])
-
-  local icon = icon_pack
-  for _, path in ipairs(string.split(categoryOrKind, ".")) do
-    icon = icon[path]
-  end
-
-  if not icon then return "" end
-
-  -- Wrap the icon in spaces if requested
-  local spacing = string.rep(" ", padding or 1)
-  if wrap then return spacing .. icon .. spacing end
-  return icon .. spacing
-end
-
---! UI
----@type GetIconFunction<AndromedaUIIcons>
-Andromeda.icons.ui.get = generate_get("ui")
----@type GetIconFunction<AndromedaMiscIcons>
-Andromeda.icons.ui.get_wrapped = generate_wrapped("ui", true)
-
---! MISC
----@type GetIconFunction<AndromedaMiscIcons>
-Andromeda.icons.misc.get = generate_get("misc")
----@type GetIconFunction<AndromedaMiscIcons>
-Andromeda.icons.misc.get_wrapped = generate_wrapped("ui", true)
-
---! CMP
----@type GetIconFunction<AndromedaCmpIcons>
-Andromeda.icons.cmp.get = generate_get("cmp")
-
---! DAP
----@type GetIconFunction<AndromedaDapIcons>
-Andromeda.icons.dap.get = generate_get("dap")
-
---! GIT
----@type GetIconFunction<AndromedaGitIcons>
-Andromeda.icons.git.get = generate_get("git")
-
---! KIND
----@type GetIconFunction<AndromedaKindIcons>
-Andromeda.icons.kind.get = generate_get("kind")
-
---! TYPE
----@type GetIconFunction<AndromedaTypeIcons>
-Andromeda.icons.type.get = generate_get("type")
-
---! DOCUMENTS
----@type GetIconFunction<AndromedaDocumentsIcons>
-Andromeda.icons.documents.get = generate_get("documents")
-
---! DIAGNOSTICS
----@type GetIconFunction<AndromedaDiagnosticsIcons>
-Andromeda.icons.diagnostics.get = generate_get("diagnostics")
+-- Andromeda.icons.misc.get = generate_get("misc") --[[@as GetIconFunction<MiscIcons>]]
+-- Andromeda.icons.misc.get_wrapped = generate_get("misc", true) --[[@as GetIconFunction<MiscIcons>]]
+-- Andromeda.icons.cmp.get = generate_get("cmp") --[[@as GetIconFunction<CmpIcons>]]
+-- Andromeda.icons.dap.get = generate_get("dap") --[[@as GetIconFunction<DapIcons>]]
+-- Andromeda.icons.git.get = generate_get("git") --[[@as GetIconFunction<GitIcons>]]
+-- Andromeda.icons.kind.get = generate_get("kind") --[[@as GetIconFunction<KindIcons>]]
+-- Andromeda.icons.type.get = generate_get("type") --[[@as GetIconFunction<TypeIcons>]]
+-- Andromeda.icons.documents.get = generate_get("documents") --[[@as GetIconFunction<DocumentIcons>]]
+-- Andromeda.icons.diagnostics.get = generate_get("diagnostics") --[[@as GetIconFunction<DiagnosticsIcons>]]

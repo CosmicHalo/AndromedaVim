@@ -20,14 +20,13 @@ return {
 
   opts = function()
     local actions = require("telescope.actions")
-    local get_icon = require("astroui").get_icon
 
     return {
       defaults = {
         git_worktrees = astro.config.git_worktrees,
 
-        prompt_prefix = get_icon("Selected", 1),
-        selection_caret = get_icon("Selected", 1),
+        prompt_prefix = Andromeda.icons.ui.get("ChevronRight"),
+        selection_caret = Andromeda.icons.ui.get("ChevronRight"),
 
         path_display = { "truncate" },
         sorting_strategy = "ascending",

@@ -1,7 +1,5 @@
 ---@class Andromeda
-_G.Andromeda = {
-  default_colorscheme = "",
-}
+_G.Andromeda = {}
 
 ---@class AndromedaIcons
 Andromeda.icons = {}
@@ -36,8 +34,8 @@ Andromeda.echo = function(str, key_return)
   if key_return then vim.fn.getchar() end
 end
 
-require("andromedavim.icons")
 require("andromedavim.utilities")
+require("andromedavim.icons")
 
 Andromeda.lib.root.setup()
 Andromeda.lib.format.setup()
