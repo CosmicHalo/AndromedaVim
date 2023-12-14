@@ -34,7 +34,41 @@ local function generate_get(pack, is_wrap)
 end
 
 local andomedaicons = Andromeda.lib.get_keys(Andromeda.icons)
+
+---@param typ "ui"|"misc"|"lsp"|"cmp"|"dap"|"git"|"kind"|"type"|"documents"|"diagnostics"
 for _, typ in next, andomedaicons do
   Andromeda.icons[typ].get = generate_get(typ)
   Andromeda.icons[typ].get_wrapped = generate_get(typ, true)
 end
+
+--! UI
+Andromeda.icons.ui.get = generate_get("ui") --[[@as GetIconFunction<UIIcons>]]
+Andromeda.icons.ui.get_wrapped = generate_get("ui", true) --[[@as GetIconFunction<UIIcons>]]
+
+--! Misc
+Andromeda.icons.misc.get = generate_get("misc") --[[@as GetIconFunction<MiscIcons>]]
+Andromeda.icons.misc.get_wrapped = generate_get("misc", true) --[[@as GetIconFunction<MiscIcons>]]
+
+--! LSP
+Andromeda.icons.lsp.get = generate_get("lsp") --[[@as GetIconFunction<LSPIcons>]]
+
+--! CMP
+Andromeda.icons.cmp.get = generate_get("cmp") --[[@as GetIconFunction<CmpIcons>]]
+
+--! DAP
+Andromeda.icons.dap.get = generate_get("dap") --[[@as GetIconFunction<DapIcons>]]
+
+--! Git
+Andromeda.icons.git.get = generate_get("git") --[[@as GetIconFunction<GitIcons>]]
+
+--! Kind
+Andromeda.icons.kind.get = generate_get("kind") --[[@as GetIconFunction<KindIcons>]]
+
+--! Type
+Andromeda.icons.type.get = generate_get("type") --[[@as GetIconFunction<TypeIcons>]]
+
+--! Documents
+Andromeda.icons.documents.get = generate_get("documents") --[[@as GetIconFunction<DocumentIcons>]]
+
+--! Diagnostics
+Andromeda.icons.diagnostics.get = generate_get("diagnostics") --[[@as GetIconFunction<DiagnosticsIcons>]]

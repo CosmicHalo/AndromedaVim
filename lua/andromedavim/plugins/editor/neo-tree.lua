@@ -1,5 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  enabled = false,
   branch = "main", -- HACK: force neo-tree to checkout `main` for initial v3 migration since default branch has changed
   cmd = "Neotree",
   dependencies = {
@@ -9,7 +10,11 @@ return {
 
   opts = function()
     local astro = require("astrocore")
-    local get_icon = require("astroui").get_icon
+    local icons = {
+      ui = Andromeda.icons.ui.get,
+      git = Andromeda.icons.git.get,
+      documents = Andromeda.icons.documents.get,
+    }
 
     return {
       close_if_last_window = true,
@@ -45,36 +50,36 @@ return {
         winbar = true,
         content_layout = "center",
         sources = {
-          { source = "filesystem", display_name = get_icon("FolderClosed", 1, true) .. "File" },
-          { source = "buffers", display_name = get_icon("DefaultFile", 1, true) .. "Bufs" },
-          { source = "git_status", display_name = get_icon("Git", 1, true) .. "Git" },
-          { source = "diagnostics", display_name = get_icon("Diagnostic", 1, true) .. "Diagnostic" },
+          { source = "filesystem", display_name = icons.documents("Folder", 1, true) .. "File" },
+          { source = "buffers", display_name = icons.documents("Default", 1, true) .. "Bufs" },
+          { source = "git_status", display_name = icons.git("Git", 1, true) .. "Git" },
+          { source = "diagnostics", display_name = icons.ui("Diagnostic", 1, true) .. "Diagnostic" },
         },
       },
 
       default_component_configs = {
         indent = { padding = 0 },
-        modified = { symbol = get_icon("FileModified") },
+        modified = { symbol = icons.documents("FileModified") },
 
         icon = {
-          default = get_icon("DefaultFile"),
-          folder_open = get_icon("FolderOpen"),
-          folder_empty = get_icon("FolderEmpty"),
-          folder_closed = get_icon("FolderClosed"),
-          folder_empty_open = get_icon("FolderEmpty"),
+          default = icons.documents("Default"),
+          folder_closed = icons.documents("Folder"),
+          folder_open = icons.documents("FolderOpen"),
+          folder_empty = icons.documents("EmptyFolder"),
+          folder_empty_open = icons.documents("EmptyFolderOpen"),
         },
 
         git_status = {
           symbols = {
-            added = get_icon("GitAdd"),
-            staged = get_icon("GitStaged"),
-            deleted = get_icon("GitDelete"),
-            modified = get_icon("GitChange"),
-            renamed = get_icon("GitRenamed"),
-            ignored = get_icon("GitIgnored"),
-            unstaged = get_icon("GitUnstaged"),
-            conflict = get_icon("GitConflict"),
-            untracked = get_icon("GitUntracked"),
+            added = icons.git("Add"),
+            staged = icons.git("Staged"),
+            deleted = icons.git("Delete"),
+            modified = icons.git("Change"),
+            renamed = icons.git("Renamed"),
+            ignored = icons.git("Ignored"),
+            unstaged = icons.git("Unstaged"),
+            conflict = icons.git("Conflict"),
+            untracked = icons.git("Untracked"),
           },
         },
       },

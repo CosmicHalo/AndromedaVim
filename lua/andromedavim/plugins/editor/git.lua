@@ -33,17 +33,26 @@ return {
       },
     },
     opts = function()
-      local get_icon = require("astroui").get_icon
       return {
-        signs = {
-          add = { text = get_icon("GitSign") },
-          change = { text = get_icon("GitSign") },
-          delete = { text = get_icon("GitSign") },
-          topdelete = { text = get_icon("GitSign") },
-          changedelete = { text = get_icon("GitSign") },
-          untracked = { text = get_icon("GitSign") },
-        },
+        sign_priority = 6,
+        word_diff = false,
+        update_debounce = 100,
+        status_formatter = nil, -- Use default
+        current_line_blame = true,
+
+        diff_opts = { internal = true },
         worktrees = require("astrocore").config.git_worktrees,
+        watch_gitdir = { interval = 1000, follow_files = true },
+        current_line_blame_opts = { delay = 1000, virtual_text_pos = "eol" },
+
+        signs = {
+          add = { text = Andromeda.icons.git("Sign") },
+          change = { text = Andromeda.icons.git("Sign") },
+          delete = { text = Andromeda.icons.git("Sign") },
+          topdelete = { text = Andromeda.icons.git("Sign") },
+          untracked = { text = Andromeda.icons.git("Sign") },
+          changedelete = { text = Andromeda.icons.git("Sign") },
+        },
       }
     end,
   },

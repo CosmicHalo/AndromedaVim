@@ -14,7 +14,7 @@ return {
 
     local maps = core.empty_map_table()
 
-    maps.v["<Leader>l"] = { desc = require("astroui").get_icon("ActiveLSP", 1, true) .. "Language Tools" }
+    maps.v["<Leader>l"] = { desc = Andromeda.icons.lsp.get("ActiveLSP") .. "Language Tools" }
     maps.v["<Leader>la"] = maps.n["<Leader>la"]
     maps.n["<Leader>la"] = {
       function() vim.lsp.buf.code_action() end,

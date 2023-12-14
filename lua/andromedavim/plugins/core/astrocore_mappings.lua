@@ -3,24 +3,29 @@ return {
   ---@param opts AstroCoreOpts
   opts = function(_, opts)
     local astro = require("astrocore")
-    local get_icon = require("astroui").get_icon
-
     local andromeda_buffers = require("astrocore.buffer")
     local andromeda_toggles = require("astrocore.toggles")
+
+    local icons = {
+      ui = Andromeda.icons.ui.get,
+      git = Andromeda.icons.git.get,
+      lsp = Andromeda.icons.lsp.get,
+      misc = Andromeda.icons.misc.get,
+    }
 
     -- initialize internally use mapping section titles
     ---@diagnostic disable-next-line: inject-field
     opts._map_section = {
-      f = { desc = get_icon("Search", 1, true) .. "Find" },
-      p = { desc = get_icon("Package", 1, true) .. "Packages" },
-      l = { desc = get_icon("ActiveLSP", 1, true) .. "Language Tools" },
-      u = { desc = get_icon("Window", 1, true) .. "UI/UX" },
-      b = { desc = get_icon("Tab", 1, true) .. "Buffers" },
-      bs = { desc = get_icon("Sort", 1, true) .. "Sort Buffers" },
-      d = { desc = get_icon("Debugger", 1, true) .. "Debugger" },
-      g = { desc = get_icon("Git", 1, true) .. "Git" },
-      S = { desc = get_icon("Session", 1, true) .. "Session" },
-      t = { desc = get_icon("Terminal", 1, true) .. "Terminal" },
+      g = { desc = icons.git("Git") .. "Git" },
+      f = { desc = icons.ui("Search") .. "Find" },
+      b = { desc = icons.ui("Tab") .. "Buffers" },
+      u = { desc = icons.misc("Window") .. "UI/UX" },
+      p = { desc = icons.ui("Package") .. "Packages" },
+      d = { desc = icons.ui("Debugger") .. "Debugger" },
+      S = { desc = icons.misc("Session") .. "Session" },
+      bs = { desc = icons.ui("Sort") .. "Sort Buffers" },
+      t = { desc = icons.misc("Terminal") .. "Terminal" },
+      l = { desc = icons.lsp("ActiveLSP") .. "Language Tools" },
     }
 
     -- initialize mappings table

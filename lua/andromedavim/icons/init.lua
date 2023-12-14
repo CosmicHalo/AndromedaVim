@@ -27,66 +27,14 @@ local cmp = {
   undefined = "",
 }
 
----@enum (key) DapIcons
-local dap = {
-  Breakpoint = "󰝥",
-  BreakpointCondition = "󰟃",
-  BreakpointRejected = "",
-  LogPoint = "",
-  Pause = "",
-  Play = "",
-  RunLast = "↻",
-  StepBack = "",
-  StepInto = "󰆹",
-  StepOut = "󰆸",
-  StepOver = "󰆷",
-  Stopped = "",
-  Terminate = "󰝤",
-}
-
----@enum (key) DiagnosticsIcons
-local diagnostics = {
-  Error = "",
-  Hint = "󰌵",
-  Information = "",
-  Question = "",
-  Warning = "",
-
-  -- Holo version
-  Error_alt = "󰅚",
-  Hint_alt = "󰌶",
-  Information_alt = "",
-  Question_alt = "",
-  Warning_alt = "󰀪",
-}
-
----@enum (key) DocumentIcons
-local documents = {
-  Default = "",
-  File = "",
-  Files = "",
-  FileTree = "󰙅",
-  Import = "",
-  Symlink = "",
-}
-
----@enum (key) GitIcons
-local git = {
-  Add = "",
-  Branch = "",
-  Diff = "",
-  Git = "󰊢",
-  Ignore = "",
-  Mod = "M",
-  Mod_alt = "",
-  Remove = "",
-  Rename = "",
-  Repo = "",
-  Unmerged = "󰘬",
-  Untracked = "󰞋",
-  Unstaged = "",
-  Staged = "",
-  Conflict = "",
+---@enum (key) TypeIcons
+local type = {
+  Array = "󰅪",
+  Boolean = "",
+  Null = "󰟢",
+  Number = "",
+  Object = "󰅩",
+  String = "󰉿",
 }
 
 ---@enum (key) KindIcons
@@ -129,6 +77,92 @@ local kind = {
   Macro = "",
 }
 
+---@enum (key) DapIcons
+local dap = {
+  Breakpoint = "󰝥",
+  BreakpointCondition = "󰟃",
+  BreakpointRejected = "",
+  LogPoint = "",
+  Pause = "",
+  Play = "",
+  RunLast = "↻",
+  StepBack = "",
+  StepInto = "󰆹",
+  StepOut = "󰆸",
+  StepOver = "󰆷",
+  Stopped = "",
+  Terminate = "󰝤",
+}
+
+---@enum (key) DiagnosticsIcons
+local diagnostics = {
+  Error = "",
+  Hint = "󰌵",
+  Information = "",
+  Question = "",
+  Warning = "",
+
+  -- Holo version
+  Error_alt = "󰅚",
+  Hint_alt = "󰌶",
+  Information_alt = "",
+  Question_alt = "",
+  Warning_alt = "󰀪",
+}
+
+---@enum (key) DocumentIcons
+local documents = {
+  Bookmark = "",
+  Default = "",
+  EmptyFolder = "",
+  EmptyFolderOpen = "",
+  File = "󰈙",
+  FileModified = "✥",
+  FileTree = "󰙅",
+  Files = "",
+  Folder = "",
+  FolderOpen = "",
+  FolderWithHeart = "󱃪",
+  Import = "",
+  NewFile = "",
+  RootFolderOpened = "",
+  Symlink = "",
+  SymlinkFolder = "",
+}
+
+---@enum (key) GitIcons
+local git = {
+  Add = "",
+  Branch = "",
+  Change = "",
+  Conflict = "",
+  Delete = "",
+  Diff = "",
+  Git = "󰊢",
+  Ignored = "",
+  Mod = "M",
+  Mod_alt = "",
+  Removed = "",
+  Renamed = "",
+  Repo = "",
+  Sign = "▎",
+  Staged = "",
+  Unmerged = "󰘬",
+  Unstaged = "",
+  Untracked = "󰞋",
+}
+
+---@enum (key) LSPIcons
+local lsp = {
+  ActiveLSP = "",
+  ActiveTS = "",
+  LSPLoading1 = "",
+  LSPLoading2 = "󰀚",
+  LSPLoading3 = "",
+  LspAvailable = "󱜙",
+  NoActiveLsp = "󱚧",
+}
+
 ---@enum (key) MiscIcons
 local misc = {
   Add = "+",
@@ -140,30 +174,21 @@ local misc = {
   Glass = "󰂖",
   Lazy = "󰒲",
   Lego = "",
-  LspAvailable = "󱜙",
   ManUp = "",
   Neovim = "",
-  NoActiveLsp = "󱚧",
   Power = "⏻",
   PyEnv = "󰢩",
   Rocket = "",
-  Squirrel = "",
+  Session = "󱂬",
   Sparkle = "",
+  Squirrel = "",
   Tag = "",
+  Terminal = "",
   Tree = "",
   Vbar = "│",
   Vim = "",
   Watch = "",
-}
-
----@enum (key) TypeIcons
-local type = {
-  Array = "󰅪",
-  Boolean = "",
-  Null = "󰟢",
-  Number = "",
-  Object = "󰅩",
-  String = "󰉿",
+  Window = "",
 }
 
 ---@enum (key) UIIcons
@@ -174,7 +199,6 @@ local ui = {
   BigCircle = "",
   BigUnfilledCircle = "",
   BookMark = "󰃃",
-  Bug = "",
   Calendar = "",
   Check = "󰄳",
   ChevronRight = "",
@@ -185,15 +209,11 @@ local ui = {
   CodeAction = "󰌵",
   Comment = "󰅺",
   Dashboard = "",
+  Debugger = "",
+  Diagnostic = "󰒡",
   DoubleSeparator = "󰄾",
   Emoji = "󰱫",
-  EmptyFolder = "",
-  EmptyFolderOpen = "",
-  File = "󰈤",
   Fire = "",
-  Folder = "",
-  FolderOpen = "",
-  FolderWithHeart = "󱃪",
   Gear = "",
   History = "󰄉",
   Incoming = "󰏷",
@@ -204,7 +224,6 @@ local ui = {
   Lock = "󰍁",
   Modified = "✥",
   Modified_alt = "",
-  NewFile = "",
   Newspaper = "",
   Note = "󰍨",
   Outgoing = "󰏻",
@@ -214,7 +233,6 @@ local ui = {
   Play = "",
   Project = "",
   Right = "",
-  RootFolderOpened = "",
   Search = "󰍉",
   Separator = "",
   SignIn = "",
@@ -222,52 +240,15 @@ local ui = {
   Sort = "",
   Spell = "󰓆",
   Square = "",
-  Symlink = "",
-  SymlinkFolder = "",
   Tab = "",
   Table = "",
   Telescope = "",
 }
 
----@class AndromedaUIIcons
----@field get GetIconFunction<UIIcons>
----@field get_wrapped GetWrapIconFunction<UIIcons>
-
----@class AndromedaCmpIcons
----@field get GetIconFunction<CmpIcons>
----@field get_wrapped GetWrapIconFunction<CmpIcons>
-
----@class AndromedaDapIcons
----@field get GetIconFunction<DapIcons>
----@field get_wrapped GetWrapIconFunction<DapIcons>
-
----@class AndromedaGitIcons
----@field get GetIconFunction<GitIcons>
----@field get_wrapped GetWrapIconFunction<GitIcons>
-
----@class AndromedaKindIcons
----@field get GetIconFunction<KindIcons>
----@field get_wrapped GetWrapIconFunction<KindIcons>
-
----@class AndromedaMiscIcons
----@field get GetIconFunction<MiscIcons>
----@field get_wrapped GetWrapIconFunction<MiscIcons>
-
----@class AndromedaTypeIcons
----@field get GetIconFunction<TypeIcons>
----@field get_wrapped GetWrapIconFunction<TypeIcons>
-
----@class AndromedaDocumentIcons
----@field get GetIconFunction<DocumentIcons>
----@field get_wrapped GetWrapIconFunction<DocumentIcons>
-
----@class AndromedaDiagnosticsIcons
----@field get GetIconFunction<DiagnosticsIcons>
----@field get_wrapped GetWrapIconFunction<DiagnosticsIcons>
-
 ---@class AndromedaIcons
 Andromeda.icons = {
   ui = ui,
+  lsp = lsp,
   cmp = cmp,
   dap = dap,
   git = git,
@@ -280,13 +261,3 @@ Andromeda.icons = {
 
 require("andromedavim.icons.text")
 require("andromedavim.icons.utils")
-
--- Andromeda.icons.misc.get = generate_get("misc") --[[@as GetIconFunction<MiscIcons>]]
--- Andromeda.icons.misc.get_wrapped = generate_get("misc", true) --[[@as GetIconFunction<MiscIcons>]]
--- Andromeda.icons.cmp.get = generate_get("cmp") --[[@as GetIconFunction<CmpIcons>]]
--- Andromeda.icons.dap.get = generate_get("dap") --[[@as GetIconFunction<DapIcons>]]
--- Andromeda.icons.git.get = generate_get("git") --[[@as GetIconFunction<GitIcons>]]
--- Andromeda.icons.kind.get = generate_get("kind") --[[@as GetIconFunction<KindIcons>]]
--- Andromeda.icons.type.get = generate_get("type") --[[@as GetIconFunction<TypeIcons>]]
--- Andromeda.icons.documents.get = generate_get("documents") --[[@as GetIconFunction<DocumentIcons>]]
--- Andromeda.icons.diagnostics.get = generate_get("diagnostics") --[[@as GetIconFunction<DiagnosticsIcons>]]
