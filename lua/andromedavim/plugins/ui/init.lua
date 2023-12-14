@@ -18,7 +18,7 @@ return {
           ["robots.txt"] = { icon = "󰚩", name = "Robots" },
           woff = { icon = "", name = "WebOpenFontFormat" },
           woff2 = { icon = "", name = "WebOpenFontFormat2" },
-          default_icon = { icon = require("astroui").get_icon "DefaultFile" },
+          default_icon = { icon = require("astroui").get_icon("DefaultFile") },
         },
       }
     end,

@@ -15,8 +15,8 @@ return {
       "lukas-reineke/indent-blankline.nvim",
       main = "ibl",
       opts = {
-        indent = { char = char },
-        scope = { enabled = false },
+        indent = { char = char, tab_char = "." },
+        scope = { enabled = true, show_exact_scope = true },
         exclude = { buftypes = ignore_buftypes, filetypes = ignore_filetypes },
       },
     },

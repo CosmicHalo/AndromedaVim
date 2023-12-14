@@ -1,12 +1,12 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "markdown", "markdown_inline" }) end,
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "markdown", "markdown_inline" }) end,
   },
 
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "markdownlint", "marksman" }) end,
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "markdownlint", "marksman" }) end,
   },
 
   {
@@ -31,7 +31,7 @@ return {
         desc = "Markdown Preview",
       },
     },
-    config = function() vim.cmd [[do FileType]] end,
+    config = function() vim.cmd([[do FileType]]) end,
   },
 
   {
@@ -39,7 +39,7 @@ return {
     ft = { "markdown", "norg", "rmd", "org" },
     opts = function()
       local opts = {}
-      for _, ft in ipairs { "markdown", "norg", "rmd", "org" } do
+      for _, ft in ipairs({ "markdown", "norg", "rmd", "org" }) do
         opts[ft] = {
           headline_highlights = {},
         }

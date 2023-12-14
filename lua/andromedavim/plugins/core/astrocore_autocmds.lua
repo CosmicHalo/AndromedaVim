@@ -1,5 +1,3 @@
-local andromeda = require "andromedavim.libs"
-
 ---@diagnostic disable: inject-field
 return {
   "AstroNvim/astrocore",
@@ -57,7 +55,7 @@ return {
           event = { "BufWinLeave", "BufWritePost", "WinLeave" },
           desc = "Save view with mkview for real files",
           callback = function(event)
-            if vim.b[event.buf].view_activated then vim.cmd.mkview { mods = { emsg_silent = true } } end
+            if vim.b[event.buf].view_activated then vim.cmd.mkview({ mods = { emsg_silent = true } }) end
           end,
         },
 
@@ -71,7 +69,7 @@ return {
               local ignore_filetypes = { "gitcommit", "gitrebase", "svg", "hgcommit" }
               if buftype == "" and filetype and filetype ~= "" and not vim.tbl_contains(ignore_filetypes, filetype) then
                 vim.b[event.buf].view_activated = true
-                vim.cmd.loadview { mods = { emsg_silent = true } }
+                vim.cmd.loadview({ mods = { emsg_silent = true } })
               end
             end
           end,
@@ -83,7 +81,7 @@ return {
           event = { "BufAdd", "BufEnter", "TabNewEntered" },
           desc = "Update buffers when adding new buffers",
           callback = function(args)
-            local buf_utils = require "astrocore.buffer"
+            local buf_utils = require("astrocore.buffer")
             ---@diagnostic disable-next-line: inject-field
             if not vim.t.bufs then vim.t.bufs = {} end
             if not buf_utils.is_valid(args.buf) then return end
@@ -100,7 +98,7 @@ return {
             end
 
             vim.t.bufs = vim.tbl_filter(buf_utils.is_valid, vim.t.bufs)
-            require("astrocore").event "BufsUpdated"
+            require("astrocore").event("BufsUpdated")
           end,
         },
 
@@ -123,7 +121,7 @@ return {
               end
             end
             vim.t.bufs = vim.tbl_filter(require("astrocore.buffer").is_valid, vim.t.bufs)
-            if removed then require("astrocore").event "BufsUpdated" end
+            if removed then require("astrocore").event("BufsUpdated") end
             vim.cmd.redrawtabline()
           end,
         },
@@ -134,17 +132,17 @@ return {
           event = { "BufReadPost", "BufNewFile", "BufWritePost" },
           desc = "AndromedaVim user events for file detection (AndromedaFile and AndromedaGitFile)",
           callback = function(args)
-            local astro = require "astrocore"
-            local current_file = vim.fn.resolve(vim.fn.expand "%")
+            local astro = require("astrocore")
+            local current_file = vim.fn.resolve(vim.fn.expand("%"))
 
             if not (current_file == "" or vim.bo[args.buf].buftype == "nofile") then
-              andromeda.event "File"
+              Andromeda.lib.event("File")
               if
                 astro.file_worktree()
                 -- or astro.cmd({ "git", "-C", vim.fn.fnamemodify(current_file, ":p:h"), "rev-parse" }, false)
               then
-                andromeda.event "GitFile"
-                vim.api.nvim_del_augroup_by_name "file_user_events"
+                Andromeda.lib.event("GitFile")
+                vim.api.nvim_del_augroup_by_name("file_user_events")
               end
             end
           end,

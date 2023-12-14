@@ -1,38 +1,32 @@
 ---@class AndromedaLib: LazyUtilCore
----@field lsp AndromedaLSPLib
 ---@field path AndromedaPathLib
----@field root AndromedaRootLib
----@field format AndromedaFormatLib
----@field telescope AndromedaTelescopeLib
-local M = setmetatable({}, {
+local M = setmetatable(Andromeda.lib, {
   __index = function(t, k)
     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
-    t[k] = require("andromedavim.libs." .. k)
-    return t[k]
+    return Andromeda.lib[k]
   end,
 })
 
----------------------------
---! Misc Helpers
----------------------------
-
---- Wrap a function with arguments_list
----@param fn function The function to wrap
----@vararg any The arguments to pass to the function
----@return function # The wrapped function
-function M.fn_wrap(fn, ...)
-  local args = { ... } or {}
-  fn = fn or require
-  return function() fn(table.unpack(args)) end
+--! >>>>>>>>>>>>>> Load Utilities <<<<<<<<<<<<<< --
+local utils = {
+  "extensions",
+  "format",
+  "lsp",
+  "path",
+  "root",
+  "telescope",
+  "ui",
+}
+for _, util in ipairs(utils) do
+  require("andromedavim.utilities." .. util)
 end
+--! >>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<< --
 
-function M.is_win() return vim.loop.os_uname().sysname:find "Windows" ~= nil end
+function M.is_win() return vim.loop.os_uname().sysname:find("Windows") ~= nil end
 
 ---@param plugin string
 function M.has(plugin) return require("lazy.core.config").spec.plugins[plugin] ~= nil end
 
---- Trigger an AstroNvim user event
----@param event string The event name to be appended to Astro
 function M.event(event)
   vim.schedule(function() vim.api.nvim_exec_autocmds("User", { pattern = "Andromeda" .. event, modeline = false }) end)
 end
@@ -55,5 +49,3 @@ end
 ---@param opts table
 ---@param extension table
 function M.extend_opts(opts, extension) return require("astrocore").extend_tbl(opts, extension) end
-
-return M

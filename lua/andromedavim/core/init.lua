@@ -6,8 +6,6 @@ local M = setmetatable({}, {
 })
 
 M.did_init = false
-M.default_dashboard = "doom"
-M.default_colorscheme = "solarized-osaka"
 
 function M.init()
   if not M.did_init then
@@ -27,12 +25,11 @@ function M.init()
 
     -- set options
     if vim.bo.filetype == "lazy" then vim.cmd.bw() end
-    require "andromedavim.core.options"
+    require("andromedavim.core.options")
   end
 
-  require "andromedavim.core.mappings"
-  require("andromedavim.libs").root.setup()
-  require("andromedavim.libs").format.setup()
+  Andromeda.lib.root.setup()
+  Andromeda.lib.format.setup()
 end
 
 return M

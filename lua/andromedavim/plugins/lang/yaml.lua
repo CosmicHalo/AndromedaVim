@@ -4,12 +4,12 @@ return {
   -- add yaml specific modules to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "yaml" }) end,
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "yaml" }) end,
   },
 
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "yaml-language-server" }) end,
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "yaml-language-server" }) end,
   },
 
   -- yaml schema support

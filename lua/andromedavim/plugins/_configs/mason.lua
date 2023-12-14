@@ -8,7 +8,7 @@ Andromeda.mappings.mason = function(_, opts)
     nargs = "*",
     desc = "Update Mason Package",
     complete = function(arg_lead)
-      local _ = require "mason-core.functional"
+      local _ = require("mason-core.functional")
       return _.sort_by(
         _.identity,
         _.filter(_.starts_with(arg_lead), require("mason-registry").get_installed_package_names())

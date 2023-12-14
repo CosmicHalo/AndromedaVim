@@ -2,13 +2,13 @@ return {
   {
     "rshkarin/mason",
     optional = true,
-    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "eslint_d" }) end,
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "eslint_d" }) end,
   },
 
   -- add typescript to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "javascript", "typescript", "tsx" }) end,
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "javascript", "typescript", "tsx" }) end,
   },
 
   {

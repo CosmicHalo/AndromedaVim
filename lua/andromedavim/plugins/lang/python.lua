@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "ninja", "python", "rst", "toml" }) end,
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "ninja", "python", "rst", "toml" }) end,
   },
 
   {
@@ -25,13 +25,13 @@ return {
             {
               "<leader>co",
               function()
-                vim.lsp.buf.code_action {
+                vim.lsp.buf.code_action({
                   apply = true,
                   context = {
                     only = { "source.organizeImports" },
                     diagnostics = {},
                   },
-                }
+                })
               end,
               desc = "Organize Imports",
             },
@@ -41,7 +41,7 @@ return {
 
       handlers = {
         ruff_lsp = function(_, opts)
-          require("andromedavim.libs").lsp.on_attach(function(client, _)
+          Andromeda.lib.lsp.on_attach(function(client, _)
             if client.name == "ruff_lsp" then
               -- Disable hover in favor of Pyright
               client.server_capabilities.hoverProvider = false
@@ -94,7 +94,7 @@ return {
     cmd = "VenvSelect",
     keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
     opts = function(_, opts)
-      if require("lazyvim.util").has "nvim-dap-python" then opts.dap_enabled = true end
+      if require("lazyvim.util").has("nvim-dap-python") then opts.dap_enabled = true end
       return vim.tbl_deep_extend("force", opts, {
         name = {
           "venv",

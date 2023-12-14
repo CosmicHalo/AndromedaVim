@@ -17,7 +17,7 @@ return {
     end,
   },
   config = function(_, opts)
-    local notify = require "notify" --[[@as NeovimPlugin]]
+    local notify = require("notify") --[[@as NeovimPlugin]]
     notify.setup(opts)
     vim.notify = notify
   end,

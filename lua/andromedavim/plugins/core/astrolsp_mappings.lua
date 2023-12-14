@@ -2,12 +2,12 @@ return {
   "AstroNvim/astrolsp",
   ---@param opts AstroLSPOpts
   opts = function(_, opts)
-    local core = require "astrocore"
-    local astrolsp = require "astrolsp"
-    local lsp_toggles = require "astrolsp.toggles"
+    local core = require("astrocore")
+    local astrolsp = require("astrolsp")
+    local lsp_toggles = require("astrolsp.toggles")
 
     local formatting_enabled = function(client)
-      return client.supports_method "textDocument/formatting"
+      return client.supports_method("textDocument/formatting")
         and opts.formatting.disabled ~= true
         and not vim.tbl_contains(opts.formatting.disabled, client.name)
     end

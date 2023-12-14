@@ -1,7 +1,8 @@
-local Utils = require "andromedavim.libs"
+---@type AndromedaFormatLib
+Andromeda.lib.format = {}
 
 ---@class AndromedaFormatLib
-local M = setmetatable({}, {
+local M = setmetatable(Andromeda.lib.format, {
   __call = function(m, ...) return m.format(...) end,
 })
 
@@ -35,13 +36,12 @@ end
 ---@param formatter AndromedaFormatter
 function M.register(formatter)
   M.formatters[#M.formatters + 1] = formatter
-
   table.sort(M.formatters, function(a, b) return a.priority > b.priority end)
 end
 
 function M.formatexpr()
-  if Utils.has "conform.nvim" then return require("conform").formatexpr() end
-  return vim.lsp.formatexpr { timeout_ms = 3000 }
+  if Andromeda.lib.has("conform.nvim") then return require("conform").formatexpr() end
+  return vim.lsp.formatexpr({ timeout_ms = 3000 })
 end
 
 ---@param buf? number
@@ -91,7 +91,7 @@ function M.format(opts)
     end
   end
 
-  if not done and opts and opts.force then Utils.warn("No formatter available", { title = "AndromedaVim" }) end
+  if not done and opts and opts.force then Andromeda.lib.warn("No formatter available", { title = "AndromedaVim" }) end
 end
 
 ---@param buf? number
@@ -123,7 +123,7 @@ function M.info(buf)
 
   if not have then lines[#lines + 1] = "\n***No formatters available for this buffer.***" end
 
-  Utils[enabled and "info" or "warn"](
+  Andromeda.lib[enabled and "info" or "warn"](
     table.concat(lines, "\n"),
     { title = "AndromedaFormat (" .. (enabled and "enabled" or "disabled") .. ")" }
   )
@@ -133,13 +133,13 @@ function M.setup()
   -- Autoformat autocmd
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = vim.api.nvim_create_augroup("AndromedaFormat", {}),
-    callback = function(event) M.format { buf = event.buf } end,
+    callback = function(event) M.format({ buf = event.buf }) end,
   })
 
   -- Manual format
   vim.api.nvim_create_user_command(
     "AndromedaFormat",
-    function() M.format { force = true } end,
+    function() M.format({ force = true }) end,
     { desc = "Format selection or buffer" }
   )
 

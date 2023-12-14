@@ -1,7 +1,7 @@
 return {
   "mfussenegger/nvim-dap",
   event = "User AndromedaFile",
-  enabled = vim.fn.has "win32" == 0,
+  enabled = vim.fn.has("win32") == 0,
   dependencies = {
     { "AstroNvim/astrocore", opts = Andromeda.mappings.dap },
     {

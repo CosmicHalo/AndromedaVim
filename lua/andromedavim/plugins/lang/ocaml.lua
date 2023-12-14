@@ -1,12 +1,12 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "ocaml" }) end,
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "ocaml" }) end,
   },
 
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts) require("andromedavim.libs").extend_list_opt(opts, { "ocaml-lsp", "ocamlformat" }) end,
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "ocaml-lsp", "ocamlformat" }) end,
   },
 
   {

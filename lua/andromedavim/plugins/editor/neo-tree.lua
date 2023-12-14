@@ -8,7 +8,7 @@ return {
   },
 
   opts = function()
-    local astro = require "astrocore"
+    local astro = require("astrocore")
     local get_icon = require("astroui").get_icon
 
     return {
@@ -25,7 +25,7 @@ return {
           ["[b"] = "prev_source",
           ["]b"] = "next_source",
           ["<S-CR>"] = "system_open",
-          F = astro.is_available "telescope.nvim" and "find_in_dir" or nil,
+          F = astro.is_available("telescope.nvim") and "find_in_dir" or nil,
           ["<Space>"] = false, -- disable space until we figure out which-key disabling
         },
         fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
@@ -54,27 +54,27 @@ return {
 
       default_component_configs = {
         indent = { padding = 0 },
-        modified = { symbol = get_icon "FileModified" },
+        modified = { symbol = get_icon("FileModified") },
 
         icon = {
-          default = get_icon "DefaultFile",
-          folder_open = get_icon "FolderOpen",
-          folder_empty = get_icon "FolderEmpty",
-          folder_closed = get_icon "FolderClosed",
-          folder_empty_open = get_icon "FolderEmpty",
+          default = get_icon("DefaultFile"),
+          folder_open = get_icon("FolderOpen"),
+          folder_empty = get_icon("FolderEmpty"),
+          folder_closed = get_icon("FolderClosed"),
+          folder_empty_open = get_icon("FolderEmpty"),
         },
 
         git_status = {
           symbols = {
-            added = get_icon "GitAdd",
-            staged = get_icon "GitStaged",
-            deleted = get_icon "GitDelete",
-            modified = get_icon "GitChange",
-            renamed = get_icon "GitRenamed",
-            ignored = get_icon "GitIgnored",
-            unstaged = get_icon "GitUnstaged",
-            conflict = get_icon "GitConflict",
-            untracked = get_icon "GitUntracked",
+            added = get_icon("GitAdd"),
+            staged = get_icon("GitStaged"),
+            deleted = get_icon("GitDelete"),
+            modified = get_icon("GitChange"),
+            renamed = get_icon("GitRenamed"),
+            ignored = get_icon("GitIgnored"),
+            unstaged = get_icon("GitUnstaged"),
+            conflict = get_icon("GitConflict"),
+            untracked = get_icon("GitUntracked"),
           },
         },
       },
@@ -150,9 +150,9 @@ return {
         find_in_dir = function(state)
           local node = state.tree:get_node()
           local path = node:get_id()
-          require("telescope.builtin").find_files {
+          require("telescope.builtin").find_files({
             cwd = node.type == "directory" and path or vim.fn.fnamemodify(path, ":h"),
-          }
+          })
         end,
       },
     }

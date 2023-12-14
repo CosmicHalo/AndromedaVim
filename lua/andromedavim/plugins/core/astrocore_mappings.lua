@@ -2,11 +2,11 @@ return {
   "AstroNvim/astrocore",
   ---@param opts AstroCoreOpts
   opts = function(_, opts)
-    local astro = require "astrocore"
+    local astro = require("astrocore")
     local get_icon = require("astroui").get_icon
 
-    local andromeda_buffers = require "astrocore.buffer"
-    local andromeda_toggles = require "astrocore.toggles"
+    local andromeda_buffers = require("astrocore.buffer")
+    local andromeda_toggles = require("astrocore.toggles")
 
     -- initialize internally use mapping section titles
     ---@diagnostic disable-next-line: inject-field
@@ -69,11 +69,11 @@ return {
 
     -->>>>>> Buffer Sorting <<<<<<--
     maps.n["<Leader>bs"] = sections.bs
-    maps.n["<Leader>bse"] = { function() andromeda_buffers.sort "extension" end, desc = "By extension" }
-    maps.n["<Leader>bsp"] = { function() andromeda_buffers.sort "full_path" end, desc = "By full path" }
-    maps.n["<Leader>bsi"] = { function() andromeda_buffers.sort "bufnr" end, desc = "By buffer number" }
-    maps.n["<Leader>bsm"] = { function() andromeda_buffers.sort "modified" end, desc = "By modification" }
-    maps.n["<Leader>bsr"] = { function() andromeda_buffers.sort "unique_path" end, desc = "By relative path" }
+    maps.n["<Leader>bse"] = { function() andromeda_buffers.sort("extension") end, desc = "By extension" }
+    maps.n["<Leader>bsp"] = { function() andromeda_buffers.sort("full_path") end, desc = "By full path" }
+    maps.n["<Leader>bsi"] = { function() andromeda_buffers.sort("bufnr") end, desc = "By buffer number" }
+    maps.n["<Leader>bsm"] = { function() andromeda_buffers.sort("modified") end, desc = "By modification" }
+    maps.n["<Leader>bsr"] = { function() andromeda_buffers.sort("unique_path") end, desc = "By relative path" }
 
     -->>>>>> Close Buffers <<<<<<--
     maps.n["<Leader>c"] = { function() andromeda_buffers.close() end, desc = "Close buffer" }

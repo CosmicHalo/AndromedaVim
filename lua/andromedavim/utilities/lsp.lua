@@ -1,11 +1,12 @@
-local Lib = require "andromedavim.libs"
+---@type AndromedaLSPLib
+Andromeda.lib.lsp = {}
 
 ---@diagnostic disable: undefined-field
 ---@diagnostic disable: undefined-doc-name
 ---@alias lsp.Client.format {timeout_ms?: number, format_options?: table} | lsp.Client.filter
 
 ---@class AndromedaLSPLib
-local M = {}
+local M = Andromeda.lib.lsp
 
 -------------------
 -- * Helpers * ----
@@ -13,7 +14,7 @@ local M = {}
 
 ---@return _.lspconfig.options
 function M.get_config(server)
-  local configs = require "lspconfig.configs"
+  local configs = require("lspconfig.configs")
   return rawget(configs, server)
 end
 
@@ -49,7 +50,7 @@ end
 ---@param server string
 ---@param cond fun( root_dir, config): boolean
 function M.disable(server, cond)
-  local util = require "lspconfig.util"
+  local util = require("lspconfig.util")
   local def = M.get_config(server)
 
   ---@diagnostic disable-next-line: undefined-field
@@ -63,7 +64,7 @@ end
 function M.on_rename(from, to)
   local clients = M.get_clients()
   for _, client in ipairs(clients) do
-    if client.supports_method "workspace/willRenameFiles" then
+    if client.supports_method("workspace/willRenameFiles") then
       ---@diagnostic disable-next-line: invisible
       local resp = client.request_sync("workspace/willRenameFiles", {
         files = {
@@ -113,14 +114,14 @@ function M.formatter(opts)
     priority = 1,
     primary = true,
 
-    format = function(buf) M.format(Lib.merge(filter, { bufnr = buf })) end,
+    format = function(buf) M.format(Andromeda.lib.merge(filter, { bufnr = buf })) end,
 
     sources = function(buf)
-      local clients = M.get_clients(Lib.merge(filter, { bufnr = buf }))
+      local clients = M.get_clients(Andromeda.lib.merge(filter, { bufnr = buf }))
       local ret = vim.tbl_filter(
         function(client)
-          return client.supports_method "textDocument/formatting"
-            or client.supports_method "textDocument/rangeFormatting"
+          return client.supports_method("textDocument/formatting")
+            or client.supports_method("textDocument/rangeFormatting")
         end,
         clients
       )
@@ -130,7 +131,7 @@ function M.formatter(opts)
     end,
   }
 
-  return Lib.merge(ret, opts) --[[@as AndromedaFormatter]]
+  return Andromeda.lib.merge(ret, opts) --[[@as AndromedaFormatter]]
 end
 
 return M

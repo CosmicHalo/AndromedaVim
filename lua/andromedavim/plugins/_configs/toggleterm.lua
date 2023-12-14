@@ -1,11 +1,11 @@
 Andromeda.mappings.toggleterm = function(_, opts)
   local maps = opts.mappings
-  local astro = require "astrocore"
+  local astro = require("astrocore")
 
   maps.n["<Leader>t"] = opts._map_section.t
 
   --! Lazygit
-  if vim.fn.executable "lazygit" == 1 then
+  if vim.fn.executable("lazygit") == 1 then
     maps.n["<Leader>g"] = opts._map_section.g
     maps.n["<Leader>gg"] = {
       function()
@@ -19,22 +19,22 @@ Andromeda.mappings.toggleterm = function(_, opts)
   end
 
   --! Nodejs
-  if vim.fn.executable "node" == 1 then
-    maps.n["<Leader>tn"] = { function() astro.toggle_term_cmd "node" end, desc = "ToggleTerm node" }
+  if vim.fn.executable("node") == 1 then
+    maps.n["<Leader>tn"] = { function() astro.toggle_term_cmd("node") end, desc = "ToggleTerm node" }
   end
 
   --! GDU
-  if vim.fn.executable "gdu" == 1 then
-    maps.n["<Leader>tu"] = { function() astro.toggle_term_cmd "gdu" end, desc = "ToggleTerm gdu" }
+  if vim.fn.executable("gdu") == 1 then
+    maps.n["<Leader>tu"] = { function() astro.toggle_term_cmd("gdu") end, desc = "ToggleTerm gdu" }
   end
 
   --! Btm
-  if vim.fn.executable "btm" == 1 then
-    maps.n["<Leader>tt"] = { function() astro.toggle_term_cmd "btm" end, desc = "ToggleTerm btm" }
+  if vim.fn.executable("btm") == 1 then
+    maps.n["<Leader>tt"] = { function() astro.toggle_term_cmd("btm") end, desc = "ToggleTerm btm" }
   end
 
   --! Python
-  local python = vim.fn.executable "python" == 1 and "python" or vim.fn.executable "python3" == 1 and "python3"
+  local python = vim.fn.executable("python") == 1 and "python" or vim.fn.executable("python3") == 1 and "python3"
   if python then maps.n["<Leader>tp"] = { function() astro.toggle_term_cmd(python) end, desc = "ToggleTerm python" } end
 
   --! General

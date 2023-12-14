@@ -1,5 +1,7 @@
 Andromeda.configs.indentscope = {
   ignore_filetypes = {
+    "NvimTree",
+    "Trouble",
     "aerial",
     "alpha",
     "dashboard",
@@ -7,12 +9,10 @@ Andromeda.configs.indentscope = {
     "lazy",
     "mason",
     "neo-tree",
-    "NvimTree",
     "neogitstatus",
     "notify",
     "startify",
     "toggleterm",
-    "Trouble",
   },
 
   ignore_buftypes = {
@@ -37,7 +37,7 @@ Andromeda.configs.indentscope = {
         callback = function(event)
           if vim.b[event.buf].minicursorword_disable == nil then
             local filetype = vim.bo[event.buf].filetype
-            local blankline_opts = require("astrocore").plugin_opts "indent-blankline.nvim"
+            local blankline_opts = require("astrocore").plugin_opts("indent-blankline.nvim")
             if
               vim.tbl_contains(
                 blankline_opts.filetype_exclude or Andromeda.configs.indentscope.ignore_filetypes,
@@ -55,7 +55,7 @@ Andromeda.configs.indentscope = {
         callback = function(event)
           if vim.b[event.buf].minicursorword_disable == nil then
             local buftype = vim.bo[event.buf].buftype
-            local blankline_opts = require("astrocore").plugin_opts "indent-blankline.nvim"
+            local blankline_opts = require("astrocore").plugin_opts("indent-blankline.nvim")
             if
               vim.tbl_contains(blankline_opts.buftype_exclude or Andromeda.configs.indentscope.ignore_buftypes, buftype)
             then

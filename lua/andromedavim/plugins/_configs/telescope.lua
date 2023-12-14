@@ -1,5 +1,5 @@
 Andromeda.mappings.telescope = function(_, opts)
-  local astro = require "astrocore"
+  local astro = require("astrocore")
 
   local maps = opts.mappings
   local is_available = astro.is_available
@@ -7,19 +7,19 @@ Andromeda.mappings.telescope = function(_, opts)
   --! Git
   maps.n["<Leader>g"] = opts._map_section.g
   maps.n["<Leader>gt"] = {
-    function() require("telescope.builtin").git_status { use_file_path = true } end,
+    function() require("telescope.builtin").git_status({ use_file_path = true }) end,
     desc = "Git status",
   }
   maps.n["<Leader>gc"] = {
-    function() require("telescope.builtin").git_commits { use_file_path = true } end,
+    function() require("telescope.builtin").git_commits({ use_file_path = true }) end,
     desc = "Git commits (repository)",
   }
   maps.n["<Leader>gb"] = {
-    function() require("telescope.builtin").git_branches { use_file_path = true } end,
+    function() require("telescope.builtin").git_branches({ use_file_path = true }) end,
     desc = "Git branches",
   }
   maps.n["<Leader>gC"] = {
-    function() require("telescope.builtin").git_bcommits { use_file_path = true } end,
+    function() require("telescope.builtin").git_bcommits({ use_file_path = true }) end,
     desc = "Git commits (current file)",
   }
 
@@ -27,15 +27,15 @@ Andromeda.mappings.telescope = function(_, opts)
   maps.n["<Leader>f"] = opts._map_section.f
   maps.n["<Leader>ff"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
   maps.n["<Leader>fF"] = {
-    function() require("telescope.builtin").find_files { hidden = true, no_ignore = true } end,
+    function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,
     desc = "Find all files",
   }
   maps.n["<Leader>fw"] = { function() require("telescope.builtin").live_grep() end, desc = "Find words" }
   maps.n["<Leader>fW"] = {
     function()
-      require("telescope.builtin").live_grep {
+      require("telescope.builtin").live_grep({
         additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
-      }
+      })
     end,
     desc = "Find words in all files",
   }
@@ -59,11 +59,11 @@ Andromeda.mappings.telescope = function(_, opts)
   }
   maps.n["<Leader>fa"] = {
     function()
-      require("telescope.builtin").find_files {
+      require("telescope.builtin").find_files({
         prompt_title = "Config Files",
-        cwd = vim.fn.stdpath "config",
+        cwd = vim.fn.stdpath("config"),
         follow = true,
-      }
+      })
     end,
     desc = "Find Andromeda config files",
   }
@@ -76,12 +76,12 @@ Andromeda.mappings.telescope = function(_, opts)
   maps.n["<Leader>fr"] = { function() require("telescope.builtin").registers() end, desc = "Find registers" }
 
   maps.n["<Leader>ft"] = {
-    function() require("telescope.builtin").colorscheme { enable_preview = true } end,
+    function() require("telescope.builtin").colorscheme({ enable_preview = true }) end,
     desc = "Find themes",
   }
   maps.n["<Leader>ls"] = {
     function()
-      if is_available "aerial.nvim" then
+      if is_available("aerial.nvim") then
         require("telescope").extensions.aerial.aerial()
       else
         require("telescope.builtin").lsp_document_symbols()
@@ -90,7 +90,7 @@ Andromeda.mappings.telescope = function(_, opts)
     desc = "Search symbols",
   }
 
-  if is_available "nvim-notify" then
+  if is_available("nvim-notify") then
     maps.n["<Leader>fn"] = {
       function() require("telescope").extensions.notify.notify() end,
       desc = "Find notifications",

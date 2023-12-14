@@ -1,4 +1,5 @@
-local Lib = require "andromedavim.libs"
+---@type AndromedaTelescopeLib
+Andromeda.lib.telescope = {}
 
 ---@class AndromedaTelescopeLibOpts
 ---@field cwd? string|boolean
@@ -6,14 +7,20 @@ local Lib = require "andromedavim.libs"
 
 ---@class AndromedaTelescopeLib
 ---@overload fun(builtin:string, opts?:AndromedaTelescopeLibOpts)
-local M = setmetatable({}, {
+local M = setmetatable(Andromeda.lib.telescope, {
   __call = function(m, ...) return m.telescope(...) end,
 })
+
+---@param extension string
+function M.load_extension(extension)
+  ---@diagnostic disable-next-line: redundant-parameter
+  require("astrocore").on_load("telescope.nvim", function() require("telescope").load_extension(extension) end)
+end
 
 ----------------
 -- Config Files
 ----------------
-function M.config_files() return Lib.telescope("find_files", { cwd = vim.fn.stdpath "config" }) end
+function M.config_files() return Andromeda.lib.telescope("find_files", { cwd = vim.fn.stdpath("config") }) end
 
 -- this will return a function that calls telescope.
 ---@param builtin string
@@ -25,7 +32,7 @@ function M.telescope(builtin, opts)
     builtin = params.builtin
 
     opts = params.opts
-    opts = vim.tbl_deep_extend("force", { cwd = Lib.root() }, opts or {}) --[[@as AndromedaTelescopeLibOpts]]
+    opts = vim.tbl_deep_extend("force", { cwd = Andromeda.lib.root() }, opts or {}) --[[@as AndromedaTelescopeLibOpts]]
 
     ---------
     -- FILES
@@ -46,7 +53,7 @@ function M.telescope(builtin, opts)
       ---@diagnostic disable-next-line: inject-field
       opts.attach_mappings = function(_, map)
         map("i", "<a-c>", function()
-          local action_state = require "telescope.actions.state"
+          local action_state = require("telescope.actions.state")
           local line = action_state.get_current_line()
           M.telescope(
             params.builtin,

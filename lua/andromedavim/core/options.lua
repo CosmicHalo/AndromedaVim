@@ -4,7 +4,7 @@ vim.g.maplocalleader = "\\"
 -- Enable andromeda auto format
 vim.g.autoformat = true
 vim.g.icons_enabled = true
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
+vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46/"
 
 -- Each entry can be:
 -- * the name of a detector function like `lsp` or `cwd`
@@ -15,7 +15,7 @@ vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
-opt.backspace:append { "nostop" } -- don't stop backspace at insert
+opt.backspace:append({ "nostop" }) -- don't stop backspace at insert
 opt.breakindent = true -- wrap indent to match  line start
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.cmdheight = 0 -- hide command line unless needed
@@ -24,7 +24,7 @@ opt.conceallevel = 3 -- Hide * markup for bold and italic
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.copyindent = true -- copy the previous indentation on autoindenting
 opt.cursorline = true -- Enable highlighting of the current line
-opt.diffopt:append { "algorithm:histogram", "linematch:60" } -- enable linematch diff algorithm
+opt.diffopt:append({ "algorithm:histogram", "linematch:60" }) -- enable linematch diff algorithm
 opt.expandtab = true -- enable the use of space in tab
 opt.fileencoding = "utf-8" -- file content encoding for the buffer
 opt.fillchars = { eob = " " } -- disable `~` on nonexistent lines
@@ -52,7 +52,7 @@ opt.scrolloff = 4 -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 2 -- Size of an indent
-opt.shortmess:append { W = true, I = true, c = true, C = true }
+opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.showtabline = 2 -- always display tabline
 opt.sidescrolloff = 8 -- Columns of context
@@ -69,30 +69,30 @@ opt.timeoutlen = 300
 opt.undofile = true
 opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
-opt.viewoptions:remove "curdir" -- disable saving current directory with views
+opt.viewoptions:remove("curdir") -- disable saving current directory with views
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 opt.writebackup = false -- disable making a backup before overwriting a file
 
-if vim.fn.has "nvim-0.10" == 1 then opt.smoothscroll = true end
+if vim.fn.has("nvim-0.10") == 1 then opt.smoothscroll = true end
 
 -- Folding
 vim.opt.foldlevel = 99
-vim.opt.foldtext = "v:lua.require'andromedavim.libs'.ui.foldtext()"
+vim.opt.foldtext = "v:lua.Andromeda.lib.ui.foldtext()"
 
-if vim.fn.has "nvim-0.9.0" == 1 then vim.opt.statuscolumn = [[%!v:lua.require'andromedavim.libs'.ui.statuscolumn()]] end
+if vim.fn.has("nvim-0.9.0") == 1 then vim.opt.statuscolumn = [[%!v:lua.Andromeda.lib.ui.statuscolumn()]] end
 
 -- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
-if vim.fn.has "nvim-0.10" == 1 then
+if vim.fn.has("nvim-0.10") == 1 then
   vim.opt.foldmethod = "expr"
-  vim.opt.foldexpr = "v:lua.require'andromedavim.libs'.ui.foldexpr()"
+  vim.opt.foldexpr = "v:lua.Andromeda.lib.ui.foldexpr()"
 else
   vim.opt.foldmethod = "indent"
 end
 
-vim.o.formatexpr = "v:lua.require'andromedavim.libs'.format.formatexpr()"
+vim.o.formatexpr = "v:lua.Andromeda.lib.format.formatexpr()"
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

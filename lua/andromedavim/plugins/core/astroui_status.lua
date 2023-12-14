@@ -9,21 +9,21 @@ return {
       if gitsigns_avail then vim.schedule(gitsigns.preview_hunk) end
     end
 
-    for _, sign in ipairs { "Topdelete", "Untracked", "Add", "Changedelete", "Delete" } do
+    for _, sign in ipairs({ "Topdelete", "Untracked", "Add", "Changedelete", "Delete" }) do
       local name = "GitSigns" .. sign
       if not sign_handlers[name] then sign_handlers[name] = gitsigns end
     end
 
     -- diagnostic handlers
     local diagnostics = function(args)
-      if args.mods:find "c" then
+      if args.mods:find("c") then
         vim.schedule(vim.lsp.buf.code_action)
       else
         vim.schedule(vim.diagnostic.open_float)
       end
     end
 
-    for _, sign in ipairs { "Error", "Hint", "Info", "Warn" } do
+    for _, sign in ipairs({ "Error", "Hint", "Info", "Warn" }) do
       local name = "DiagnosticSign" .. sign
       if not sign_handlers[name] then sign_handlers[name] = diagnostics end
     end
@@ -36,7 +36,7 @@ return {
       if dap_avail then vim.schedule(dap.toggle_breakpoint) end
     end
 
-    for _, sign in ipairs { "", "Rejected", "Condition" } do
+    for _, sign in ipairs({ "", "Rejected", "Condition" }) do
       local name = "DapBreakpoint" .. sign
       if not sign_handlers[name] then sign_handlers[name] = dap_breakpoint end
     end
@@ -128,7 +128,7 @@ return {
       },
 
       setup_colors = function()
-        local astro = require "astrocore"
+        local astro = require("astrocore")
         local status_opts = require("astroui").config.status --[[@as AstroUIStatusOpts]]
         local lualine_mode = require("astroui.status.hl").lualine_mode
 
@@ -242,7 +242,7 @@ return {
           colors = user_colors(colors)
         end
 
-        for _, section in ipairs {
+        for _, section in ipairs({
           "lsp",
           "nav",
           "mode",
@@ -254,7 +254,7 @@ return {
           "diagnostics",
           "virtual_env",
           "macro_recording",
-        } do
+        }) do
           if not colors[section .. "_bg"] then colors[section .. "_bg"] = colors["section_bg"] end
           if not colors[section .. "_fg"] then colors[section .. "_fg"] = colors["section_fg"] end
         end

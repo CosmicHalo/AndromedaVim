@@ -26,10 +26,10 @@ return {
     },
   },
   config = function(_, opts)
-    local npairs = require "nvim-autopairs"
+    local npairs = require("nvim-autopairs")
     npairs.setup(opts)
 
-    local astrocore = require "astrocore"
+    local astrocore = require("astrocore")
     if not astrocore.config.features.autopairs then npairs.disable() end
 
     astrocore.on_load(
@@ -37,7 +37,7 @@ return {
       function()
         require("cmp").event:on(
           "confirm_done",
-          require("nvim-autopairs.completion.cmp").on_confirm_done { tex = false }
+          require("nvim-autopairs.completion.cmp").on_confirm_done({ tex = false })
         )
       end
     )
