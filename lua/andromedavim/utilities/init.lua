@@ -1,5 +1,4 @@
 ---@class AndromedaLib: LazyUtilCore
----@field path AndromedaPathLib
 local M = setmetatable(Andromeda.lib, {
   __index = function(t, k)
     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
@@ -11,6 +10,7 @@ local M = setmetatable(Andromeda.lib, {
 local utils = {
   "extensions",
   "format",
+  "keymap",
   "lsp",
   "path",
   "root",

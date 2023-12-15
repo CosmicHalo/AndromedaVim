@@ -2,11 +2,8 @@ Andromeda.lib.path.load_dir("andromedavim.plugins._configs")
 Andromeda.lib.path.load_dir("andromedavim.plugins._mappings")
 
 local plugins = {
-  -- Detect tabstop and shiftwidth automatically
-  "tpope/vim-sleuth",
-  -- NOTE: First, some plugins that don't require any configuration
-  "nvim-lua/plenary.nvim",
-
+  "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+  "nvim-lua/plenary.nvim", -- NOTE: First, some plugins that don't require any configuration
   { "LunarVim/bigfile.nvim", config = Andromeda.configs.bigfile },
 }
 
@@ -14,7 +11,7 @@ for _, plugin in ipairs({
   "core",
   "coding",
   "editor",
-  "formatters",
+  "formatting",
   "lang",
   "ui",
   "lsp",
