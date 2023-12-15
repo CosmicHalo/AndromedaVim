@@ -26,8 +26,7 @@ return {
     },
 
     opts = function(_, opts)
-      local commentstring_avail, commentstring = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
-      if commentstring_avail then opts.pre_hook = commentstring.create_pre_hook() end
+      opts.pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
     end,
   },
 }

@@ -10,7 +10,6 @@ local plugins = {
 
 for _, plugin in ipairs({
   "core",
-  -- "lsp",
   "formatters",
   "lang",
   "ui",

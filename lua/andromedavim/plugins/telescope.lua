@@ -178,7 +178,7 @@ return {
 
     require("telescope").load_extension("notify")
     require("telescope").load_extension("aerial")
-    require("telescope").load_extension("projects")
-    require("telescope").load_extension("persisted")
+    -- require("telescope").load_extension("projects")
+    -- require("telescope").load_extension("persisted")
   end,
 }
