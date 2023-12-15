@@ -46,12 +46,36 @@ return {
         current_line_blame_opts = { delay = 1000, virtual_text_pos = "eol" },
 
         signs = {
-          add = { text = Andromeda.icons.git("Sign") },
-          change = { text = Andromeda.icons.git("Sign") },
-          delete = { text = Andromeda.icons.git("Sign") },
-          topdelete = { text = Andromeda.icons.git("Sign") },
-          untracked = { text = Andromeda.icons.git("Sign") },
-          changedelete = { text = Andromeda.icons.git("Sign") },
+          add = {
+            hl = "GitSignsAdd",
+            numhl = "GitSignsAddNr",
+            linehl = "GitSignsAddLn",
+            text = Andromeda.icons.git("Sign"),
+          },
+          change = {
+            hl = "GitSignsChange",
+            numhl = "GitSignsChangeNr",
+            linehl = "GitSignsChangeLn",
+            text = Andromeda.icons.git("Sign"),
+          },
+          delete = {
+            hl = "GitSignsDelete",
+            numhl = "GitSignsDeleteNr",
+            linehl = "GitSignsDeleteLn",
+            text = Andromeda.icons.git("Sign"),
+          },
+          topdelete = {
+            hl = "GitSignsDelete",
+            numhl = "GitSignsDeleteNr",
+            linehl = "GitSignsDeleteLn",
+            text = Andromeda.icons.git("Sign"),
+          },
+          changedelete = {
+            hl = "GitSignsChange",
+            numhl = "GitSignsChangeNr",
+            linehl = "GitSignsChangeLn",
+            text = Andromeda.icons.git("Sign"),
+          },
         },
       }
     end,

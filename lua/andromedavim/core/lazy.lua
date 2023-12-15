@@ -16,7 +16,7 @@ local ui_sep = Andromeda.icons.ui.get
 
 require("lazy")--[[@as Lazy]]
   .setup({
-    spec = "andromedavim.plugins",
+    spec = { { import = "andromedavim.plugins" } },
 
     checker = { enabled = true },
     change_detection = { enabled = true },
@@ -49,7 +49,13 @@ require("lazy")--[[@as Lazy]]
         not_loaded = icons.misc.Ghost,
         import = icons.documents.Import,
         source = icons.kind.StaticMethod,
-        list = { ui_sep("Square"), ui_sep("BigCircle"), ui_sep("ChevronRight"), ui_sep("BigUnfilledCircle") },
+
+        list = {
+          ui_sep("Square"),
+          ui_sep("BigCircle"),
+          ui_sep("ChevronRight"),
+          ui_sep("BigUnfilledCircle"),
+        },
       },
     },
 

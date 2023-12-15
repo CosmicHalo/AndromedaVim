@@ -20,7 +20,7 @@ mv ~/.cache/nvim ~/.cache/nvim.bak
 #### Clone the repository
 
 ```sh
-git clone https://github.com/milkyway-org/AndromedaVim ~/.config/nvim
+git clone https://github.com/CosmicHalo/AndromedaVim ~/.config/nvim
 ```
 
 #### Start Neovim

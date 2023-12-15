@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-dap",
+  lazy = true,
   event = "User AndromedaFile",
   enabled = vim.fn.has("win32") == 0,
   dependencies = {
@@ -9,6 +10,9 @@ return {
       dependencies = { "nvim-dap" },
       cmd = { "DapInstall", "DapUninstall" },
       opts = { handlers = {} },
+      init = function()
+        require("astrocore").on_load("mason.nvim", function() require("mason-nvim-dap") end)
+      end,
     },
     {
       "rcarriga/nvim-dap-ui",
