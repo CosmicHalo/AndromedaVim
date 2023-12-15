@@ -2,6 +2,10 @@
 
 This is my personal Neovim configuration. It uses the core libraries of [AstroNvim](https://astronvim.com/); [astroui](https://github.com/AstroNvim/astroui), [astrolsp](https://github.com/AstroNvim/astrolsp), and [astrocore](https://github.com/AstroNvim/astrocore)
 
+![dash](./_screenshots/dash.png)
+![telescope](./_screenshots/telescope.png)
+![cmp](./_screenshots/cmp.png)
+
 ## 🛠️ Installation
 
 ### Make a backup of your current nvim and shared folder
