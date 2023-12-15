@@ -10,12 +10,13 @@ local plugins = {
 
 for _, plugin in ipairs({
   "core",
-  "lsp",
+  -- "lsp",
   "formatters",
   "lang",
   "ui",
   "coding",
   "editor",
+  "lsp",
 }) do
   table.insert(plugins, { import = "andromedavim.plugins." .. plugin })
 end

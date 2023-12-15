@@ -26,45 +26,6 @@ return {
       },
     },
 
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options?
-      ---@diagnostic disable-next-line: missing-fields
-      servers = {
-        lua_ls = {
-          -- mason = false, -- set to false if you don't want this server to be installed with mason
-          -- Use this to add any additional keymaps
-          -- for specific lsp servers
-          ---@type LazyKeysSpec[]
-          -- keys = {},
-          settings = {
-            Lua = {
-              workspace = {
-                checkThirdParty = false,
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
-            },
-          },
-        },
-      },
-
-      -- you can do any additional lsp server setup here
-      -- return true if you don't want this server to be setup with lspconfig
-      ---@type table<string|integer,fun(server:string,opts:_.lspconfig.options)|boolean?>
-      handlers = {
-        -- example to setup with typescript.nvim
-        -- tsserver = function(_, opts)
-        --   require("typescript").setup({ server = opts })
-        --   return true
-        -- end,
-        -- Specify * to use this function as a fallback for any server
-        -- ["*"] = function(server, opts) end,
-      },
-    },
-
-    ---@param opts PluginLspOpts
     config = function(_, opts)
       local astrolsp = require("astrolsp")
       local astrocore = require("astrocore")
@@ -76,15 +37,6 @@ return {
 
       -- setup autoformat
       Andromeda.lib.format.register(Andromeda.lib.lsp.formatter())
-
-      --! Copy over servers, configs, and handlers from opts
-      for server, server_opts in pairs(opts.servers) do
-        astrolsp.config.servers = vim.list_extend(astrolsp.config.servers, { server })
-        astrolsp.config.config = astrocore.extend_tbl(astrolsp.config.config, { [server] = server_opts })
-      end
-
-      -- Copy over servers, handlers, and configs
-      astrolsp.config.handlers = astrocore.extend_tbl(astrolsp.config.handlers, opts.handlers)
 
       local setup_servers = function()
         vim.tbl_map(require("astrolsp").lsp_setup, astrolsp.config.servers)

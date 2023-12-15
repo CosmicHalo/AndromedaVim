@@ -1,14 +1,22 @@
 return {
-  {
-    "rshkarin/mason",
-    optional = true,
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "eslint_d" }) end,
-  },
-
   -- add typescript to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "javascript", "typescript", "tsx" }) end,
+  },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    optional = true,
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "tsserver" }) end,
+  },
+
+  {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.sources = vim.list_extend(opts.sources or {}, { nls.builtins.formatting.eslint_d })
+    end,
   },
 
   {
@@ -36,9 +44,11 @@ return {
   },
 
   {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
+    "AstroNvim/astrolsp",
+    opts = function(_, opts)
+      Andromeda.lib.extend_list_opt(opts, { "tsserver" }, "servers")
+
+      opts.config = Andromeda.lib.extend_tbl(opts.config or {}, {
         tsserver = {
           single_file_support = false,
           settings = {
@@ -67,8 +77,8 @@ return {
             },
           },
         },
-      },
-    },
+      })
+    end,
   },
 
   -- {
@@ -83,8 +93,10 @@ return {
   --       end,
   --     },
   --   },
+
   --   opts = function()
   --     local dap = require("dap")
+
   --     if not dap.adapters["pwa-node"] then
   --       require("dap").adapters["pwa-node"] = {
   --         type = "server",
@@ -113,11 +125,11 @@ return {
   --             cwd = "${workspaceFolder}",
   --           },
   --           {
+  --             name = "Attach",
   --             type = "pwa-node",
   --             request = "attach",
-  --             name = "Attach",
-  --             processId = require("dap.utils").pick_process,
   --             cwd = "${workspaceFolder}",
+  --             processId = require("dap.utils").pick_process,
   --           },
   --         }
   --       end

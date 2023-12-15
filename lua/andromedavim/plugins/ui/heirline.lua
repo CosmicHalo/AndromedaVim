@@ -134,6 +134,7 @@ return {
     }
   end,
   config = function(_, opts)
+    ---@diagnostic disable-next-line: undefined-field
     require("heirline").setup(opts)
 
     vim.api.nvim_create_autocmd("User", {

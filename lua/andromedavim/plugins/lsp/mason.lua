@@ -9,12 +9,13 @@ return {
     opts = {
 
       ensure_installed = {
-        "prettier",
+        "shfmt",
         "stylua",
+        "flake8",
+        "prettier",
         "eslint_d",
         "shellcheck",
-        "shfmt",
-        "flake8",
+        "lua-language-server",
       },
 
       ui = {

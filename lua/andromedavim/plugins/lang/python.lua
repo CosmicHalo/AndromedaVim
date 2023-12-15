@@ -5,6 +5,11 @@ return {
   },
 
   {
+    "williamboman/mason-lspconfig.nvim",
+    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "pyright" }) end,
+  },
+
+  {
     "stevearc/conform.nvim",
     optional = true,
     opts = {
@@ -15,11 +20,11 @@ return {
   },
 
   {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        pyright = {},
+    "AstroNvim/astrolsp",
+    opts = function(_, opts)
+      Andromeda.lib.extend_list_opt(opts, { "pyright", "ruff_lsp" }, "servers")
 
+      opts.config = Andromeda.lib.extend_tbl(opts.config or {}, {
         ruff_lsp = {
           keys = {
             {
@@ -37,9 +42,9 @@ return {
             },
           },
         },
-      },
+      })
 
-      handlers = {
+      opts.handlers = Andromeda.lib.extend_tbl(opts.handlers or {}, {
         ruff_lsp = function(_, opts)
           Andromeda.lib.lsp.on_attach(function(client, _)
             if client.name == "ruff_lsp" then
@@ -51,8 +56,8 @@ return {
           ---@diagnostic disable-next-line: undefined-field
           require("lspconfig").ruff_lsp.setup(opts)
         end,
-      },
-    },
+      })
+    end,
   },
 
   {
