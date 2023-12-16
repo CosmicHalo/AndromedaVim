@@ -33,6 +33,8 @@ Andromeda.configs.dashboard = function()
         local stats = require("lazy").stats()
         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
         return {
+          wrap_text("Neovim version " .. Andromeda.lib.get_nvim_version(), icons.misc("Neovim")),
+          "",
           wrap_text("Happiness is a state of mind.", icons.misc("Tree")),
           "",
           wrap_text(

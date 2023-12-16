@@ -36,6 +36,13 @@ function M.on_very_lazy(fn)
   vim.api.nvim_create_autocmd("User", { pattern = "VeryLazy", callback = function() fn() end })
 end
 
+M.get_nvim_version = function()
+  local version = vim.version()
+  local is_prerelease = version.api_prerelease or false
+  local prerelease = is_prerelease and "-" .. version.prerelease or ""
+  return version.major .. "." .. version.minor .. "." .. version.patch .. prerelease
+end
+
 -- >>>>>>>>>>>>>>>>>>>>> Table <<<<<<<<<<<<<<<<<<<< --
 
 ---@param t table<string, any>
