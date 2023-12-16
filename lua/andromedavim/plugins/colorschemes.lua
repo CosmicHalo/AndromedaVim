@@ -15,41 +15,41 @@ return {
     opts = { user_default_options = { names = false } },
   },
 
-  {
-    "lvim-tech/lvim-colorscheme",
-    priority = 100,
-    opts = {
-      style = "dark", -- dark, darksoft, light
-      -- default = "lvim-gruvbox-dark",
-      -- default = "lvim-catppuccin-dark",
+  -- {
+  --   "lvim-tech/lvim-colorscheme",
+  --   priority = 100,
+  --   opts = {
+  --     style = "dark", -- dark, darksoft, light
+  --     -- default = "lvim-gruvbox-dark",
+  --     -- default = "lvim-catppuccin-dark",
 
-      styles = {
-        variables = {},
-        comments = { italic = true, bold = true },
-        keywords = { italic = true, bold = true },
-        functions = { italic = true, bold = true },
-      },
+  --     styles = {
+  --       variables = {},
+  --       comments = { italic = true, bold = true },
+  --       keywords = { italic = true, bold = true },
+  --       functions = { italic = true, bold = true },
+  --     },
 
-      colors = {
-        dark = {},
-        light = {},
-        darksoft = {},
-      },
+  --     colors = {
+  --       dark = {},
+  --       light = {},
+  --       darksoft = {},
+  --     },
 
-      sidebars = {
-        "qf",
-        "pqf",
-        "dbui",
-        "packer",
-        "Outline",
-        "terminal",
-        "calendar",
-        "neo-tree",
-        "ctrlspace",
-        "spectre_panel",
-      },
-    },
-  },
+  --     sidebars = {
+  --       "qf",
+  --       "pqf",
+  --       "dbui",
+  --       "packer",
+  --       "Outline",
+  --       "terminal",
+  --       "calendar",
+  --       "neo-tree",
+  --       "ctrlspace",
+  --       "spectre_panel",
+  --     },
+  --   },
+  -- },
 
   {
     "catppuccin/nvim",
