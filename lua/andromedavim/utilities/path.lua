@@ -40,6 +40,7 @@ end
 function M.load_dir(dir, filter)
   filter = filter or M.filters.lua
   for _, file in ipairs(M.get_files(dir, filter)) do
-    require(file:gsub(M.CONFIG_PATH, ""):gsub(".lua", ""))
+    local config_path = string.gsub(M.CONFIG_PATH, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1") -- escape pattern
+    require(file:gsub(config_path, ""):gsub(".lua", ""))
   end
 end

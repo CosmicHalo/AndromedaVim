@@ -1,4 +1,4 @@
-Andromeda.configs.treeitter = {
+Andromeda.configs.treesitter = {
   config = function(_, opts)
     opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
       "bash",
