@@ -37,4 +37,4 @@ We welcome contributions from the community to enhance Review App further. If yo
 
 This project is licensed under the [Apache License v2.0](https://github.com/lecoqjacob/AndromedaVim/blob/main/LICENSE).
 
-![Alt](https://repobeats.axiom.co/api/embed/05da9a28262b1af1fe710e42400815188aa82d99.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/898febf1910240a1ada0dd13f49d100b8fe7120d.svg "Repobeats analytics image")
