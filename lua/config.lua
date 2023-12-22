@@ -72,8 +72,13 @@ conf.plugins = {
   -- Enable a dashboard, can be one of "alpha", "dash", "mini", or "none"
   dashboard = "dash",
 
+  --! Telescope plugins
+  -- enable greping in hidden files
+  telescope_grep_hidden = true,
   -- Enable the telescope theme switcher plugin
   enable_telescope_themes = true,
+  -- Enable treesitter code context
+  enable_treesitter_context = true,
 }
 
 return conf

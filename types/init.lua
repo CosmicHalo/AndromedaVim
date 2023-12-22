@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-return
+
 ---@class NeovimPlugin table<string, any>
 ---@field setup fun(opts: table<string, any>)
 
@@ -22,6 +24,7 @@ vim.log = {
 
 ---@param default table
 ---@param extension table
+---@return table
 function vim.list_extend(default, extension) end
 
 ---@param t table
