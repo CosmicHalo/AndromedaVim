@@ -1,4 +1,4 @@
-Andromeda.configs.bigfile = function()
+return function()
   local ftdetect = {
     name = "ftdetect",
     opts = { defer = true },

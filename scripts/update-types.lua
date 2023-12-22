@@ -22,7 +22,7 @@ end
 local gen_icon_types = function()
   _G.Andromeda = {}
   _G.Andromeda.icons = {}
-  local icons = require("andromedavim.icons")
+  local icons = require("andromeda.icons")
 
   local contents = {
     "---@meta",

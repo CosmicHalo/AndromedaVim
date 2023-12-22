@@ -13,7 +13,7 @@ local colorschemes = {
 colorschemes = table.map(colorschemes, function(_, theme)
   local theme_key = theme.name or Andromeda.kit.path.get_filename(theme[1], false)
 
-  local config = theme.cfg and require("andromedavim.modules." .. theme.cfg) or {}
+  local config = theme.cfg and require("andromeda.modules." .. theme.cfg) or {}
   theme = table.extend(
     theme,
     { lazy = false, priority = 1000, enabled = table.find(enabled_themes, theme_key) ~= nil },

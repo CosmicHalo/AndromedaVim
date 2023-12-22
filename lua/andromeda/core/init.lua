@@ -1,6 +1,6 @@
 local M = setmetatable({}, {
   __index = function(t, k)
-    t[k] = require("andromedavim.core." .. k)
+    t[k] = require("andromeda.core." .. k)
     return t[k]
   end,
 })
@@ -25,7 +25,7 @@ function M.init()
 
     -- set options
     if vim.bo.filetype == "lazy" then vim.cmd.bw() end
-    require("andromedavim.core.options")
+    require("andromeda.core.options")
   end
 
   Andromeda.kit.root.setup()

@@ -18,4 +18,4 @@ local core_modules = { "Globals", "Andromeda", "options", "lazy" }
 -- Load regular modules
 load(modules)
 -- Load core modules
-load(core_modules, "andromedavim.core")
+load(core_modules, "andromeda.core")

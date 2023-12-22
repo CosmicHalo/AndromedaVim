@@ -1,12 +1,11 @@
 local vim_path = Globals.vim_path
 local data_dir = Globals.data_dir
-local modules_dir = vim_path .. "/lua/modules"
-local lazy_path = data_dir .. "lazy/lazy.nvim"
-local plugin_dir = modules_dir .. "/plugins/*.lua"
 
 local Lazy = {}
 
 function Lazy:append_nativertp()
+  local modules_dir = vim_path .. "/lua/andromeda/modules"
+
   package.path = package.path
     .. string.format(
       ";%s;%s;%s;",
@@ -18,16 +17,16 @@ function Lazy:append_nativertp()
 end
 
 function Lazy:init_lazy()
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  local lazy_path = data_dir .. "lazy/lazy.nvim"
 
-  if not vim.loop.fs_stat(lazypath) then
+  if not vim.loop.fs_stat(lazy_path) then
     vim.g.astronvim_first_install = true -- lets AstroNvim know that this is an initial installation
     -- stylua: ignore
-    vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazy_path })
   end
 
   ---@diagnostic disable-next-line: param-type-mismatch
-  vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+  vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
 end
 
 function Lazy:load_lazy()
@@ -38,7 +37,7 @@ function Lazy:load_lazy()
 
   ---@class LazyConfig
   local lazy_opts = {
-    spec = { { import = "andromedavim.modules.plugins" } },
+    spec = { { import = "andromeda.modules.plugins" } },
 
     checker = { enabled = true },
     change_detection = { enabled = true },
