@@ -1,26 +1,16 @@
 ---@class AndromedaLib: LazyUtilCore
+---@field ui AndromedaUILib
+---@field lsp AndromedaLSPLib
+---@field root AndromedaRootLib
+---@field format AndromedaFormatLib
+---@field keymap AndromedaKeymapLib
+---@field telescope AndromedaTelescopeLib
 local M = setmetatable(Andromeda.lib, {
   __index = function(t, k)
     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
-    return Andromeda.lib[k]
+    return require("andromedavim.kit")[k]
   end,
 })
-
---! >>>>>>>>>>>>>> Load Utilities <<<<<<<<<<<<<< --
-local utils = {
-  "extensions",
-  "format",
-  "keymap",
-  "lsp",
-  "path",
-  "root",
-  "telescope",
-  "ui",
-}
-for _, util in ipairs(utils) do
-  require("andromedavim.utilities." .. util)
-end
---! >>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<< --
 
 function M.is_win() return vim.loop.os_uname().sysname:find("Windows") ~= nil end
 

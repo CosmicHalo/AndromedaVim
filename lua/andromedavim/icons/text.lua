@@ -1,4 +1,5 @@
-Andromeda.text_icons = {
+---@class AndromedaTextIcons
+return {
   ActiveLSP = "LSP:",
   ArrowLeft = "<",
   ArrowRight = ">",

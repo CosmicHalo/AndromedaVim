@@ -169,6 +169,7 @@ local misc = {
   Added = "",
   Campass = "󰀹",
   Code = "",
+  Dots = "󰇘",
   Gavel = "",
   Ghost = "󰊠",
   Glass = "󰂖",
@@ -206,20 +207,13 @@ local ui = {
   Close = "󰅖",
   Close_alt = "",
   CloudDownload = "",
-  CodeAction = "󰌵",
   Comment = "󰅺",
   Dashboard = "",
   Debugger = "",
   Diagnostic = "󰒡",
-  DoubleSeparator = "󰄾",
-  Emoji = "󰱫",
   Fire = "",
   Gear = "",
-  History = "󰄉",
-  Incoming = "󰏷",
-  Indicator = "",
   Keyboard = "",
-  Left = "",
   List = "",
   Lock = "󰍁",
   Modified = "✥",
@@ -232,7 +226,6 @@ local ui = {
   Perf = "󰅒",
   Play = "",
   Project = "",
-  Right = "",
   Search = "󰍉",
   Separator = "",
   SignIn = "",
@@ -246,7 +239,7 @@ local ui = {
 }
 
 ---@class AndromedaIcons
-Andromeda.icons = {
+local icons = {
   ui = ui,
   lsp = lsp,
   cmp = cmp,
@@ -259,5 +252,40 @@ Andromeda.icons = {
   diagnostics = diagnostics,
 }
 
-require("andromedavim.icons.text")
-require("andromedavim.icons.utils")
+-- >>>>>>>>>>>>>>>>>>>>>>>>> Get Icon <<<<<<<<<<<<<<<<<<<<<<<<< --
+
+---@alias GetWrapIconFunction<T> fun(kind: T, padding?: integer): string
+---@alias GetIconFunction<T> fun(kind: T, padding?: integer, wrap?: boolean): string
+
+---@param pack string
+---@param is_wrap? boolean
+local function generate_get(pack, is_wrap)
+  is_wrap = is_wrap or false
+
+  if is_wrap then
+    return function(iconType, padding)
+      return require("andromedavim.kit.icon").get_icon(pack .. "." .. iconType, padding, true)
+    end
+  end
+  return function(iconType, padding, wrap)
+    return require("andromedavim.kit.icon").get_icon(pack .. "." .. iconType, padding, wrap)
+  end
+end
+
+--! GET
+icons.ui.get = generate_get("ui") --[[@as GetIconFunction<UIIcons>]]
+icons.lsp.get = generate_get("lsp") --[[@as GetIconFunction<LSPIcons>]]
+icons.cmp.get = generate_get("cmp") --[[@as GetIconFunction<CmpIcons>]]
+icons.dap.get = generate_get("dap") --[[@as GetIconFunction<DapIcons>]]
+icons.git.get = generate_get("git") --[[@as GetIconFunction<GitIcons>]]
+icons.kind.get = generate_get("kind") --[[@as GetIconFunction<KindIcons>]]
+icons.misc.get = generate_get("misc") --[[@as GetIconFunction<MiscIcons>]]
+icons.type.get = generate_get("type") --[[@as GetIconFunction<TypeIcons>]]
+icons.documents.get = generate_get("documents") --[[@as GetIconFunction<DocumentIcons>]]
+icons.diagnostics.get = generate_get("diagnostics") --[[@as GetIconFunction<DiagnosticsIcons>]]
+
+--! GET WRAPPED
+icons.ui.get_wrapped = generate_get("ui", true) --[[@as GetWrapIconFunction<UIIcons>]]
+icons.misc.get_wrapped = generate_get("misc", true) --[[@as GetWrapIconFunction<MiscIcons>]]
+
+return icons

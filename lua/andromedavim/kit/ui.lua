@@ -1,9 +1,9 @@
+---@class AndromedaUILib
 Andromeda.lib.ui = {}
 
 ---@class AndromedaUILib
 local M = Andromeda.lib.ui
 
----@alias Mark {pos:number[]}
 ---@alias Sign {name:string, text:string, texthl:string, priority:number}
 
 -- Returns a list of regular and extmark signs sorted by priority (low to high)
@@ -177,7 +177,7 @@ function M.foldtext()
     ---@diagnostic disable-next-line: cast-local-type
     ret = { { vim.api.nvim_buf_get_lines(0, vim.v.lnum - 1, vim.v.lnum, false)[1], {} } }
   end
-  table.insert(ret, { " " .. require("andromedavim.icons").Dots })
+  table.insert(ret, { " " .. Andromeda.icons.misc.Dots })
 
   if not vim.treesitter.foldtext then return table.concat(vim.tbl_map(function(line) return line[1] end, ret), " ") end
   return ret

@@ -1,3 +1,5 @@
+require("andromedavim.core").init()
+
 Andromeda.lib.path.load_dir("andromedavim.plugins._configs")
 Andromeda.lib.path.load_dir("andromedavim.plugins._mappings")
 

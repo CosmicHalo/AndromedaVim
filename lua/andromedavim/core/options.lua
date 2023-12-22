@@ -82,7 +82,7 @@ if vim.fn.has("nvim-0.10") == 1 then opt.smoothscroll = true end
 vim.opt.foldlevel = 99
 vim.opt.foldtext = "v:lua.Andromeda.lib.ui.foldtext()"
 
-if vim.fn.has("nvim-0.9.0") == 1 then vim.opt.statuscolumn = [[%!v:lua.Andromeda.lib.ui.statuscolumn()]] end
+-- if vim.fn.has("nvim-0.9.0") == 1 then vim.opt.statuscolumn = [[%!v:lua.Andromeda.lib.ui.statuscolumn()]] end
 
 -- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
 if vim.fn.has("nvim-0.10") == 1 then

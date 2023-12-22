@@ -1,5 +1,3 @@
-require("andromedavim.core").init()
-
 return {
   {
     "AstroNvim/astrocore",
