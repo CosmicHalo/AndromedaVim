@@ -17,7 +17,7 @@ if filetree == FILE_TREES["neo-tree"] then
         "MunifTanjim/nui.nvim",
         "nvim-lua/plenary.nvim",
       },
-      opts = require("configs.editor.neotree"),
+      opts = require("configs.file-tree.neotree"),
     },
   }
 elseif filetree == FILE_TREES["nvim-tree"] then
@@ -32,14 +32,27 @@ elseif filetree == FILE_TREES["nvim-tree"] then
       "NvimTreeFindFile",
       "NvimTreeFindFileToggle",
     },
-    -- dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.nvimtree } },
+    dependencies = {
+      Andromeda.kit.add_mappings({
+        ["<Leader>e"] = { "<Cmd>NvimTreeToggle<CR>", desc = "Toggle Explorer" },
+        ["<Leader>o"] = {
+          function()
+            if vim.bo.filetype == "NvimTree" then
+              vim.cmd.wincmd("p")
+            else
+              vim.cmd("NvimTreeFocus")
+            end
+          end,
+          desc = "Toggle Explorer Focus",
+        },
+      }),
+    },
     init = function()
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
       vim.opt.termguicolors = true -- set termguicolors to enable highlight groups
     end,
-    opts = require("configs.editor.nvimtree"),
-    dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.nvimtree } },
+    opts = require("configs.file-tree.nvimtree"),
   }
 end
 

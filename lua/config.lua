@@ -50,16 +50,27 @@ conf.ui = {
 -- ENABLE/DISABLE/SELECT PLUGINS
 conf.plugins = {
   --
+  --! AI plugins
   -- AI coding assistants - ChatGPT, Code Explain, Codeium, Copilot, NeoAI
   -- Enable Github Copilot if you have an account, it is superior
   --
   -- Enable ChatGPT (set OPENAI_API_KEY environment variable)
-  enable_chatgpt = false,
+  enable_chatgpt = true,
   -- Enable Github Copilot
-  enable_copilot = false,
+  enable_copilot = true,
 
+  --! Coding plugins
+  -- Enable coding plugins for diagnostics, debugging, and language servers
+  enable_coding = true,
+
+  --! Editor plugins
   -- File explorer tree plugin: neo-tree, nvim-tree, or none
-  file_tree = "neo-tree",
+  file_tree = "nvim-tree",
+
+  --! UI plugins
+  enable_toggleterm = true, -- enable toggleterm plugin
+  -- Enable a dashboard, can be one of "alpha", "dash", "mini", or "none"
+  dashboard = "dash",
 
   -- Enable the telescope theme switcher plugin
   enable_telescope_themes = true,

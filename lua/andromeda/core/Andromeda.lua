@@ -14,5 +14,5 @@ Andromeda.mappings = {}
 
 --! Load all kits
 LoadDirectory("kit")
-LoadDirectory("modules/configs")
-LoadDirectory("modules/mappings")
+LoadDirectory("modules/configs", true)
+LoadDirectory("modules/mappings", true)

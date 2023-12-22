@@ -1,11 +1,11 @@
-local icons = {
-  ui = Andromeda.icons.ui.get,
-  kind = Andromeda.icons.kind.get,
-  misc = Andromeda.icons.misc.get,
-  file = Andromeda.icons.documents.get,
-}
+return function()
+  local icons = {
+    ui = Andromeda.icons.ui.get,
+    kind = Andromeda.icons.kind.get,
+    misc = Andromeda.icons.misc.get,
+    file = Andromeda.icons.documents.get,
+  }
 
-Andromeda.configs.dashboard = function()
   local function wrap_text(text, icon) return icon .. " " .. text .. " " .. icon end
 
   local opts = {

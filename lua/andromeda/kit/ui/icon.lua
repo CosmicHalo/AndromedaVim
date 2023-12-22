@@ -1,5 +1,3 @@
-Andromeda.kit.ui = Andromeda.kit.ui or {}
-
 ---@class AndromedaUIKit
 local M = Andromeda.kit.ui
 

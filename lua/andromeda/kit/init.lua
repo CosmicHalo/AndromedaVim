@@ -7,25 +7,14 @@
 ---@field telescope AndromedaTelescopeKit
 local M = setmetatable(Andromeda.kit, {
   __index = function(t, k)
+    if require("andromeda.kit." .. k) then return require("andromeda.kit." .. k) end
     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
-    t[k] = require("andromeda.kit." .. k)
+    t[k] = nil
     return t[k]
   end,
 })
 
 function M.is_win() return vim.loop.os_uname().sysname:find("Windows") ~= nil end
-
----@param plugin string
-function M.is_available(plugin) return require("lazy.core.config").spec.plugins[plugin] ~= nil end
-
-function M.event(event)
-  vim.schedule(function() vim.api.nvim_exec_autocmds("User", { pattern = "Andromeda" .. event, modeline = false }) end)
-end
-
----@param fn fun()
-function M.on_very_lazy(fn)
-  vim.api.nvim_create_autocmd("User", { pattern = "VeryLazy", callback = function() fn() end })
-end
 
 M.get_nvim_version = function()
   local version = vim.version()

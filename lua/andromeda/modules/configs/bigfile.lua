@@ -11,7 +11,7 @@ return function()
     disable = function() require("cmp").setup.buffer({ enabled = false }) end,
   }
 
-  return {
+  require("bigfile").setup({
     filesize = 1, -- size of the file in MiB
     pattern = { "*" }, -- autocmd pattern
     features = { -- features to disable
@@ -23,5 +23,5 @@ return function()
       ftdetect,
       cmp,
     },
-  }
+  })
 end

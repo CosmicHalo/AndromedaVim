@@ -66,8 +66,10 @@ end
 function IsDirectory(path) return FileExist(path .. "/") end
 
 ---@param path string
-function LoadDirectory(path, load_fn)
+function LoadDirectory(path, skip_directories, load_fn)
+  skip_directories = skip_directories or false
   load_fn = load_fn or function(p) require("andromeda." .. p) end
+
   local filepath = Globals.andromeda .. "/" .. path .. "/*"
   local files = vim.split(vim.fn.glob(filepath), "\n")
 
@@ -77,6 +79,8 @@ function LoadDirectory(path, load_fn)
 
     if a_name == "init" then
       return true
+    elseif b_name == "init" then
+      return false
     else
       return a_name < b_name
     end
@@ -86,7 +90,7 @@ function LoadDirectory(path, load_fn)
     local filename = file:match("^.+/(.+)$"):gsub("%..+$", "")
 
     if IsDirectory(file) then
-      LoadDirectory(path .. "/" .. filename, load_fn)
+      if not skip_directories then LoadDirectory(path .. "/" .. filename, skip_directories, load_fn) end
     else
       load_fn(path:gsub(Globals.path_sep, "."):concat(".", filename))
     end
