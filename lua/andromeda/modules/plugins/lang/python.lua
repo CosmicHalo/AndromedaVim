@@ -99,7 +99,7 @@ return {
     cmd = "VenvSelect",
     keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
     opts = function(_, opts)
-      if Andromeda.kit.has("nvim-dap-python") then opts.dap_enabled = true end
+      if Andromeda.kit.is_available("nvim-dap-python") then opts.dap_enabled = true end
       return vim.tbl_deep_extend("force", opts, {
         name = {
           "venv",

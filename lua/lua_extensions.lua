@@ -1,4 +1,5 @@
 --! Table
+
 table.filter = function(t, filterIter)
   local out = {}
   for k, v in pairs(t) do
@@ -73,4 +74,13 @@ string.split = function(str, sep)
   local sep, res = sep or "%s", {}
   local _ = string.gsub(str --[[@as string]], "[^" .. sep .. "]+", function(x) res[#res + 1] = x end)
   return res
+end
+
+string.concat = function(...)
+  local strings = { ... }
+  local str = ""
+  for _, s in ipairs(strings) do
+    str = str .. s
+  end
+  return str
 end

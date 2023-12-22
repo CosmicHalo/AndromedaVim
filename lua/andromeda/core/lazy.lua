@@ -27,6 +27,8 @@ function Lazy:init_lazy()
 
   ---@diagnostic disable-next-line: param-type-mismatch
   vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
+
+  Lazy:append_nativertp()
 end
 
 function Lazy:load_lazy()
@@ -53,7 +55,7 @@ function Lazy:load_lazy()
     ui = {
       wrap = true, -- wrap the lines in the ui
       -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
-      border = "double",
+      border = Andromeda.settings.ui.float.border,
 
       icons = {
         cmd = icons.misc.Code,

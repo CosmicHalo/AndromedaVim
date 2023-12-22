@@ -43,7 +43,7 @@ return {
 
       window = {
         winblend = 0,
-        border = "double",
+        border = Andromeda.settings.ui.float.border,
         position = "bottom",
         margin = { 1, 0, 1, 0 },
         padding = { 1, 1, 1, 1 },

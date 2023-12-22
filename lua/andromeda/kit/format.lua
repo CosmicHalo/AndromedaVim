@@ -40,7 +40,7 @@ function M.register(formatter)
 end
 
 function M.formatexpr()
-  if Andromeda.kit.has("conform.nvim") then return require("conform").formatexpr() end
+  if Andromeda.kit.is_available("conform.nvim") then return require("conform").formatexpr() end
   return vim.lsp.formatexpr({ timeout_ms = 3000 })
 end
 

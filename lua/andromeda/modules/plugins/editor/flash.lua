@@ -53,7 +53,7 @@ return {
     "nvim-telescope/telescope.nvim",
     optional = true,
     opts = function(_, opts)
-      if not Andromeda.kit.has("flash.nvim") then return end
+      if not Andromeda.kit.is_available("flash.nvim") then return end
 
       require("flash")
 

@@ -47,7 +47,7 @@ return {
         float = {
           focused = false,
           style = "minimal",
-          border = "rounded",
+          border = Andromeda.settings.ui.float.border,
           source = "always",
           header = "",
           prefix = "",

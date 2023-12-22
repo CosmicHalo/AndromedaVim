@@ -55,7 +55,7 @@ return {
       local lspkind_status_ok, lspkind = pcall(require, "lspkind")
 
       local border_opts = {
-        border = "rounded",
+        border = Andromeda.settings.ui.float.border,
         winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
       }
 

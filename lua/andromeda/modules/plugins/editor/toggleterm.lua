@@ -9,7 +9,7 @@ return {
 
     shell = vim.o.shell, -- change the default shell
     shade_filetypes = {},
-    float_opts = { border = "rounded" },
+    float_opts = { border = Andromeda.settings.ui.float.border },
 
     persist_size = true, -- when the window is closed, persist its size
     hide_numbers = true, -- hide the number column in toggleterm buffers

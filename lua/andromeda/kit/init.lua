@@ -8,8 +8,7 @@
 local M = setmetatable(Andromeda.kit, {
   __index = function(t, k)
     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
-    Debug("Kit not found", k)
-    t[k] = Andromeda.kit[k]
+    t[k] = require("andromeda.kit." .. k)
     return t[k]
   end,
 })
@@ -17,7 +16,7 @@ local M = setmetatable(Andromeda.kit, {
 function M.is_win() return vim.loop.os_uname().sysname:find("Windows") ~= nil end
 
 ---@param plugin string
-function M.has(plugin) return require("lazy.core.config").spec.plugins[plugin] ~= nil end
+function M.is_available(plugin) return require("lazy.core.config").spec.plugins[plugin] ~= nil end
 
 function M.event(event)
   vim.schedule(function() vim.api.nvim_exec_autocmds("User", { pattern = "Andromeda" .. event, modeline = false }) end)

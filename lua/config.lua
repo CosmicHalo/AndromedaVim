@@ -20,22 +20,24 @@ conf.theme = {
   --   monokai-pro: classic, octagon, pro, machine, ristretto, spectrum
   --   nightfox:    carbonfox, dawnfox, dayfox, duskfox, nightfox, nordfox, terafox
   style = "retrowave",
-  -- enable transparency if the theme supports it
-  enable_transparent = true,
+  enable_transparent = true, -- enable transparency if the theme supports it
 }
 
 -- GLOBAL OPTIONS CONFIGURATION
 conf.options = {
   mapleader = " ",
   maplocalleader = ",",
-  -- set numbered lines
-  number = true,
-  -- set relative numbered lines
-  relative_number = true,
-  -- always show tabs; 0 never, 1 only if at least two tab pages, 2 always
-  showtabline = 2,
-  -- use rg instead of grep
-  grepprg = "rg --hidden --vimgrep --smart-case --",
+
+  confirm = true, -- confirm to save changes before exiting modified buffer
+  cursorline = true, -- enable cursorline
+  expandtab = true, -- use spaces instead of tabs
+  grepprg = "rg --hidden --vimgrep --smart-case --", -- use rg instead of grep
+  list = true, -- enable or disable listchars
+  mouse = "nv", -- enable mouse see :h mouse
+  number = true, -- set numbered lines
+  relative_number = true, -- set relative numbered lines
+  showtabline = 2, -- always show tabs; 0 never, 1 only if at least two tab pages, 2 always
+  timeoutlen = 300, -- set statusline
 }
 
 -- GLOBAL UI CONFIGURATION
@@ -46,11 +48,21 @@ conf.ui = {
 }
 
 -- ENABLE/DISABLE/SELECT PLUGINS
---
--- AI coding assistants - ChatGPT, Code Explain, Codeium, Copilot, NeoAI
--- Enable Github Copilot if you have an account, it is superior
---
--- Enable the telescope theme switcher plugin
-conf.enable_telescope_themes = true
+conf.plugins = {
+  --
+  -- AI coding assistants - ChatGPT, Code Explain, Codeium, Copilot, NeoAI
+  -- Enable Github Copilot if you have an account, it is superior
+  --
+  -- Enable ChatGPT (set OPENAI_API_KEY environment variable)
+  enable_chatgpt = false,
+  -- Enable Github Copilot
+  enable_copilot = false,
+
+  -- File explorer tree plugin: neo-tree, nvim-tree, or none
+  file_tree = "neo-tree",
+
+  -- Enable the telescope theme switcher plugin
+  enable_telescope_themes = true,
+}
 
 return conf

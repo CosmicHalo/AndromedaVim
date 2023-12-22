@@ -19,7 +19,7 @@ return {
       },
 
       ui = {
-        border = "double",
+        border = Andromeda.settings.ui.float.border,
 
         icons = {
           package_installed = icons.ui.Check,

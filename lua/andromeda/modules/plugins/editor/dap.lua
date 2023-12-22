@@ -15,7 +15,7 @@ return {
     {
       "rcarriga/nvim-dap-ui",
       config = Andromeda.configs.dapui,
-      opts = { floating = { border = "rounded" } },
+      opts = { floating = { border = Andromeda.settings.ui.float.border } },
       dependencies = { { "AstroNvim/astrocore", opts = Andromeda.mappings.dapui } },
     },
     {
