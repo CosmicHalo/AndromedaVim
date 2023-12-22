@@ -34,7 +34,6 @@ local deps = {
 }
 
 local treesitter_ctx = {}
-
 if Andromeda.settings.plugins.enable_treesitter_context then
   treesitter_ctx = {
     "nvim-treesitter/nvim-treesitter-context",

@@ -1,6 +1,12 @@
 ---@type AndromedaTelescopeKit
 Andromeda.kit.telescope = {}
 
+---@class Telescope
+---@field setup fun(opts: table)
+---@field builtin table<string,any>
+---@field extensions table<string, any>
+---@field load_extension fun(extension: string)
+
 ---@class AndromedaTelescopeKitOpts
 ---@field cwd? string|boolean
 ---@field show_untracked? boolean
@@ -14,7 +20,10 @@ local M = setmetatable(Andromeda.kit.telescope, {
 ---@param extension string
 function M.load_extension(extension)
   ---@diagnostic disable-next-line: redundant-parameter
-  require("astrocore").on_load("telescope.nvim", function() require("telescope").load_extension(extension) end)
+  require("astrocore").on_load("telescope.nvim", function()
+    require("telescope")--[[@as Telescope]]
+      .load_extension(extension)
+  end)
 end
 
 ----------------

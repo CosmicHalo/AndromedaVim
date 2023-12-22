@@ -41,9 +41,4 @@ return {
       },
     },
   },
-
-  {
-    "AstroNvim/astroui",
-    opts = { colorscheme = "fluoromachine" },
-  },
 }
