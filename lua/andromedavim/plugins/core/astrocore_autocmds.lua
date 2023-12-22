@@ -136,12 +136,12 @@ return {
             local current_file = vim.fn.resolve(vim.fn.expand("%"))
 
             if not (current_file == "" or vim.bo[args.buf].buftype == "nofile") then
-              Andromeda.lib.event("File")
+              Andromeda.kit.event("File")
               if
                 astro.file_worktree()
                 -- or astro.cmd({ "git", "-C", vim.fn.fnamemodify(current_file, ":p:h"), "rev-parse" }, false)
               then
-                Andromeda.lib.event("GitFile")
+                Andromeda.kit.event("GitFile")
                 vim.api.nvim_del_augroup_by_name("file_user_events")
               end
             end
@@ -172,7 +172,7 @@ return {
           desc = "Disable certain functionality on very large files",
           callback = function(args)
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(args.buf))
-            local max_file = require("astrocore").config.features.max_file --[[@as AstroCoreMaxFile]]
+            local max_file = assert(require("astrocore").config.features.max_file)
             vim.b[args.buf].large_buf = (ok and stats and stats.size > max_file.size)
               or vim.api.nvim_buf_line_count(args.buf) > max_file.lines
           end,

@@ -1,9 +1,9 @@
 Andromeda.mappings.mason = function(_, opts)
   local maps = opts.mappings
-  maps.n["<Leader>pm"] = Andromeda.lib.keymap
+  maps.n["<Leader>pm"] = Andromeda.kit.keymap
     .map_callback(function() require("mason.ui").open() end)
     :with_desc("Mason Installer")
-  maps.n["<Leader>pM"] = Andromeda.lib.keymap
+  maps.n["<Leader>pM"] = Andromeda.kit.keymap
     .map_callback(function() require("astrocore.mason").update_all() end)
     :with_desc("Mason Update")
 

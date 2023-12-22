@@ -48,9 +48,14 @@ table.find = function(table, value)
   end
 end
 
-table.extend = function(default, opts)
-  opts = opts or {}
-  return default and vim.tbl_deep_extend("force", default, opts) or opts
+table.extend = function(default, ...)
+  local table_of_opts = { ... }
+  for _, opts in ipairs(table_of_opts) do
+    opts = opts or {}
+    default = default and vim.tbl_deep_extend("force", default, opts) or opts
+  end
+
+  return default
 end
 
 --! String

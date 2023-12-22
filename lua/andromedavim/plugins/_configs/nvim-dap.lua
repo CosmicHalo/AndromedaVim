@@ -1,6 +1,6 @@
 Andromeda.mappings.dap = function(_, opts)
   local maps = opts.mappings
-  maps.n["<Leader>d"] = opts._map_section.d
+  maps.n["<Leader>d"] = vim.tbl_get(opts._map_sections, "d")
 
   -- modified function keys found with `showkey -a` in the terminal to get key code
   -- run `nvim -V3log +quit` and search through the "Terminal info" in the `log` file for the correct keyname

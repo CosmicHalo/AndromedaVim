@@ -1,12 +1,12 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "ninja", "python", "rst", "toml" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "ninja", "python", "rst", "toml" }) end,
   },
 
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "pyright" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "pyright" }) end,
   },
 
   {
@@ -22,9 +22,9 @@ return {
   {
     "AstroNvim/astrolsp",
     opts = function(_, opts)
-      Andromeda.lib.extend_list_opt(opts, { "pyright", "ruff_lsp" }, "servers")
+      Andromeda.kit.extend_list_opt(opts, { "pyright", "ruff_lsp" }, "servers")
 
-      opts.config = Andromeda.lib.extend_tbl(opts.config or {}, {
+      opts.config = Andromeda.kit.extend_tbl(opts.config or {}, {
         ruff_lsp = {
           keys = {
             {
@@ -44,9 +44,9 @@ return {
         },
       })
 
-      opts.handlers = Andromeda.lib.extend_tbl(opts.handlers or {}, {
+      opts.handlers = Andromeda.kit.extend_tbl(opts.handlers or {}, {
         ruff_lsp = function(_, opts)
-          Andromeda.lib.lsp.on_attach(function(client, _)
+          Andromeda.kit.lsp.on_attach(function(client, _)
             if client.name == "ruff_lsp" then
               -- Disable hover in favor of Pyright
               client.server_capabilities.hoverProvider = false
@@ -99,7 +99,7 @@ return {
     cmd = "VenvSelect",
     keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
     opts = function(_, opts)
-      if Andromeda.lib.has("nvim-dap-python") then opts.dap_enabled = true end
+      if Andromeda.kit.has("nvim-dap-python") then opts.dap_enabled = true end
       return vim.tbl_deep_extend("force", opts, {
         name = {
           "venv",

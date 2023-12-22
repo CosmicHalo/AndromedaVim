@@ -1,7 +1,7 @@
 require("andromedavim.core").init()
 
-Andromeda.lib.path.load_dir("andromedavim.plugins._configs")
-Andromeda.lib.path.load_dir("andromedavim.plugins._mappings")
+Andromeda.kit.path.load_dir("andromedavim.plugins._configs")
+Andromeda.kit.path.load_dir("andromedavim.plugins._mappings")
 
 local plugins = {
   "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically

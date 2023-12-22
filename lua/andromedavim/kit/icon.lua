@@ -1,7 +1,7 @@
-Andromeda.lib.ui = {}
+Andromeda.kit.ui = Andromeda.kit.ui or {}
 
----@class AndromedaUILib
-local M = Andromeda.lib.ui
+---@class AndromedaUIKit
+local M = Andromeda.kit.ui
 
 --- Get an icon from the internal icons if it is available and return it
 ---@param categoryOrKind string The category of icon to retrieve or the icon itself

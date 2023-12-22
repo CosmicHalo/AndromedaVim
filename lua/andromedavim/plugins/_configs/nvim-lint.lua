@@ -42,7 +42,7 @@ Andromeda.configs.nvim_lint = function(_, opts)
 
     names = vim.tbl_filter(function(name)
       local linter = lint.linters[name]
-      if not linter then Andromeda.lib.warn("Linter not found: " .. name, { title = "nvim-lint" }) end
+      if not linter then Andromeda.kit.warn("Linter not found: " .. name, { title = "nvim-lint" }) end
 
       ---@diagnostic disable-next-line: undefined-field
       return linter and not (type(linter) == "table" and linter.condition and not linter.condition(ctx))

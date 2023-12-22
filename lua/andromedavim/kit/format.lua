@@ -1,8 +1,8 @@
----@type AndromedaFormatLib
-Andromeda.lib.format = {}
+---@type AndromedaFormatKit
+Andromeda.kit.format = {}
 
----@class AndromedaFormatLib
-local M = setmetatable(Andromeda.lib.format, {
+---@class AndromedaFormatKit
+local M = setmetatable(Andromeda.kit.format, {
   __call = function(m, ...) return m.format(...) end,
 })
 
@@ -40,7 +40,7 @@ function M.register(formatter)
 end
 
 function M.formatexpr()
-  if Andromeda.lib.has("conform.nvim") then return require("conform").formatexpr() end
+  if Andromeda.kit.has("conform.nvim") then return require("conform").formatexpr() end
   return vim.lsp.formatexpr({ timeout_ms = 3000 })
 end
 
@@ -91,7 +91,7 @@ function M.format(opts)
     end
   end
 
-  if not done and opts and opts.force then Andromeda.lib.warn("No formatter available", { title = "AndromedaVim" }) end
+  if not done and opts and opts.force then Andromeda.kit.warn("No formatter available", { title = "AndromedaVim" }) end
 end
 
 ---@param buf? number
@@ -123,7 +123,7 @@ function M.info(buf)
 
   if not have then lines[#lines + 1] = "\n***No formatters available for this buffer.***" end
 
-  Andromeda.lib[enabled and "info" or "warn"](
+  Andromeda.kit[enabled and "info" or "warn"](
     table.concat(lines, "\n"),
     { title = "AndromedaFormat (" .. (enabled and "enabled" or "disabled") .. ")" }
   )

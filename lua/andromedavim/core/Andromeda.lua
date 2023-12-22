@@ -5,8 +5,8 @@ Andromeda = {
   settings = require("config") --[[@as AndromedaSettings]],
 }
 
----@class AndromedaLib
-Andromeda.lib = {}
+---@class AndromedaKit
+Andromeda.kit = {}
 ---@class AndromedaConfigs
 Andromeda.configs = {}
 ---@class AndromedaMappings

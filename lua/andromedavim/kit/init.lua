@@ -1,16 +1,19 @@
----@class AndromedaLib: LazyUtilCore
----@field ui AndromedaUILib
----@field lsp AndromedaLSPLib
----@field root AndromedaRootLib
----@field format AndromedaFormatLib
----@field keymap AndromedaKeymapLib
----@field telescope AndromedaTelescopeLib
-local M = setmetatable(Andromeda.lib, {
-  __index = function(t, k)
-    if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
-    return require("andromedavim.kit")[k]
-  end,
-})
+---@class AndromedaKit: LazyUtilCore
+---@field ui AndromedaUIKit
+---@field lsp AndromedaLspKit
+---@field root AndromedaRootKit
+---@field format AndromedaFormatKit
+---@field keymap AndromedaKeymapKit
+---@field telescope AndromedaTelescopeKit
+local M = Andromeda.kit
+
+-- setmetatable(Andromeda.kit, {
+--   __index = function(t, k)
+--     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
+--     t[k] = require("andromedavim.kit")[k]
+--     return t[k]
+--   end,
+-- })
 
 function M.is_win() return vim.loop.os_uname().sysname:find("Windows") ~= nil end
 

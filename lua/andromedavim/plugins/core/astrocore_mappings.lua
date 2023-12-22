@@ -15,7 +15,7 @@ return {
 
     -- initialize internally use mapping section titles
     ---@diagnostic disable-next-line: inject-field
-    opts._map_section = {
+    opts._map_sections = {
       g = { desc = icons.git("Git") .. "Git" },
       f = { desc = icons.ui("Search") .. "Find" },
       b = { desc = icons.ui("Tab") .. "Buffers" },
@@ -30,7 +30,7 @@ return {
 
     -- initialize mappings table
     local maps = astro.empty_map_table()
-    local sections = opts._map_section
+    local sections = assert(opts._map_sections)
 
     -- Normal --
 
@@ -56,7 +56,7 @@ return {
     end
 
     --! Section for managing plugins
-    maps.n["<Leader>p"] = sections.p
+    maps.n["<Leader>p"] = vim.tbl_get(sections, "p")
     maps.n["<Leader>pi"] = { function() require("lazy").install() end, desc = "Plugins Install" }
     maps.n["<Leader>ps"] = { function() require("lazy").home() end, desc = "Plugins Status" }
     maps.n["<Leader>pS"] = { function() require("lazy").sync() end, desc = "Plugins Sync" }
@@ -65,7 +65,7 @@ return {
     maps.n["<Leader>pa"] = { function() astro.update_packages() end, desc = "Update Lazy and Mason" }
 
     --! Section for managing buffers
-    maps.n["<Leader>b"] = sections.b
+    maps.n["<Leader>b"] = vim.tbl_get(sections, "b")
     maps.n["<Leader>bc"] = {
       function() andromeda_buffers.close_all(true) end,
       desc = "Close all buffers except current",
@@ -73,7 +73,7 @@ return {
     maps.n["<Leader>bp"] = { function() andromeda_buffers.prev() end, desc = "Previous buffer" }
 
     -->>>>>> Buffer Sorting <<<<<<--
-    maps.n["<Leader>bs"] = sections.bs
+    maps.n["<Leader>bs"] = vim.tbl_get(sections, "bs")
     maps.n["<Leader>bse"] = { function() andromeda_buffers.sort("extension") end, desc = "By extension" }
     maps.n["<Leader>bsp"] = { function() andromeda_buffers.sort("full_path") end, desc = "By full path" }
     maps.n["<Leader>bsi"] = { function() andromeda_buffers.sort("bufnr") end, desc = "By buffer number" }
@@ -105,7 +105,7 @@ return {
     }
 
     --! Section for Diagnostics
-    maps.n["<Leader>l"] = sections.l
+    maps.n["<Leader>l"] = vim.tbl_get(sections, "l")
     maps.n["<Leader>ld"] = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" }
     maps.n["[d"] = { function() vim.diagnostic.goto_prev() end, desc = "Previous diagnostic" }
     maps.n["]d"] = { function() vim.diagnostic.goto_next() end, desc = "Next diagnostic" }
@@ -117,7 +117,7 @@ return {
 
     --! Section for managing toggles
     -- Custom menu for modification of the user experience
-    maps.n["<Leader>u"] = sections.u
+    maps.n["<Leader>u"] = vim.tbl_get(sections, "u")
     maps.n["<Leader>uw"] = { function() andromeda_toggles.wrap() end, desc = "Toggle wrap" }
     maps.n["<Leader>uS"] = { function() andromeda_toggles.conceal() end, desc = "Toggle conceal" }
     maps.n["<Leader>ut"] = { function() andromeda_toggles.tabline() end, desc = "Toggle tabline" }

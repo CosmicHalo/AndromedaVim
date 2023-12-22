@@ -1,15 +1,15 @@
 return {
   {
     "AstroNvim/astrolsp",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "marksman" }, "servers") end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "marksman" }, "servers") end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "markdown", "markdown_inline" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "markdown", "markdown_inline" }) end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "marksman" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "marksman" }) end,
   },
   {
     "nvimtools/none-ls.nvim",

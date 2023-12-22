@@ -24,25 +24,25 @@ Andromeda.configs.dashboard = function()
         { action = "Telescope find_files",                  desc = " Find file",    icon = icons.ui("Search"),    key = "f" },
         { action = "Telescope oldfiles",                    desc = " Recent files", icon = icons.file("Files"),   key = "r" },
         { action = "Telescope live_grep",                   desc = " Find text",    icon = icons.ui("Keyboard"),  key = "g" },
-        { action = Andromeda.lib.telescope.config_files(),  desc = " Config",       icon = icons.ui("Gear"),      key = "c" },
+        { action = Andromeda.kit.telescope.config_files(),  desc = " Config",       icon = icons.ui("Gear"),      key = "c" },
         { action = "Lazy",                                  desc = " Lazy",         icon = icons.misc("Lazy"),    key = "l" },
         { action = "qa",                                    desc = " Quit",         icon = icons.misc("Power"),   key = "q" },
       },
 
-      footer = function()
-        local stats = require("lazy").stats()
-        local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-        return {
-          wrap_text("Neovim version " .. Andromeda.lib.get_nvim_version(), icons.misc("Neovim")),
-          "",
-          wrap_text("Happiness is a state of mind.", icons.misc("Tree")),
-          "",
-          wrap_text(
-            "Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
-            icons.kind("Event", 1, true)
-          ),
-        }
-      end,
+      -- footer = function()
+      --   local stats = require("lazy").stats()
+      --   local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+      --   return {
+      --     wrap_text("Neovim version " .. Andromeda.kit.get_nvim_version(), icons.misc("Neovim")),
+      --     "",
+      --     wrap_text("Happiness is a state of mind.", icons.misc("Tree")),
+      --     "",
+      --     wrap_text(
+      --       "Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
+      --       icons.kind("Event", 1, true)
+      --     ),
+      --   }
+      -- end,
     },
   }
 

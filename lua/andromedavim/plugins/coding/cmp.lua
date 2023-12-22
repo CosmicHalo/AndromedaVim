@@ -45,7 +45,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "saadparwaiz1/cmp_luasnip",
     },
-    opts = function()
+    opts = function(_, _)
       local snip_status_ok, luasnip = pcall(require, "luasnip")
       if not snip_status_ok then return end
 

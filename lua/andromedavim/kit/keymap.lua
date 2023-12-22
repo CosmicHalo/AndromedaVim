@@ -1,5 +1,5 @@
----@type AndromedaKeymapLib
-Andromeda.lib.keymap = {}
+---@type AndromedaKeymapKit
+Andromeda.kit.keymap = {}
 
 ---@class map_rhs
 ---@field [1] string | fun():nil
@@ -105,8 +105,8 @@ end
 
 --! >>>>>>>>>>>>>> BINDING <<<<<<<<<<<<<< --
 
----@class AndromedaKeymapLib
-local bind = Andromeda.lib.keymap
+---@class AndromedaKeymapKit
+local bind = Andromeda.kit.keymap
 
 ---@param cmd_string string
 ---@return map_rhs
@@ -152,5 +152,5 @@ function bind.escape_termcode(cmd_string) return vim.api.nvim_replace_termcodes(
 ---@param mappings table
 function bind.oad_mappings(mappings)
   local astro_mappings = require("astrocore").plugin_opts("astrocore").mappings
-  require("astrocore.init").set_mappings(Andromeda.lib.extend_tbl(astro_mappings, mappings))
+  require("astrocore.init").set_mappings(Andromeda.kit.extend_tbl(astro_mappings, mappings))
 end

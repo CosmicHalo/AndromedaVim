@@ -23,3 +23,8 @@ vim.log = {
 ---@param default table
 ---@param extension table
 function vim.list_extend(default, extension) end
+
+---@param t table
+---@param ... string
+---@return any
+function vim.tbl_get(t, ...) end

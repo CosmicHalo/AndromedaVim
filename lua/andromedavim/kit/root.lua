@@ -1,10 +1,10 @@
 ---@diagnostic disable: undefined-global
----@type AndromedaRootLib
-Andromeda.lib.root = {}
+---@type AndromedaRootKit
+Andromeda.kit.root = {}
 
----@class AndromedaRootLib
+---@class AndromedaRootKit
 ---@overload fun(): string
-local M = setmetatable(Andromeda.lib.root, {
+local M = setmetatable(Andromeda.kit.root, {
   __call = function(m) return m.get() end,
 })
 
@@ -47,7 +47,7 @@ function M.realpath(path)
   if path == "" or path == nil then return nil end
 
   path = vim.loop.fs_realpath(path) or path
-  return Andromeda.lib.norm(path)
+  return Andromeda.kit.norm(path)
 end
 
 function M.bufpath(buf) return M.realpath(vim.api.nvim_buf_get_name(assert(buf))) end
@@ -72,7 +72,7 @@ function M.get(opts)
   end
 
   if opts and opts.normalize then return ret end
-  return Andromeda.lib.is_win() and ret:gsub("/", "\\") or ret
+  return Andromeda.kit.is_win() and ret:gsub("/", "\\") or ret
 end
 
 -------------------------------
@@ -82,7 +82,7 @@ end
 function M.setup()
   vim.api.nvim_create_user_command(
     "AndromedaRoot",
-    function() Andromeda.lib.root.info() end,
+    function() Andromeda.kit.root.info() end,
     { desc = "AndromedaVim roots for the current buffer" }
   )
 
@@ -128,7 +128,7 @@ function M.info()
   lines[#lines + 1] = "vim.g.root_spec = " .. vim.inspect(spec)
   lines[#lines + 1] = "```"
 
-  Andromeda.lib.info(lines, { title = "AndromedaVim Roots" })
+  Andromeda.kit.info(lines, { title = "AndromedaVim Roots" })
   return roots[1] and roots[1].paths[1] or vim.loop.cwd()
 end
 

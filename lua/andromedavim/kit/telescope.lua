@@ -1,13 +1,13 @@
----@type AndromedaTelescopeLib
-Andromeda.lib.telescope = {}
+---@type AndromedaTelescopeKit
+Andromeda.kit.telescope = {}
 
----@class AndromedaTelescopeLibOpts
+---@class AndromedaTelescopeKitOpts
 ---@field cwd? string|boolean
 ---@field show_untracked? boolean
 
----@class AndromedaTelescopeLib
----@overload fun(builtin:string, opts?:AndromedaTelescopeLibOpts)
-local M = setmetatable(Andromeda.lib.telescope, {
+---@class AndromedaTelescopeKit
+---@overload fun(builtin:string, opts?:AndromedaTelescopeKitOpts)
+local M = setmetatable(Andromeda.kit.telescope, {
   __call = function(m, ...) return m.telescope(...) end,
 })
 
@@ -20,11 +20,11 @@ end
 ----------------
 -- Config Files
 ----------------
-function M.config_files() return Andromeda.lib.telescope("find_files", { cwd = vim.fn.stdpath("config") }) end
+function M.config_files() return Andromeda.kit.telescope("find_files", { cwd = vim.fn.stdpath("config") }) end
 
 -- this will return a function that calls telescope.
 ---@param builtin string
----@param opts? AndromedaTelescopeLibOpts
+---@param opts? AndromedaTelescopeKitOpts
 function M.telescope(builtin, opts)
   local params = { builtin = builtin, opts = opts }
 
@@ -32,7 +32,7 @@ function M.telescope(builtin, opts)
     builtin = params.builtin
 
     opts = params.opts
-    opts = vim.tbl_deep_extend("force", { cwd = Andromeda.lib.root() }, opts or {}) --[[@as AndromedaTelescopeLibOpts]]
+    opts = vim.tbl_deep_extend("force", { cwd = Andromeda.kit.root() }, opts or {}) --[[@as AndromedaTelescopeKitOpts]]
 
     ---------
     -- FILES

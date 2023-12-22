@@ -8,15 +8,15 @@ return {
 
     init = function()
       -- Install the conform formatter on VeryLazy
-      Andromeda.lib.on_very_lazy(function()
-        Andromeda.lib.format.register({
+      Andromeda.kit.on_very_lazy(function()
+        Andromeda.kit.format.register({
           priority = 100,
           primary = true,
           name = "conform.nvim",
 
           format = function(buf)
             local opts = require("astrocore").plugin_opts("conform.nvim")
-            require("conform").format(Andromeda.lib.merge(opts.format, { bufnr = buf }))
+            require("conform").format(Andromeda.kit.merge(opts.format, { bufnr = buf }))
           end,
 
           sources = function(buf)

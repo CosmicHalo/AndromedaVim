@@ -1,12 +1,12 @@
----@type AndromedaLSPLib
-Andromeda.lib.lsp = {}
+---@type AndromedaLspKit
+Andromeda.kit.lsp = {}
 
 ---@diagnostic disable: undefined-field
 ---@diagnostic disable: undefined-doc-name
 ---@alias lsp.Client.format {timeout_ms?: number, format_options?: table} | lsp.Client.filter
 
----@class AndromedaLSPLib
-local M = Andromeda.lib.lsp
+---@class AndromedaLspKit
+local M = Andromeda.kit.lsp
 
 -------------------
 -- * Helpers * ----
@@ -114,10 +114,10 @@ function M.formatter(opts)
     priority = 1,
     primary = true,
 
-    format = function(buf) M.format(Andromeda.lib.merge(filter, { bufnr = buf })) end,
+    format = function(buf) M.format(Andromeda.kit.merge(filter, { bufnr = buf })) end,
 
     sources = function(buf)
-      local clients = M.get_clients(Andromeda.lib.merge(filter, { bufnr = buf }))
+      local clients = M.get_clients(Andromeda.kit.merge(filter, { bufnr = buf }))
       local ret = vim.tbl_filter(
         function(client)
           return client.supports_method("textDocument/formatting")
@@ -131,7 +131,7 @@ function M.formatter(opts)
     end,
   }
 
-  return Andromeda.lib.merge(ret, opts) --[[@as AndromedaFormatter]]
+  return Andromeda.kit.merge(ret, opts) --[[@as AndromedaFormatter]]
 end
 
 return M

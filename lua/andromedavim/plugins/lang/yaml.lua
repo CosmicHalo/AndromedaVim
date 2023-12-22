@@ -3,12 +3,12 @@ return {
   -- add yaml specific modules to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "yaml" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "yaml" }) end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     optional = true,
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "yamlls" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "yamlls" }) end,
   },
   {
     "nvimtools/none-ls.nvim",
@@ -26,8 +26,8 @@ return {
       {
         "AstroNvim/astrolsp",
         opts = function(_, opts)
-          Andromeda.lib.extend_list_opt(opts, { "yamlls" }, "servers")
-          opts.config = Andromeda.lib.extend_tbl(opts.config or {}, {
+          Andromeda.kit.extend_list_opt(opts, { "yamlls" }, "servers")
+          opts.config = Andromeda.kit.extend_tbl(opts.config or {}, {
             yamlls = {
               on_new_config = function(config)
                 config.settings.yaml.schemas = vim.tbl_deep_extend(

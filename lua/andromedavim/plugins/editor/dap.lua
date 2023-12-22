@@ -10,9 +10,7 @@ return {
       dependencies = { "nvim-dap" },
       cmd = { "DapInstall", "DapUninstall" },
       opts = { handlers = {} },
-      init = function()
-        require("astrocore").on_load("mason.nvim", function() require("mason-nvim-dap") end)
-      end,
+      init = function(plugin) require("astrocore").on_load("mason.nvim", plugin.name) end,
     },
     {
       "rcarriga/nvim-dap-ui",

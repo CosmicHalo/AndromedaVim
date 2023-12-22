@@ -12,7 +12,7 @@ return {
       },
     },
     opts = function()
-      local max_file = require("astrocore").config.features.max_file --[[@as AstroCoreMaxFile]]
+      local max_file = assert(require("astrocore").config.features.max_file)
 
       return {
         lazy_load = false,

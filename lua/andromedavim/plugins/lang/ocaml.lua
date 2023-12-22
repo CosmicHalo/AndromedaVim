@@ -1,19 +1,19 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "ocaml" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "ocaml" }) end,
   },
 
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "ocamllsp" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "ocamllsp" }) end,
   },
 
   {
     "AstroNvim/astrolsp",
     opts = function(_, opts)
-      Andromeda.lib.extend_list_opt(opts, { "ocamllsp" }, "servers")
-      opts.config = Andromeda.lib.extend_tbl(opts.config or {}, {
+      Andromeda.kit.extend_list_opt(opts, { "ocamllsp" }, "servers")
+      opts.config = Andromeda.kit.extend_tbl(opts.config or {}, {
         ocamllsp = { codelens = { enable = true } },
       })
     end,

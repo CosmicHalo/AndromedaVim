@@ -1,10 +1,10 @@
----@type AndromedaPathLib
-Andromeda.lib.path = {}
+---@type AndromedaPathKit
+Andromeda.kit.path = {}
 
----@class AndromedaPathLib
-local M = Andromeda.lib.path
+---@class AndromedaPathKit
+local M = Andromeda.kit.path
 
-M.INIT_EXT = "init.lua"
+M.INIT_EXT = "init"
 M.CONFIG_PATH = vim.fn.stdpath("config") .. "/lua/"
 
 M.filters = {}
@@ -13,17 +13,17 @@ M.filters = {}
 
 M.filters.lua = function(v, k, t) return M.get_filename(v) == M.INIT_EXT and false or true end
 
-M.filters.utils = function(v, k, t)
-  local is_lua = M.filters.lua(v, k, t)
-  local is_path = M.get_filename(v) == "path.lua" and false or true
-  return not is_lua and not is_path
-end
-
 -- >>>>>>>>>>>>>>>>>> Helpers <<<<<<<<<<<<<<<<<<<< --
 
 ---@param path string
+---@param with_ext? boolean
 ---@return string
-function M.get_filename(path) return path:match("^.+/(.+)$") end
+function M.get_filename(path, with_ext)
+  with_ext = with_ext or false
+  local filename = path:match("^.+/(.+)$")
+  if with_ext then return filename end
+  return filename:gsub("%..+$", "")
+end
 
 ---@param dir string
 ---@param filter? function

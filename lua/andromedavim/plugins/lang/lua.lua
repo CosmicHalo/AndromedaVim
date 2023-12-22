@@ -1,16 +1,16 @@
 return {
   {
     "AstroNvim/astrolsp",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "lua_ls" }, "servers") end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "lua_ls" }, "servers") end,
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "lua", "luap" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "lua", "luap" }) end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "lua_ls" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "lua_ls" }) end,
   },
   {
     "nvimtools/none-ls.nvim",

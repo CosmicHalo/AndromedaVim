@@ -1,9 +1,10 @@
----@class AndromedaUILib
-Andromeda.lib.ui = {}
+---@class AndromedaUIKit
+Andromeda.kit.ui = Andromeda.kit.ui or {}
 
----@class AndromedaUILib
-local M = Andromeda.lib.ui
+---@class AndromedaUIKit
+local M = Andromeda.kit.ui
 
+---@alias Mark {pos:number[]}
 ---@alias Sign {name:string, text:string, texthl:string, priority:number}
 
 -- Returns a list of regular and extmark signs sorted by priority (low to high)

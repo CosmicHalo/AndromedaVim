@@ -5,7 +5,7 @@ Andromeda.mappings.telescope = function(_, opts)
   local is_available = astro.is_available
 
   --! Git
-  maps.n["<Leader>g"] = opts._map_section.g
+  maps.n["<Leader>g"] = vim.tbl_get(opts._map_sections, "g")
   maps.n["<Leader>gt"] = {
     function() require("telescope.builtin").git_status({ use_file_path = true }) end,
     desc = "Git status",
@@ -24,7 +24,7 @@ Andromeda.mappings.telescope = function(_, opts)
   }
 
   --! Find / Search
-  maps.n["<Leader>f"] = opts._map_section.f
+  maps.n["<Leader>f"] = vim.tbl_get(opts._map_sections, "f")
   maps.n["<Leader>ff"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
   maps.n["<Leader>fF"] = {
     function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,

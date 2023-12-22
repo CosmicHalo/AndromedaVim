@@ -61,9 +61,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     cmd = { "LspInstall", "LspUninstall" },
-    init = function()
-      require("astrocore").on_load("mason.nvim", function() require("mason-lspconfig") end)
-    end,
+    init = function(plugin) require("astrocore").on_load("mason.nvim", plugin.name) end,
     opts = function(_, opts)
       vim.defer_fn(function()
         if not opts.handlers then opts.handlers = {} end

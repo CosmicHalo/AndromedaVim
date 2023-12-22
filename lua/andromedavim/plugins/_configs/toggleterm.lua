@@ -2,11 +2,11 @@ Andromeda.mappings.toggleterm = function(_, opts)
   local maps = opts.mappings
   local astro = require("astrocore")
 
-  maps.n["<Leader>t"] = opts._map_section.t
+  maps.n["<Leader>t"] = vim.tbl_get(opts._map_sections, "t")
 
   --! Lazygit
   if vim.fn.executable("lazygit") == 1 then
-    maps.n["<Leader>g"] = opts._map_section.g
+    maps.n["<Leader>g"] = vim.tbl_get(opts._map_sections, "g")
     maps.n["<Leader>gg"] = {
       function()
         local worktree = astro.file_worktree()

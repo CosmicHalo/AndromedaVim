@@ -263,13 +263,9 @@ local function generate_get(pack, is_wrap)
   is_wrap = is_wrap or false
 
   if is_wrap then
-    return function(iconType, padding)
-      return require("andromedavim.kit.icon").get_icon(pack .. "." .. iconType, padding, true)
-    end
+    return function(iconType, padding) return Andromeda.kit.ui.get_icon(pack .. "." .. iconType, padding, true) end
   end
-  return function(iconType, padding, wrap)
-    return require("andromedavim.kit.icon").get_icon(pack .. "." .. iconType, padding, wrap)
-  end
+  return function(iconType, padding, wrap) return Andromeda.kit.ui.get_icon(pack .. "." .. iconType, padding, wrap) end
 end
 
 --! GET

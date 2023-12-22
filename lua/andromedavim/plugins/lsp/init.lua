@@ -36,12 +36,12 @@ return {
       end
 
       -- setup autoformat
-      Andromeda.lib.format.register(Andromeda.lib.lsp.formatter())
+      Andromeda.kit.format.register(Andromeda.kit.lsp.formatter())
 
       local setup_servers = function()
         vim.tbl_map(require("astrolsp").lsp_setup, astrolsp.config.servers)
         vim.api.nvim_exec_autocmds("FileType", {})
-        Andromeda.lib.event("LspSetup")
+        Andromeda.kit.event("LspSetup")
       end
 
       vim.defer_fn(function()
@@ -53,10 +53,10 @@ return {
       end, 0)
 
       --! Setup Deno over TSServer
-      if Andromeda.lib.lsp.get_config("denols") and Andromeda.lib.lsp.get_config("tsserver") then
+      if Andromeda.kit.lsp.get_config("denols") and Andromeda.kit.lsp.get_config("tsserver") then
         local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-        Andromeda.lib.lsp.disable("tsserver", is_deno)
-        Andromeda.lib.lsp.disable("denols", function(root_dir) return not is_deno(root_dir) end)
+        Andromeda.kit.lsp.disable("tsserver", is_deno)
+        Andromeda.kit.lsp.disable("denols", function(root_dir) return not is_deno(root_dir) end)
       end
     end,
   },

@@ -28,8 +28,8 @@ function M.init()
     require("andromedavim.core.options")
   end
 
-  Andromeda.lib.root.setup()
-  Andromeda.lib.format.setup()
+  Andromeda.kit.root.setup()
+  Andromeda.kit.format.setup()
 end
 
 return M

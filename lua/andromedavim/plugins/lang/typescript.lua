@@ -2,13 +2,13 @@ return {
   -- add typescript to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "javascript", "typescript", "tsx" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "javascript", "typescript", "tsx" }) end,
   },
 
   {
     "williamboman/mason-lspconfig.nvim",
     optional = true,
-    opts = function(_, opts) Andromeda.lib.extend_list_opt(opts, { "tsserver" }) end,
+    opts = function(_, opts) Andromeda.kit.extend_list_opt(opts, { "tsserver" }) end,
   },
 
   {
@@ -47,9 +47,9 @@ return {
   {
     "AstroNvim/astrolsp",
     opts = function(_, opts)
-      Andromeda.lib.extend_list_opt(opts, { "tsserver" }, "servers")
+      Andromeda.kit.extend_list_opt(opts, { "tsserver" }, "servers")
 
-      opts.config = Andromeda.lib.extend_tbl(opts.config or {}, {
+      opts.config = Andromeda.kit.extend_tbl(opts.config or {}, {
         tsserver = {
           single_file_support = false,
           settings = {

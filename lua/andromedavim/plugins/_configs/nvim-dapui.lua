@@ -1,6 +1,6 @@
 Andromeda.mappings.dapui = function(_, opts)
   local maps = opts.mappings
-  maps.n["<Leader>d"] = opts._map_section.d
+  maps.n["<Leader>d"] = vim.tbl_get(opts._map_sections, "d")
   maps.n["<Leader>du"] = { function() require("dapui").toggle() end, desc = "Toggle Debugger UI" }
   maps.n["<Leader>dh"] = { function() require("dap.ui.widgets").hover() end, desc = "Debugger Hover" }
   maps.n["<Leader>dE"] = {
