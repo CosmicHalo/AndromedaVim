@@ -5,15 +5,14 @@
 ---@field format AndromedaFormatKit
 ---@field keymap AndromedaKeymapKit
 ---@field telescope AndromedaTelescopeKit
-local M = Andromeda.kit
-
--- setmetatable(Andromeda.kit, {
---   __index = function(t, k)
---     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
---     t[k] = require("andromedavim.kit")[k]
---     return t[k]
---   end,
--- })
+local M = setmetatable(Andromeda.kit, {
+  __index = function(t, k)
+    if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
+    Debug("Kit not found", k)
+    t[k] = Andromeda.kit[k]
+    return t[k]
+  end,
+})
 
 function M.is_win() return vim.loop.os_uname().sysname:find("Windows") ~= nil end
 
@@ -38,15 +37,6 @@ end
 
 -- >>>>>>>>>>>>>>>>>>>>> Table <<<<<<<<<<<<<<<<<<<< --
 
----@param t table<string, any>
-function M.get_keys(t)
-  local keys = {}
-  for key, _ in pairs(t) do
-    table.insert(keys, key)
-  end
-  return keys
-end
-
 --- Insert one or more values into a list like table and maintain that you do not insert non-unique values (THIS MODIFIES `lst`)
 ---@param lst any[]|nil The list like table that you want to insert into
 ---@param vals any|any[] Either a list like table of values to be inserted or a single value to be inserted
@@ -68,15 +58,6 @@ function M.list_insert_unique(lst, vals)
   return lst
 end
 
---- Merge extended options with a default table of options
----@param default? table The default table that you want to merge into
----@param opts? table The new options that should be merged with the default table
----@return table # The merged table
-function M.extend_tbl(default, opts)
-  opts = opts or {}
-  return default and vim.tbl_deep_extend("force", default, opts) or opts
-end
-
 ---@param opts table
 ---@param key? string
 ---@param extension table
@@ -89,4 +70,6 @@ end
 
 ---@param opts table
 ---@param extension table
-function M.extend_opts(opts, extension) return M.extend_tbl(opts, extension) end
+function M.extend_opts(opts, extension) return table.extend(opts, extension) end
+
+return M

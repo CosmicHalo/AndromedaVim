@@ -23,13 +23,17 @@ Debug = function(...)
     if i ~= #args then str = str .. ", " end
   end
 
-  Echo(str, true)
+  Echo(str, false, true)
 end
 
 ---@param str string
+---@param history? boolean
 ---@param key_return? boolean
-Echo = function(str, key_return)
+Echo = function(str, history, key_return)
+  history = history or false
+  key_return = key_return or false
+
   vim.cmd("redraw")
-  vim.api.nvim_echo({ { str, "Bold" } }, true, {})
+  vim.api.nvim_echo({ { str, "Bold" } }, history, {})
   if key_return then vim.fn.getchar() end
 end

@@ -48,6 +48,10 @@ table.find = function(table, value)
   end
 end
 
+--- Merge extended options with a default table of options
+---@param default? table The default table that you want to merge into
+---@param ... table The new options that should be merged with the default table
+---@return table # The merged table
 table.extend = function(default, ...)
   local table_of_opts = { ... }
   for _, opts in ipairs(table_of_opts) do

@@ -2,9 +2,9 @@ return {
   "AstroNvim/astrolsp",
   ---@param opts AstroLSPOpts
   opts = function(_, opts)
-    local core = require("astrocore")
-    local astrolsp = require("astrolsp")
-    local lsp_toggles = require("astrolsp.toggles")
+    local core = require("astrocore") --[[@as astrocore]]
+    local astrolsp = require("astrolsp") --[[@as astrolsp]]
+    local lsp_toggles = require("astrolsp.toggles") --[[@as astrolsp.toggles]]
 
     local formatting_enabled = function(client)
       local disabled = opts.formatting.disabled
@@ -114,6 +114,6 @@ return {
       cond = "textDocument/declaration",
     }
 
-    opts.mappings = core.extend_tbl(opts.mappings, maps)
+    opts.mappings = table.extend(opts.mappings, maps)
   end,
 }

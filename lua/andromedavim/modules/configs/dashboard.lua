@@ -29,20 +29,19 @@ Andromeda.configs.dashboard = function()
         { action = "qa",                                    desc = " Quit",         icon = icons.misc("Power"),   key = "q" },
       },
 
-      -- footer = function()
-      --   local stats = require("lazy").stats()
-      --   local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-      --   return {
-      --     wrap_text("Neovim version " .. Andromeda.kit.get_nvim_version(), icons.misc("Neovim")),
-      --     "",
-      --     wrap_text("Happiness is a state of mind.", icons.misc("Tree")),
-      --     "",
-      --     wrap_text(
-      --       "Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
-      --       icons.kind("Event", 1, true)
-      --     ),
-      --   }
-      -- end,
+      footer = function()
+        local stats = require("lazy").stats()
+        local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+
+        local happy = wrap_text("Happiness is a state of mind.", icons.misc("Tree"))
+        local neovim = wrap_text("Neovim " .. Andromeda.kit.get_nvim_version(), icons.misc("Neovim"))
+        local loaded = wrap_text(
+          "Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
+          icons.kind("Event", 1, true)
+        )
+
+        return { happy, "", neovim .. " " .. loaded }
+      end,
     },
   }
 

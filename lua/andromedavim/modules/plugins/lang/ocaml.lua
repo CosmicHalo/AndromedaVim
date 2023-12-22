@@ -13,7 +13,7 @@ return {
     "AstroNvim/astrolsp",
     opts = function(_, opts)
       Andromeda.kit.extend_list_opt(opts, { "ocamllsp" }, "servers")
-      opts.config = Andromeda.kit.extend_tbl(opts.config or {}, {
+      opts.config = table.extend(opts.config or {}, {
         ocamllsp = { codelens = { enable = true } },
       })
     end,

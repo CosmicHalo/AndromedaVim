@@ -15,5 +15,5 @@ Andromeda.mappings = {}
 --! Load all kits
 local kits = vim.split(vim.fn.glob(Globals.vim_path .. "/lua/andromedavim/kit/*.lua"), "\n")
 for _, k in ipairs(kits) do
-  require("andromedavim.kit." .. k:match("^.+/(.+)$"):gsub(".lua", ""))
+  require("andromedavim.kit." .. k:match("^.+/(.+)$"):gsub("%..+$", ""))
 end

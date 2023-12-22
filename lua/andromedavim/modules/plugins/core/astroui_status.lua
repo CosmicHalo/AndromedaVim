@@ -237,7 +237,7 @@ return {
 
         local user_colors = status_opts.colors
         if type(user_colors) == "table" then
-          colors = astro.extend_tbl(colors, user_colors)
+          colors = table.extend(colors, user_colors)
         elseif type(user_colors) == "function" then
           colors = user_colors(colors)
         end

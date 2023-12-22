@@ -49,7 +49,7 @@ return {
     opts = function(_, opts)
       Andromeda.kit.extend_list_opt(opts, { "tsserver" }, "servers")
 
-      opts.config = Andromeda.kit.extend_tbl(opts.config or {}, {
+      opts.config = table.extend(opts.config or {}, {
         tsserver = {
           single_file_support = false,
           settings = {

@@ -117,6 +117,6 @@ return {
 
       handlers = { function(server, server_opts) require("lspconfig")[server].setup(server_opts) end },
     }
-    return require("astrocore").extend_tbl(opts, new_opts)
+    return table.extend(opts, new_opts)
   end,
 }

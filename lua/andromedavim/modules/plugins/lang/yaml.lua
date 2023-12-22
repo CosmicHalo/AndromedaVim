@@ -27,7 +27,7 @@ return {
         "AstroNvim/astrolsp",
         opts = function(_, opts)
           Andromeda.kit.extend_list_opt(opts, { "yamlls" }, "servers")
-          opts.config = Andromeda.kit.extend_tbl(opts.config or {}, {
+          opts.config = table.extend(opts.config or {}, {
             yamlls = {
               on_new_config = function(config)
                 config.settings.yaml.schemas = vim.tbl_deep_extend(

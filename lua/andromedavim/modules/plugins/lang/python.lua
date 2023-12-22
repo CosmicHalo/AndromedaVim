@@ -24,7 +24,7 @@ return {
     opts = function(_, opts)
       Andromeda.kit.extend_list_opt(opts, { "pyright", "ruff_lsp" }, "servers")
 
-      opts.config = Andromeda.kit.extend_tbl(opts.config or {}, {
+      opts.config = table.extend(opts.config or {}, {
         ruff_lsp = {
           keys = {
             {
@@ -44,7 +44,7 @@ return {
         },
       })
 
-      opts.handlers = Andromeda.kit.extend_tbl(opts.handlers or {}, {
+      opts.handlers = table.extend(opts.handlers or {}, {
         ruff_lsp = function(_, opts)
           Andromeda.kit.lsp.on_attach(function(client, _)
             if client.name == "ruff_lsp" then

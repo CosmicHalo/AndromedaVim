@@ -38,7 +38,7 @@ function Lazy:load_lazy()
 
   ---@class LazyConfig
   local lazy_opts = {
-    spec = { { import = "andromedavim.plugins" } },
+    spec = { { import = "andromedavim.modules.plugins" } },
 
     checker = { enabled = true },
     change_detection = { enabled = true },

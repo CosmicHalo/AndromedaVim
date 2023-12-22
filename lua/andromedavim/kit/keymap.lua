@@ -150,7 +150,7 @@ end
 function bind.escape_termcode(cmd_string) return vim.api.nvim_replace_termcodes(cmd_string, true, true, true) end
 
 ---@param mappings table
-function bind.oad_mappings(mappings)
+function bind.add_mappings(mappings)
   local astro_mappings = require("astrocore").plugin_opts("astrocore").mappings
-  require("astrocore.init").set_mappings(Andromeda.kit.extend_tbl(astro_mappings, mappings))
+  require("astrocore.init").set_mappings(table.extend(astro_mappings, mappings))
 end
