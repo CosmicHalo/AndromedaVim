@@ -3,7 +3,7 @@ return {
   event = "User AndromedaFile",
   enabled = vim.fn.has("win32") == 0,
   dependencies = {
-    -- { Andromeda.kit.add_mappings("dap") },
+    Andromeda.kit.add_mappings("dap"),
 
     {
       "jay-babu/mason-nvim-dap.nvim",

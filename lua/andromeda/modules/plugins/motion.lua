@@ -1,6 +1,4 @@
-local motion = {}
-
-motion = table.extend(motion, {
+return {
   {
     -- Flash enhances the built-in search functionality by showing labels
     -- at the end of each match, letting you quickly jump to a specific
@@ -9,45 +7,10 @@ motion = table.extend(motion, {
       "folke/flash.nvim",
       event = "VeryLazy",
       vscode = true,
+      opts = require("motion.flash").flash,
+
       dependencies = {
-        -- Flash Telescope config
-        {
-          optional = true,
-          "nvim-telescope/telescope.nvim",
-          opts = require("motion.flash").telescope,
-        },
-      },
-      ---@type Flash.Config
-      opts = {
-
-        label = {
-          -- allow uppercase labels
-          uppercase = true,
-          -- add a label for the first match in the current window.
-          -- you can always jump to the first match with `<CR>`
-          current = true,
-          -- for the current window, label targets closer to the cursor first
-          distance = true,
-        },
-
-        modes = {
-          search = { enabled = false },
-
-          -- options used when flash is activated through
-          -- `f`, `F`, `t`, `T`, `;` and `,` motions
-          char = {
-            enabled = true,
-            -- hide after jump when not using jump labels
-            autohide = false,
-            -- show jump labels
-            jump_labels = false,
-            -- set to `false` to use the current line only
-            multi_line = true,
-            -- When using jump labels, don't use these keys
-            -- This allows using those keys directly after the motion
-            label = { exclude = "hjkliardc" },
-          },
-        },
+        { "nvim-telescope/telescope.nvim", opts = require("motion.flash").telescope, optional = true },
       },
       keys = {
         { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
@@ -58,5 +21,70 @@ motion = table.extend(motion, {
       },
     },
   },
-})
-return motion
+
+  {
+    "echasnovski/mini.ai",
+    opts = function()
+      local ai = require("mini.ai")
+
+      return {
+        n_lines = 500,
+        custom_textobjects = {
+          t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+          c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+          f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
+          o = ai.gen_spec.treesitter({
+            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+          }, {}),
+        },
+      }
+    end,
+    config = function(opts)
+      require("mini.ai").setup(opts)
+      require("astrocore")--[[@as astrocore]]
+        .on_load("which-key.nvim", function()
+          ---@type table<string, string|table>
+          local i = {
+            [" "] = "Whitespace",
+            ['"'] = 'Balanced "',
+            ["'"] = "Balanced '",
+            ["`"] = "Balanced `",
+            ["("] = "Balanced (",
+            [")"] = "Balanced ) including white-space",
+            [">"] = "Balanced > including white-space",
+            ["<lt>"] = "Balanced <",
+            ["]"] = "Balanced ] including white-space",
+            ["["] = "Balanced [",
+            ["}"] = "Balanced } including white-space",
+            ["{"] = "Balanced {",
+            ["?"] = "User Prompt",
+            _ = "Underscore",
+            a = "Argument",
+            b = "Balanced ), ], }",
+            c = "Class",
+            f = "Function",
+            o = "Block, conditional, loop",
+            q = "Quote `, \", '",
+            t = "Tag",
+          }
+          local a = vim.deepcopy(i)
+          for k, v in pairs(a) do
+            a[k] = v:gsub(" including.*", "")
+          end
+
+          local ic = vim.deepcopy(i)
+          local ac = vim.deepcopy(a)
+          for key, name in pairs({ n = "Next", l = "Last" }) do
+            i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
+            a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
+          end
+          require("which-key").register({
+            mode = { "o", "x" },
+            i = i,
+            a = a,
+          })
+        end)
+    end,
+  },
+}

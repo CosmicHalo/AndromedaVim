@@ -4,6 +4,10 @@ local icons = {
 }
 
 return {
+  "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+
+  { "LunarVim/bigfile.nvim", config = require("configs.bigfile") },
+
   {
     "lambdalisue/suda.vim",
     lazy = true,
