@@ -2,6 +2,6 @@
   "Lua.runtime.path": ["?.lua", "lua/?/init.lua", "?/init.lua"],
   "Lua.workspace.library": [
     "/home/n16hth4wk/.local/share/AndromedaVim/lazy",
-    "/home/n16hth4wk/.local/share/AndromedaVim/site"
+    "/home/n16hth4wk/.local/share/AndromedaVim/site/lazy"
   ]
 }

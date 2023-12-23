@@ -60,8 +60,6 @@ conf.plugins = {
   enable_copilot = true,
 
   --! Coding plugins
-  -- Enable coding plugins for diagnostics, debugging, and language servers
-  enable_coding = true,
 
   --! Editor plugins
   -- File explorer tree plugin: neo-tree, nvim-tree, or none
@@ -69,7 +67,7 @@ conf.plugins = {
 
   --! UI plugins
   enable_toggleterm = true, -- enable toggleterm plugin
-  -- Enable a dashboard, can be one of "alpha", "dash", "mini", or "none"
+  -- Enable a dashboard, can be one of "dash", "mini", or "none"
   dashboard = "dash",
 
   --! Telescope plugins

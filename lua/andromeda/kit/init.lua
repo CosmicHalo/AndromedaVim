@@ -7,9 +7,8 @@
 ---@field telescope AndromedaTelescopeKit
 local M = setmetatable(Andromeda.kit, {
   __index = function(t, k)
-    if require("andromeda.kit." .. k) then return require("andromeda.kit." .. k) end
     if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
-    t[k] = nil
+    t[k] = require("andromeda.kit." .. k)
     return t[k]
   end,
 })

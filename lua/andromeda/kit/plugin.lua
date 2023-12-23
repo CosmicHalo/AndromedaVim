@@ -22,14 +22,19 @@ function M.on_very_lazy(fn)
   vim.api.nvim_create_autocmd("User", { pattern = "VeryLazy", callback = function() fn() end })
 end
 
----@param mappingsOrFunc table | function
+---@param mappingsOrFunc string | table | function
 function M.add_mappings(mappingsOrFunc)
-  local mappings = type(mappingsOrFunc) == "function" and mappingsOrFunc() or mappingsOrFunc
+  local opts = nil
+
+  local mappings = mappingsOrFunc
+  if type(mappingsOrFunc) == "function" then mappings = mappingsOrFunc() end
+  if type(mappingsOrFunc) == "string" then opts = require("mappings." .. mappingsOrFunc) end
+
   ---@cast mappings table
 
   return {
     "AstroNvim/astrocore",
-    opts = function(_, opts)
+    opts = opts or function(_, opts)
       local maps = opts.mappings
 
       for key, value in pairs(mappings) do

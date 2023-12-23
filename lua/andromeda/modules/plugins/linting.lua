@@ -7,12 +7,19 @@ return {
       events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 
       linters_by_ft = {
+        json = {},
+        text = {},
+        toml = {},
+        gitcommit = {},
+        javascript = {},
         nix = { "nix" },
-        lua = { "luacheck" },
+        typescript = {},
+        lua = { "stylua" },
+        css = { "stylelint" },
+        python = { "pylint" },
+        sh = { "shellcheck" },
+        yaml = { "yamllint" },
         markdown = { "markdownlint" },
-        -- lua = { "selene", "luacheck" },
-        -- Use the "*" filetype to run linters on all filetypes.
-        -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
       },
 
       -- AndromedaVim extension to easily override linter options
@@ -25,6 +32,6 @@ return {
       },
     },
 
-    config = Andromeda.configs.nvim_lint,
+    config = require("configs.nvim-lint"),
   },
 }

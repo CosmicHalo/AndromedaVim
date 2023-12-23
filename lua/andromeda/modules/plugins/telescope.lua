@@ -1,6 +1,7 @@
 local astro = require("astrocore")
-local function add_extension(plugin, extension)
-  return { plugin, config = function() Andromeda.kit.telescope.load_extension(extension) end }
+local function add_extension(plugin, extension, extras)
+  local config = { plugin, config = function() Andromeda.kit.telescope.load_extension(extension) end }
+  return table.extend(config, extras or {})
 end
 
 local telescope_deps = {
@@ -9,17 +10,21 @@ local telescope_deps = {
   add_extension("debugloop/telescope-undo.nvim", "undo"),
   add_extension("jvgrootveld/telescope-zoxide", "zoxide"),
   add_extension("crispgm/telescope-heading.nvim", "heading"),
-  add_extension("nvim-telescope/telescope-fzf-native.nvim", "fzf"),
   add_extension("nvim-telescope/telescope-frecency.nvim", "frecency"),
   add_extension("nvim-telescope/telescope-file-browser.nvim", "file_browser"),
   add_extension("nvim-telescope/telescope-live-grep-args.nvim", "live_grep_args"),
+  add_extension(
+    "nvim-telescope/telescope-fzf-native.nvim",
+    "fzf",
+    { build = "make", enabled = vim.fn.executable("make") == 1 }
+  ),
 }
 
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
   version = false, -- telescope did only one release, so use HEAD for now
-  dependencies = { telescope_deps, { "AstroNvim/astrocore", opts = require("mappings.telescope") } },
+  dependencies = { telescope_deps, Andromeda.kit.add_mappings("telescope") },
 
   opts = function()
     local actions = require("telescope.actions")

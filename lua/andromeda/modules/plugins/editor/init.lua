@@ -15,20 +15,6 @@ return {
     end,
   },
 
-  -- {
-  --   "folke/twilight.nvim",
-  --   dependencies = {
-  --     {
-  --       "AstroNvim/astrocore",
-  --       opts = {
-  --         mappings = {
-  --           ["<Leader>uT"] = { "<CMD>Twilight<CR>", desc = "Toggle Twilight" },
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
-
   {
     "folke/which-key.nvim",
     event = "VeryLazy",

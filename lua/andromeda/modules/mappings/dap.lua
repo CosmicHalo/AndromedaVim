@@ -1,4 +1,4 @@
-Andromeda.mappings.dap = function(_, opts)
+return function(_, opts)
   local maps = opts.mappings
   maps.n["<Leader>d"] = vim.tbl_get(opts._map_sections, "d")
 

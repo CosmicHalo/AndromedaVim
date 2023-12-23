@@ -3,7 +3,6 @@ local settings = Andromeda.settings.plugins
 local DASHBOARDS = {
   none = "none",
   mini = "mini",
-  alpha = "alpha",
   dashboard = "dash",
 }
 
@@ -17,14 +16,7 @@ end
 
 local dash = {}
 
-if settings.dashboard == DASHBOARDS.alpha then
-  dash = {
-    "goolord/alpha-nvim",
-    event = "VimEnter",
-    dependencies = dashboard_depend,
-    config = true,
-  }
-elseif settings.dashboard == DASHBOARDS.dashboard then
+if settings.dashboard == DASHBOARDS.dashboard then
   dash = {
     "glepnir/dashboard-nvim",
     event = "VimEnter",
@@ -37,7 +29,7 @@ elseif settings.dashboard == DASHBOARDS.mini then
     version = false,
     event = "VimEnter",
     dependencies = dashboard_depend,
-    config = true,
+    config = require("dashboards.mini"),
   }
 end
 
