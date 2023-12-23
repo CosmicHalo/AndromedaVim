@@ -74,7 +74,7 @@ return -- better diagnostics list and others
         else
           ---@diagnostic disable-next-line: undefined-field
           local ok, err = pcall(vim.cmd.cprev)
-          if not ok then vim.notify(err, vim.log.levels.ERROR) end
+          if not ok then Andromeda.kit.notify(err, vim.log.levels.ERROR) end
         end
       end,
       desc = "Previous trouble/quickfix item",
@@ -86,7 +86,8 @@ return -- better diagnostics list and others
           require("trouble").next({ skip_groups = true, jump = true })
         else
           local ok, err = pcall(vim.cmd.cnext)
-          if not ok then vim.notify(err, vim.log.levels.ERROR) end
+          ---@diagnostic disable-next-line: param-type-mismatch
+          if not ok then Andromeda.kit.notify(err, vim.log.levels.ERROR) end
         end
       end,
       desc = "Next trouble/quickfix item",

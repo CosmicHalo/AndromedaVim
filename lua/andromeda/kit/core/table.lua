@@ -1,28 +1,5 @@
----@class AndromedaKit: LazyUtilCore
----@field ui AndromedaUIKit
----@field lsp AndromedaLspKit
----@field root AndromedaRootKit
----@field format AndromedaFormatKit
----@field keymap AndromedaKeymapKit
----@field telescope AndromedaTelescopeKit
-local M = setmetatable(Andromeda.kit, {
-  __index = function(t, k)
-    if require("lazy.core.util")[k] then return require("lazy.core.util")[k] end
-    t[k] = require("andromeda.kit." .. k)
-    return t[k]
-  end,
-})
-
-function M.is_win() return vim.loop.os_uname().sysname:find("Windows") ~= nil end
-
-M.get_nvim_version = function()
-  local version = vim.version()
-  local is_prerelease = version.api_prerelease or false
-  local prerelease = is_prerelease and "-" .. version.prerelease or ""
-  return version.major .. "." .. version.minor .. "." .. version.patch .. prerelease
-end
-
--- >>>>>>>>>>>>>>>>>>>>> Table <<<<<<<<<<<<<<<<<<<< --
+---@class AndromedaKit
+local M = Andromeda.kit
 
 --- Insert one or more values into a list like table and maintain that you do not insert non-unique values (THIS MODIFIES `lst`)
 ---@param lst any[]|nil The list like table that you want to insert into

@@ -2,15 +2,7 @@
 local M = Andromeda.mappings
 
 --stylua: ignore
---!>>>>>>>>> conform-nvim <<<<<<<<<
 
-M.conform_nvim = function(_, opts)
-  -- local maps = opts.mappings
-  -- maps.n["<leader>cF"] = {
-  --   function() require("conform").format { formatters = { "injected" } } end,
-  --   desc = "Format Injected Langs",
-  -- }
-end
 
 --!>>>>>>>>> Noice <<<<<<<<<
 

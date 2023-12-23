@@ -12,7 +12,7 @@ end
 M.set_colorscheme = function(theme)
   Andromeda.kit.try(function() vim.cmd.colorscheme(theme) end, {
     on_error = function()
-      vim.notify(("Error setting up colorscheme: `%s`"):format(theme), vim.log.levels.ERROR, { title = "AstroUI" })
+      Andromeda.kit.notify(("Error setting up colorscheme: `%s`"):format(theme), vim.log.levels.ERROR)
     end,
   })
 end
@@ -31,7 +31,7 @@ M.activate_colorscheme = function(scheme, setup_fn, activate_theme)
       if activate_theme then M.set_colorscheme(scheme) end
     end, {
       on_error = function()
-        vim.notify(("Error activating colorscheme: `%s`"):format(scheme), vim.log.levels.ERROR, { title = "AstroUI" })
+        Andromeda.kit.notify(("Error activating colorscheme: `%s`"):format(scheme), vim.log.levels.ERROR)
       end,
     })
   end

@@ -19,7 +19,7 @@ return {
       ["[b"] = "prev_source",
       ["]b"] = "next_source",
       ["<S-CR>"] = "system_open",
-      F = astro.is_available("telescope.nvim") and "find_in_dir" or nil,
+      F = Andromeda.kit.is_available("telescope.nvim") and "find_in_dir" or nil,
       ["<Space>"] = false, -- disable space until we figure out which-key disabling
     },
     fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
@@ -126,7 +126,7 @@ return {
 
       local options = vim.tbl_filter(function(val) return vals[val] ~= "" end, vim.tbl_keys(vals))
       if vim.tbl_isempty(options) then
-        astro.notify("No values to copy", vim.log.levels.WARN)
+        Andromeda.kit.notify("No values to copy", vim.log.levels.WARN)
         return
       end
       table.sort(options)
@@ -136,7 +136,7 @@ return {
       }, function(choice)
         local result = vals[choice]
         if result then
-          astro.notify(("Copied: `%s`"):format(result))
+          Andromeda.kit.notify(("Copied: `%s`"):format(result))
           vim.fn.setreg("+", result)
         end
       end)

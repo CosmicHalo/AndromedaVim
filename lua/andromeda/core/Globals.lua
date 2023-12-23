@@ -27,18 +27,19 @@ Debug = function(...)
     if i ~= #args then str = str .. ", " end
   end
 
-  Echo(str, false, true)
+  Andromeda.kit.notify(str, vim.log.levels.INFO, { timeout = 0 })
+  vim.schedule(function() vim.fn.getchar() end)
 end
 
----@param str string
+---@param chunks any[]
 ---@param history? boolean
 ---@param key_return? boolean
-Echo = function(str, history, key_return)
+Echo = function(chunks, history, key_return)
   history = history or false
   key_return = key_return or false
 
   vim.cmd("redraw")
-  vim.api.nvim_echo({ { str, "Bold" } }, history, {})
+  vim.api.nvim_echo(chunks, history, {})
   if key_return then vim.fn.getchar() end
 end
 

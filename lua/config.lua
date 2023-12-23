@@ -77,6 +77,77 @@ conf.plugins = {
   enable_telescope_themes = true,
   -- Enable treesitter code context
   enable_treesitter_context = true,
+
+  --! LSP / Formatting / Linting plugins
+  -- Formatters and linters installed by Mason
+  formatters_linters = {
+    "actionlint", -- FORMATTERS_LINTERS
+    "gofumpt", -- FORMATTERS_LINTERS
+    "goimports", -- FORMATTERS_LINTERS
+    "golines", -- FORMATTERS_LINTERS
+    "golangci-lint", -- FORMATTERS_LINTERS
+    "markdownlint", -- FORMATTERS_LINTERS
+    "prettier", -- FORMATTERS_LINTERS
+    -- "sql-formatter", -- FORMATTERS_LINTERS
+    -- "shellcheck",   -- FORMATTERS_LINTERS
+    "shfmt", -- FORMATTERS_LINTERS
+    "stylua", -- FORMATTERS_LINTERS
+    -- "tflint", -- FORMATTERS_LINTERS
+    "yamllint", -- FORMATTERS_LINTERS
+  },
+}
+
+conf.formatting = {
+  ---@type table<string, conform.FormatterUnit[]>
+  formatters_by_ft = {
+    sh = { "shfmt" },
+    lua = { "stylua" },
+    nix = { "alejandra" },
+    fish = { "fish_indent" },
+    python = { "isort", "black" },
+  },
+
+  formatters = {
+    injected = { options = { ignore_errors = true } },
+    -- # Example of using dprint only when a dprint.json file is present
+    -- dprint = {
+    --   condition = function(ctx)
+    --     return vim.fs.find({ "dprint.json" }, { path = ctx.filename, upward = true })[1]
+    --   end,
+    -- },
+    --
+    -- # Example of using shfmt with extra args
+    -- shfmt = {
+    --   prepend_args = { "-i", "2", "-ci" },
+    -- },
+  },
+}
+
+conf.linting = {
+  linters_by_ft = {
+    json = {},
+    text = {},
+    toml = {},
+    gitcommit = {},
+    javascript = {},
+    nix = { "nix" },
+    typescript = {},
+    lua = { "stylua" },
+    css = { "stylelint" },
+    python = { "pylint" },
+    sh = { "shellcheck" },
+    yaml = { "yamllint" },
+    markdown = { "markdownlint" },
+  },
+
+  -- AndromedaVim extension to easily override linter options
+  -- or add custom linters.
+  ---@type table<string,table>
+  linters = {
+    -- selene = {
+    --   condition = function(ctx) return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1] end,
+    -- },
+  },
 }
 
 return conf

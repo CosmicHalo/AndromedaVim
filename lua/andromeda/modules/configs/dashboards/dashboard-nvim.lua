@@ -1,3 +1,12 @@
+local function wrap_text(text, icon) return icon .. " " .. text .. " " .. icon end
+
+local function get_nvim_version()
+  local version = vim.version()
+  local is_prerelease = version.api_prerelease or false
+  local prerelease = is_prerelease and "-" .. version.prerelease or ""
+  return version.major .. "." .. version.minor .. "." .. version.patch .. prerelease
+end
+
 return function()
   local icons = {
     ui = Andromeda.icons.ui.get,
@@ -5,8 +14,6 @@ return function()
     misc = Andromeda.icons.misc.get,
     file = Andromeda.icons.documents.get,
   }
-
-  local function wrap_text(text, icon) return icon .. " " .. text .. " " .. icon end
 
   local opts = {
     theme = "doom",
@@ -34,7 +41,7 @@ return function()
         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 
         local happy = wrap_text("Happiness is a state of mind.", icons.misc("Tree"))
-        local neovim = wrap_text("Neovim " .. Andromeda.kit.get_nvim_version(), icons.misc("Neovim"))
+        local neovim = wrap_text("Neovim " .. get_nvim_version(), icons.misc("Neovim"))
         local loaded = wrap_text(
           "Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
           icons.kind("Event", 1, true)
