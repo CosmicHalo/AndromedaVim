@@ -4,8 +4,6 @@ return {
 
     require("flash")
 
-    Debug(opts)
-
     local function flash(prompt_bufnr)
       require("flash").jump({
         pattern = "^",
